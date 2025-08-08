@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Technical documentation for biodiversity">
+        <meta name="author" content="AIT">
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Biodiversity Project Documentation</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/fontawesome.min.css" rel="stylesheet">
+        <link href="css/brands.min.css" rel="stylesheet">
+        <link href="css/solid.min.css" rel="stylesheet">
+        <link href="css/v4-font-face.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">Biodiversity Project Documentation</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#biodiversity" class="nav-link">Biodiversity</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-hardware-components" class="nav-link">1. Hardware Components</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-ai-models" class="nav-link">2. AI Models</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-inference" class="nav-link">3. Inference</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#about-this-documentation" class="nav-link">About This Documentation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="biodiversity">Biodiversity<a class="headerlink" href="#biodiversity" title="Permanent link">&para;</a></h1>
+<p>Welcome to the <strong>Biodiversity Project Documentation</strong>.<br />
+This guide provides detailed instructions, references, and technical explanations for setting up the hardware, training AI models, running inference pipelines, and displaying results on the web.</p>
+<hr />
+<h2 id="1-hardware-components">1. Hardware Components<a class="headerlink" href="#1-hardware-components" title="Permanent link">&para;</a></h2>
+<p>This section explains how to <strong>set up the hardware</strong> used in the project and configure the necessary scripts to start operations.</p>
+<ul>
+<li>Step-by-step installation and configuration  </li>
+<li>Overview of IoT devices and their roles  </li>
+<li>Key scripts and commands for operation</li>
+</ul>
+<p><a href="hardware/">Read more →</a></p>
+<hr />
+<h2 id="2-ai-models">2. AI Models<a class="headerlink" href="#2-ai-models" title="Permanent link">&para;</a></h2>
+<p>This section describes the AI models developed for biodiversity monitoring, including <strong>sound classification</strong> and <strong>score prediction</strong>.</p>
+<h3 id="21-overview-procedure">2.1. Overview Procedure<a class="headerlink" href="#21-overview-procedure" title="Permanent link">&para;</a></h3>
+<ul>
+<li>General workflow for model training and evaluation.</li>
+</ul>
+<h3 id="22-sound-classification-training">2.2. Sound Classification / Training<a class="headerlink" href="#22-sound-classification-training" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Data preparation and preprocessing  </li>
+<li>Model architecture and training parameters  </li>
+<li>Evaluation metrics</li>
+</ul>
+<h3 id="23-score-prediction-training">2.3. Score Prediction / Training<a class="headerlink" href="#23-score-prediction-training" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Feature engineering  </li>
+<li>Model training and validation  </li>
+<li>Performance monitoring</li>
+</ul>
+<p><a href="ai/">Read more →</a></p>
+<hr />
+<h2 id="3-inference">3. Inference<a class="headerlink" href="#3-inference" title="Permanent link">&para;</a></h2>
+<p>This section explains how the system performs inference and serves results.</p>
+<h3 id="31-overview-procedure">3.1. Overview Procedure<a class="headerlink" href="#31-overview-procedure" title="Permanent link">&para;</a></h3>
+<ul>
+<li>High-level inference workflow.</li>
+</ul>
+<h3 id="32-database-design">3.2. Database Design<a class="headerlink" href="#32-database-design" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Schema design and data storage strategy.</li>
+</ul>
+<h3 id="33-inference-pipeline-design">3.3. Inference Pipeline Design<a class="headerlink" href="#33-inference-pipeline-design" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Step-by-step data flow for predictions.</li>
+</ul>
+<h3 id="34-results-showing-on-the-web">3.4. Results Showing on the Web<a class="headerlink" href="#34-results-showing-on-the-web" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Web UI integration for visualizing predictions and analytics.</li>
+</ul>
+<p><a href="inference/">Read more →</a></p>
+<hr />
+<h2 id="about-this-documentation">About This Documentation<a class="headerlink" href="#about-this-documentation" title="Permanent link">&para;</a></h2>
+<p>This documentation is part of the <strong>Biodiversity Project</strong>, which aims to automate biodiversity monitoring using IoT devices, AI-driven sound classification, and real-time score predictions.<br />
+It is organized for <strong>developers, researchers, and field operators</strong> to follow consistently from setup to deployment.</p>
+<p>All the source code are pushed to the github</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.6.0
+Build Date UTC : 2025-08-08 08:37:26.524106+00:00
+-->

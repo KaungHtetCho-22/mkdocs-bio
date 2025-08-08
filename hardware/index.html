@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="AIT">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Hardware Components Documentation - Biodiversity Project Documentation</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Biodiversity Project Documentation</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#hardware-components-documentation" class="nav-link">Hardware Components Documentation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-iot-device-list" class="nav-link">1. IoT Device List</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-raspberry-pi-os-installation" class="nav-link">2. Raspberry Pi — OS &amp; Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-audiomoth-device" class="nav-link">3. AudioMoth Device</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-router-status" class="nav-link">4. Router Status</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-solar-panel-status" class="nav-link">5. Solar Panel Status</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-battery-status" class="nav-link">6. Battery Status</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-overall-working-flow" class="nav-link">7. Overall Working Flow</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="hardware-components-documentation">Hardware Components Documentation<a class="headerlink" href="#hardware-components-documentation" title="Permanent link">&para;</a></h1>
+<h2 id="1-iot-device-list">1. IoT Device List<a class="headerlink" href="#1-iot-device-list" title="Permanent link">&para;</a></h2>
+<p>The following devices are used in the system:</p>
+<ol>
+<li><strong>Raspberry Pi</strong>  </li>
+<li><strong>AudioMoth</strong>  </li>
+<li><strong>4G Router</strong>  </li>
+<li><strong>Internet SIM Card</strong>  </li>
+<li><strong>Solar Panel</strong></li>
+</ol>
+<p><img alt="System Overview" src="overview-img.jpg" /><br />
+<img alt="Raspberry Pi" src="pi.jpg" /><br />
+<img alt="AudioMoth" src="audiomoth.jpg" /><br />
+<img alt="Internet SIM Card" src="sim-card.jpg" /><br />
+<img alt="Solar Panel" src="solar-panel.jpg" /></p>
+<hr />
+<h2 id="2-raspberry-pi-os-installation">2. Raspberry Pi — OS &amp; Installation<a class="headerlink" href="#2-raspberry-pi-os-installation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Model:</strong> Raspberry Pi 3 B+  </li>
+<li><strong>Storage:</strong> 64 GB microSD card  </li>
+<li><strong>Setup:</strong> Flash the backup OS image to the new SD card.  </li>
+</ul>
+<p><strong>Installation Process:</strong>
+1. Insert the SD card into your computer.<br />
+2. Use an imaging tool (e.g., Balena Etcher) to flash the backup <code>.img</code> file.<br />
+3. Insert the flashed SD card into the Raspberry Pi.<br />
+4. Power on the device.</p>
+<p><img alt="Raspberry Pi" src="pi.jpg" /><br />
+<img alt="SD Card" src="sd-card.jpg" />  </p>
+<p><a href="https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr"><img alt="Download pi-image here" src="https://img.shields.io/badge/Google%20Drive-Open%20Folder-blue?logo=google-drive" /></a></p>
+<hr />
+<h3 id="21-important-scripts-files">2.1. Important Scripts &amp; Files<a class="headerlink" href="#21-important-scripts-files" title="Permanent link">&para;</a></h3>
+<p>The Raspberry Pi OS contains key scripts and configurations:</p>
+<table>
+<thead>
+<tr>
+<th>File / Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>recorder-script.sh</code></td>
+<td>Main script to handle audio recording.</td>
+</tr>
+<tr>
+<td><code>config.json</code></td>
+<td>Configuration file for device parameters.</td>
+</tr>
+<tr>
+<td>OpenVPN installation (UI)</td>
+<td>Provides secure remote access.</td>
+</tr>
+<tr>
+<td><code>journalctl -u shellscript.service -f</code></td>
+<td>Command to check live service logs.</td>
+</tr>
+<tr>
+<td><code>arecord -l</code></td>
+<td>Command to list available recording devices.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-audiomoth-device">3. AudioMoth Device<a class="headerlink" href="#3-audiomoth-device" title="Permanent link">&para;</a></h2>
+<p>The AudioMoth is used for audio data collection in <strong>two modes</strong>:</p>
+<ul>
+<li>
+<p><a href="../files/Audiomoth%20mobile%20type%20recording%20Manual.pdf">Download Audiomoth setup manual PDF</a></p>
+</li>
+<li>
+<p><a href="../files/Setting%20Up%20IoT%20Station%20Devices.pdf">Download Whole IOT device setup PDF version</a></p>
+</li>
+</ul>
+<h3 id="31-mobile-type-usage">3.1. Mobile Type Usage<a class="headerlink" href="#31-mobile-type-usage" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Portable configuration for temporary deployments.  </li>
+<li>Ideal for short-term surveys.  </li>
+</ul>
+<p><em>(Insert images here)</em></p>
+<h3 id="32-station-type-usage">3.2. Station Type Usage<a class="headerlink" href="#32-station-type-usage" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed position setup for continuous monitoring.  </li>
+<li>Powered by solar or external battery.  </li>
+</ul>
+<p><em>(Insert images here)</em></p>
+<hr />
+<h2 id="4-router-status">4. Router Status<a class="headerlink" href="#4-router-status" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Type:</strong> 4G Router  </li>
+<li><strong>Function:</strong> Provides internet connectivity via SIM card.  </li>
+</ul>
+<p><strong>Troubleshooting:</strong>
+- Check LED status indicators.<br />
+- Ensure SIM card is active.<br />
+- Restart router if connection drops.</p>
+<p><img alt="Router" src="img.jpg" />  </p>
+<hr />
+<h2 id="5-solar-panel-status">5. Solar Panel Status<a class="headerlink" href="#5-solar-panel-status" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Purpose:</strong> Supplies power to IoT devices in remote areas.  </li>
+</ul>
+<p><strong>Indicators:</strong>
+- Green light: Charging<br />
+- Red light: Low battery<br />
+- Off: No power supply</p>
+<p><em>(Insert detailed specifications here)</em></p>
+<hr />
+<h2 id="6-battery-status">6. Battery Status<a class="headerlink" href="#6-battery-status" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Purpose:</strong> Stores energy for nighttime or cloudy-day operation.  </li>
+</ul>
+<p><strong>LED/Blink Indicators:</strong>
+- 1 blink: Low power<br />
+- 2 blinks: Medium<br />
+- 3 blinks: Fully charged  </p>
+<p><em>(Insert battery photos here)</em></p>
+<hr />
+<h2 id="7-overall-working-flow">7. Overall Working Flow<a class="headerlink" href="#7-overall-working-flow" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Power Supply:</strong> Solar panel → Battery → Raspberry Pi + Router.  </li>
+<li><strong>Data Capture:</strong> AudioMoth / Pi records data.  </li>
+<li><strong>Data Transmission:</strong> Router sends data over 4G network.  </li>
+<li><strong>Remote Access:</strong> OpenVPN connection to retrieve/manage data.  </li>
+<li><strong>Monitoring:</strong> Logs checked via <code>journalctl</code> or SSH commands.</li>
+</ol>
+<p><em>(Insert workflow diagram here)</em></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
