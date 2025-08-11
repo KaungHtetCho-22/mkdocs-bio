@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="AIT">
-        
+        <link rel="canonical" href="https://kaunghtetcho-22.github.io/mkdocs-bio/hardware/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Hardware Components Documentation - Biodiversity Project Documentation</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -100,11 +100,12 @@
 <li><strong>Internet SIM Card</strong>  </li>
 <li><strong>Solar Panel</strong></li>
 </ol>
-<p><img alt="System Overview" src="overview-img.jpg" /><br />
-<img alt="Raspberry Pi" src="pi.jpg" /><br />
-<img alt="AudioMoth" src="audiomoth.jpg" /><br />
-<img alt="Internet SIM Card" src="sim-card.jpg" /><br />
-<img alt="Solar Panel" src="solar-panel.jpg" /></p>
+<!-- 
+![Raspberry Pi](pi.jpg)  
+![AudioMoth](audiomoth.jpg)  
+![Internet SIM Card](sim-card.jpg)  
+![Solar Panel](solar-panel.jpg) -->
+
 <hr />
 <h2 id="2-raspberry-pi-os-installation">2. Raspberry Pi — OS &amp; Installation<a class="headerlink" href="#2-raspberry-pi-os-installation" title="Permanent link">&para;</a></h2>
 <ul>
@@ -117,8 +118,14 @@
 2. Use an imaging tool (e.g., Balena Etcher) to flash the backup <code>.img</code> file.<br />
 3. Insert the flashed SD card into the Raspberry Pi.<br />
 4. Power on the device.</p>
-<p><img alt="Raspberry Pi" src="pi.jpg" /><br />
-<img alt="SD Card" src="sd-card.jpg" />  </p>
+<!-- ![Raspberry Pi](images/pi.png)  
+![SD Card](images/sd-card.png)   -->
+
+<p align="center">
+  <img src="images/pi.png" alt="Raspberry Pi" width="45%"/>
+  <img src="images/sd-card.png" alt="SD Card" width="45%"/>
+</p>
+
 <p><a href="https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr"><img alt="Download pi-image here" src="https://img.shields.io/badge/Google%20Drive-Open%20Folder-blue?logo=google-drive" /></a></p>
 <hr />
 <h3 id="21-important-scripts-files">2.1. Important Scripts &amp; Files<a class="headerlink" href="#21-important-scripts-files" title="Permanent link">&para;</a></h3>
@@ -155,27 +162,23 @@
 </table>
 <hr />
 <h2 id="3-audiomoth-device">3. AudioMoth Device<a class="headerlink" href="#3-audiomoth-device" title="Permanent link">&para;</a></h2>
-<p>The AudioMoth is used for audio data collection in <strong>two modes</strong>:</p>
-<ul>
-<li>
-<p><a href="../files/Audiomoth%20mobile%20type%20recording%20Manual.pdf">Download Audiomoth setup manual PDF</a></p>
-</li>
-<li>
-<p><a href="../files/Setting%20Up%20IoT%20Station%20Devices.pdf">Download Whole IOT device setup PDF version</a></p>
-</li>
-</ul>
+<p>AudioMoth is a low-cost, full-spectrum acoustic logger, based on the Gecko processor range from Silicon Labs. Just like its
+namesake the moth, AudioMoth can listen at audible frequencies, well into ultrasonic frequencies. It is capable of recording
+uncompressed audio to microSD card at rates from 8,000 to 384,000 samples per second. The AudioMoth is used for audio data collection in <strong>two modes</strong>:</p>
 <h3 id="31-mobile-type-usage">3.1. Mobile Type Usage<a class="headerlink" href="#31-mobile-type-usage" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Portable configuration for temporary deployments.  </li>
 <li>Ideal for short-term surveys.  </li>
+<li>See attached manual for setting up the mobile type Audiomoth.</li>
 </ul>
-<p><em>(Insert images here)</em></p>
+<p><a href="../files/Audiomoth%20mobile%20type%20recording%20Manual.pdf">Download Audiomoth setup manual PDF</a></p>
 <h3 id="32-station-type-usage">3.2. Station Type Usage<a class="headerlink" href="#32-station-type-usage" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Fixed position setup for continuous monitoring.  </li>
-<li>Powered by solar or external battery.  </li>
+<li>Powered by solar and external battery.  </li>
+<li>See attached manual for setting up the IOT station type.</li>
 </ul>
-<p><em>(Insert images here)</em></p>
+<p><a href="../files/Setting%20Up%20IoT%20Station%20Devices.pdf">Download Whole IOT device setup PDF version</a></p>
 <hr />
 <h2 id="4-router-status">4. Router Status<a class="headerlink" href="#4-router-status" title="Permanent link">&para;</a></h2>
 <ul>
@@ -186,7 +189,7 @@
 - Check LED status indicators.<br />
 - Ensure SIM card is active.<br />
 - Restart router if connection drops.</p>
-<p><img alt="Router" src="img.jpg" />  </p>
+<p><img alt="Router" src="images/img.jpg" />  </p>
 <hr />
 <h2 id="5-solar-panel-status">5. Solar Panel Status<a class="headerlink" href="#5-solar-panel-status" title="Permanent link">&para;</a></h2>
 <ul>
@@ -196,7 +199,6 @@
 - Green light: Charging<br />
 - Red light: Low battery<br />
 - Off: No power supply</p>
-<p><em>(Insert detailed specifications here)</em></p>
 <hr />
 <h2 id="6-battery-status">6. Battery Status<a class="headerlink" href="#6-battery-status" title="Permanent link">&para;</a></h2>
 <ul>
@@ -206,7 +208,6 @@
 - 1 blink: Low power<br />
 - 2 blinks: Medium<br />
 - 3 blinks: Fully charged  </p>
-<p><em>(Insert battery photos here)</em></p>
 <hr />
 <h2 id="7-overall-working-flow">7. Overall Working Flow<a class="headerlink" href="#7-overall-working-flow" title="Permanent link">&para;</a></h2>
 <ol>
@@ -216,7 +217,7 @@
 <li><strong>Remote Access:</strong> OpenVPN connection to retrieve/manage data.  </li>
 <li><strong>Monitoring:</strong> Logs checked via <code>journalctl</code> or SSH commands.</li>
 </ol>
-<p><em>(Insert workflow diagram here)</em></p></div>
+<p><img alt="System Overview" src="../images/device-overview.png" />  </p></div>
             </div>
         </div>
 
