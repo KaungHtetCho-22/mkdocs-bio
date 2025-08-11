@@ -1,5 +1,6 @@
 site_name: Biodiversity Project Documentation
 site_description: Technical documentation for biodiversity 
+site_url: https://kaunghtetcho-22.github.io/mkdocs-bio/
 site_author: AIT
 
 nav:

@@ -10,11 +10,11 @@ The following devices are used in the system:
 4. **Internet SIM Card**  
 5. **Solar Panel**
 
-![System Overview](overview-img.jpg)  
+<!-- 
 ![Raspberry Pi](pi.jpg)  
 ![AudioMoth](audiomoth.jpg)  
 ![Internet SIM Card](sim-card.jpg)  
-![Solar Panel](solar-panel.jpg)
+![Solar Panel](solar-panel.jpg) -->
 
 ---
 
@@ -30,8 +30,17 @@ The following devices are used in the system:
 3. Insert the flashed SD card into the Raspberry Pi.  
 4. Power on the device.
 
-![Raspberry Pi](pi.jpg)  
-![SD Card](sd-card.jpg)  
+<!-- ![Raspberry Pi](images/pi.png)  
+![SD Card](images/sd-card.png)   -->
+
+<p align="center">
+  <img src="images/pi.png" alt="Raspberry Pi" width="45%"/>
+  <img src="images/sd-card.png" alt="SD Card" width="45%"/>
+</p>
+
+
+
+
 
 [![Download pi-image here](https://img.shields.io/badge/Google%20Drive-Open%20Folder-blue?logo=google-drive)](https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr)
 
@@ -53,24 +62,24 @@ The Raspberry Pi OS contains key scripts and configurations:
 
 ## 3. AudioMoth Device
 
-The AudioMoth is used for audio data collection in **two modes**:
-
-- [Download Audiomoth setup manual PDF](files/Audiomoth mobile type recording Manual.pdf)
-
-- [Download Whole IOT device setup PDF version](files/Setting Up IoT Station Devices.pdf)
+AudioMoth is a low-cost, full-spectrum acoustic logger, based on the Gecko processor range from Silicon Labs. Just like its
+namesake the moth, AudioMoth can listen at audible frequencies, well into ultrasonic frequencies. It is capable of recording
+uncompressed audio to microSD card at rates from 8,000 to 384,000 samples per second. The AudioMoth is used for audio data collection in **two modes**:
 
 
 ### 3.1. Mobile Type Usage
 - Portable configuration for temporary deployments.  
 - Ideal for short-term surveys.  
+- See attached manual for setting up the mobile type Audiomoth.
 
-*(Insert images here)*
+[Download Audiomoth setup manual PDF](files/Audiomoth mobile type recording Manual.pdf)
 
 ### 3.2. Station Type Usage
 - Fixed position setup for continuous monitoring.  
-- Powered by solar or external battery.  
+- Powered by solar and external battery.  
+- See attached manual for setting up the IOT station type.
 
-*(Insert images here)*
+[Download Whole IOT device setup PDF version](files/Setting Up IoT Station Devices.pdf)
 
 ---
 
@@ -84,7 +93,7 @@ The AudioMoth is used for audio data collection in **two modes**:
 - Ensure SIM card is active.  
 - Restart router if connection drops.
 
-![Router](img.jpg)  
+![Router](images/img.jpg)  
 
 ---
 
@@ -97,7 +106,6 @@ The AudioMoth is used for audio data collection in **two modes**:
 - Red light: Low battery  
 - Off: No power supply
 
-*(Insert detailed specifications here)*
 
 ---
 
@@ -110,7 +118,6 @@ The AudioMoth is used for audio data collection in **two modes**:
 - 2 blinks: Medium  
 - 3 blinks: Fully charged  
 
-*(Insert battery photos here)*
 
 ---
 
@@ -122,4 +129,4 @@ The AudioMoth is used for audio data collection in **two modes**:
 4. **Remote Access:** OpenVPN connection to retrieve/manage data.  
 5. **Monitoring:** Logs checked via `journalctl` or SSH commands.
 
-*(Insert workflow diagram here)*
+![System Overview](images/device-overview.png)  
