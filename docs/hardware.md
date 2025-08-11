@@ -25,26 +25,149 @@ The following devices are used in the system:
 - **Setup:** Flash the backup OS image to the new SD card.  
 
 **Installation Process:**
+
 1. Insert the SD card into your computer.  
 2. Use an imaging tool (e.g., Balena Etcher) to flash the backup `.img` file.  
 3. Insert the flashed SD card into the Raspberry Pi.  
 4. Power on the device.
 
-<!-- ![Raspberry Pi](images/pi.png)  
-![SD Card](images/sd-card.png)   -->
-
-<p align="center">
-  <img src="images/pi.png" alt="Raspberry Pi" width="45%"/>
-  <img src="images/sd-card.png" alt="SD Card" width="45%"/>
-</p>
+| Raspberry Pi | SD Card |
+|--------------|---------|
+| ![Raspberry Pi](images/pi.png) | ![SD Card](images/sd-card.png) |
 
 
 
+[[Download pi-image here]](https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr)
 
+## Configuration File
 
-[![Download pi-image here](https://img.shields.io/badge/Google%20Drive-Open%20Folder-blue?logo=google-drive)](https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr)
+After the flashing the new image to the sd card insert the raspberry pi and check the process. 
+username and password should be according to the user's favourite
+
+We used username - pi and password - raspberry for all devices.
 
 ---
+
+VPN configuration
+
+for every raspbeery pi have every ovpn account 
+
+# OpenVPN Account Setup Verification (Converted from `.ovpn`)
+
+This guide explains how to verify an OpenVPN account that has been **converted from `.ovpn` to `.conf`** format on a Raspberry Pi.
+
+---
+
+## 1. Locate OpenVPN Config Files
+
+Navigate to the OpenVPN directory:
+
+```bash
+cd /etc/openvpn/
+ls
+```
+
+Expected files:
+
+```file
+client/
+credentials.txt
+openvpn_MONSOON_TEA05.conf
+server/
+update-resolv-conf
+```
+
+- openvpn_MONSOON_TEA05.conf → Converted OpenVPN client config (original .ovpn file).
+- credentials.txt → Stores VPN username & password.
+
+
+2. Confirm Credentials File
+Open and check credentials.txt:
+
+```bash
+cat /etc/openvpn/credentials.txt
+Format (two lines only):
+vpn_username
+vpn_password
+```
+
+For Setting secure permissions:
+
+```bash
+sudo chmod 600 /etc/openvpn/credentials.txt
+```
+---
+
+Setting up the vpn  (example)
+
+
+```
+sudo systemctl enable openvpn@openvpn_MONSOON_TEA05
+sudo systemctl start openvpn@openvpn_MONSOON_TEA05
+```
+
+Connect to the VPN 
+
+```
+sudo openvpn --config openvpn_MONSOON_TEA05.ovpn
+```
+
+after checking it with `ifconfig`
+
+vpn tunnel should be opened and pointed to `10.81.234.5`
+
+
+
+---
+Below is an example `config.json` file:
+
+```json
+{
+    "ftp": {
+        "uname": "monsoon",
+        "pword": "p8z3%1P#04",
+        "host": "192.168.70.5/production-workflow-ec2",
+        "use_ftps": 1
+    },
+    "offline_mode": 0,
+    "sensor": {
+        "sensor_index": 2,
+        "sensor_type": "USBSoundcardMic",
+        "record_length": 600,
+        "compress_data": false,
+        "capture_delay": 0
+    },
+    "sys": {
+        "working_dir": "/home/pi/tmp_dir",
+        "upload_dir": "/home/pi/continuous_monitoring_data",
+        "reboot_time": "02:00"
+    },
+    "device_id": "00000000f1c084c2"
+}
+```
+---
+Below is the example shell script for the recording the pi 24/7 automatically.
+
+```ini
+[Unit]
+Description=My Shell Script
+
+[Service]
+ExecStart=/home/pi/custom-pi-setup/recorder_startup_script.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+---
+To monitor the **recorder service** in real time:
+
+```bash
+journalctl -u shellscript.service -f
+```
+
+![Example recording status](images/recording-status.png)
+
+
 
 ### 2.1. Important Scripts & Files
 
@@ -93,7 +216,7 @@ uncompressed audio to microSD card at rates from 8,000 to 384,000 samples per se
 - Ensure SIM card is active.  
 - Restart router if connection drops.
 
-![Router](images/img.jpg)  
+![Router](images/router.jpg)  
 
 ---
 
@@ -114,6 +237,7 @@ uncompressed audio to microSD card at rates from 8,000 to 384,000 samples per se
 - **Purpose:** Stores energy for nighttime or cloudy-day operation.  
 
 **LED/Blink Indicators:**
+
 - 1 blink: Low power  
 - 2 blinks: Medium  
 - 3 blinks: Fully charged  
@@ -130,3 +254,4 @@ uncompressed audio to microSD card at rates from 8,000 to 384,000 samples per se
 5. **Monitoring:** Logs checked via `journalctl` or SSH commands.
 
 ![System Overview](images/device-overview.png)  
+
