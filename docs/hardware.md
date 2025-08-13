@@ -1,65 +1,53 @@
-# Hardware Components Documentation
-
-## 1. IoT Device List
-
-The following devices are used in the system:
-
-1. **Raspberry Pi**  
-2. **AudioMoth**  
-3. **4G Router**  
-4. **Internet SIM Card**  
-5. **Solar Panel**
-
-<!-- 
-![Raspberry Pi](pi.jpg)  
-![AudioMoth](audiomoth.jpg)  
-![Internet SIM Card](sim-card.jpg)  
-![Solar Panel](solar-panel.jpg) -->
+# **Hardware Components & Setup Documentation**
 
 ---
 
-## 2. Raspberry Pi — OS & Installation
+## **1. Device List**
 
+This system consists of the following IoT hardware components:
+
+1. **Raspberry Pi 3 B+** (64 GB microSD storage)  
+2. **AudioMoth** (Acoustic logger)  
+3. **4G Router** (with SIM card)  
+4. **Internet SIM Card**  
+5. **Solar Panel** (with battery storage)  
+
+---
+
+## **2. Raspberry Pi Setup**
+
+### **2.1. Hardware**
 - **Model:** Raspberry Pi 3 B+  
 - **Storage:** 64 GB microSD card  
-- **Setup:** Flash the backup OS image to the new SD card.  
 
-**Installation Process:**
+---
 
+### **2.2. OS Installation**
 1. Insert the SD card into your computer.  
-2. Use an imaging tool (e.g., Balena Etcher) to flash the backup `.img` file.  
+2. Use **Balena Etcher** (or similar) to flash the provided `.img` backup OS image.  
 3. Insert the flashed SD card into the Raspberry Pi.  
-4. Power on the device.
+4. Power on the device.  
 
 | Raspberry Pi | SD Card |
 |--------------|---------|
 | ![Raspberry Pi](images/pi.png) | ![SD Card](images/sd-card.png) |
 
-
-
-[[Download pi-image here]](https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr)
-
-## Configuration File
-
-After the flashing the new image to the sd card insert the raspberry pi and check the process. 
-username and password should be according to the user's favourite
-
-We used username - pi and password - raspberry for all devices.
+📥 **[Download Raspberry Pi OS Image](https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr)**
 
 ---
 
-VPN configuration
-
-for every raspbeery pi have every ovpn account 
-
-# OpenVPN Account Setup Verification (Converted from `.ovpn`)
-
-This guide explains how to verify an OpenVPN account that has been **converted from `.ovpn` to `.conf`** format on a Raspberry Pi.
+### **2.3. Login Credentials**
+Default credentials (can be customized):  
+- **Username:** `pi`  
+- **Password:** `raspberry`  
 
 ---
 
-## 1. Locate OpenVPN Config Files
+## **3. VPN Configuration**
 
+Each Raspberry Pi has its own OpenVPN account.
+
+### **3.1. File Structure**
 Navigate to the OpenVPN directory:
 
 ```bash
@@ -68,8 +56,7 @@ ls
 ```
 
 Expected files:
-
-```file
+```
 client/
 credentials.txt
 openvpn_MONSOON_TEA05.conf
@@ -77,50 +64,51 @@ server/
 update-resolv-conf
 ```
 
-- openvpn_MONSOON_TEA05.conf → Converted OpenVPN client config (original .ovpn file).
-- credentials.txt → Stores VPN username & password.
+- **`openvpn_MONSOON_TEA05.conf`** → Converted `.ovpn` client config file  
+- **`credentials.txt`** → VPN username & password (two lines only)
 
+---
 
-2. Confirm Credentials File
-Open and check credentials.txt:
-
+### **3.2. Credentials Setup**
+Check credentials:
 ```bash
 cat /etc/openvpn/credentials.txt
-Format (two lines only):
+```
+Format:
+```
 vpn_username
 vpn_password
 ```
-
-For Setting secure permissions:
-
+Secure file permissions:
 ```bash
 sudo chmod 600 /etc/openvpn/credentials.txt
 ```
+
 ---
 
-Setting up the vpn  (example)
-
-
-```
+### **3.3. VPN Service Setup**
+Enable & start service:
+```bash
 sudo systemctl enable openvpn@openvpn_MONSOON_TEA05
 sudo systemctl start openvpn@openvpn_MONSOON_TEA05
 ```
 
-Connect to the VPN 
-
-```
+Manual connect:
+```bash
 sudo openvpn --config openvpn_MONSOON_TEA05.ovpn
 ```
 
-after checking it with `ifconfig`
-
-vpn tunnel should be opened and pointed to `10.81.234.5`
-
-
+Verify connection:
+```bash
+ifconfig
+```
+VPN tunnel should point to `10.81.234.5`.
 
 ---
-Below is an example `config.json` file:
 
+## **4. Device Configuration File**
+
+Example **`config.json`**:
 ```json
 {
     "ftp": {
@@ -145,9 +133,12 @@ Below is an example `config.json` file:
     "device_id": "00000000f1c084c2"
 }
 ```
----
-Below is the example shell script for the recording the pi 24/7 automatically.
 
+---
+
+## **5. Automatic Recording Service**
+
+Example **systemd service** (`/etc/systemd/system/shellscript.service`):
 ```ini
 [Unit]
 Description=My Shell Script
@@ -158,100 +149,81 @@ ExecStart=/home/pi/custom-pi-setup/recorder_startup_script.sh
 [Install]
 WantedBy=multi-user.target
 ```
----
-To monitor the **recorder service** in real time:
 
+Check live service logs:
 ```bash
 journalctl -u shellscript.service -f
 ```
 
-![Example recording status](images/recording-status.png)
+---
 
-
-
-### 2.1. Important Scripts & Files
-
-The Raspberry Pi OS contains key scripts and configurations:
-
-| File / Service            | Description |
-|---------------------------|-------------|
-| `recorder-script.sh`      | Main script to handle audio recording. |
-| `config.json`             | Configuration file for device parameters. |
-| OpenVPN installation (UI) | Provides secure remote access. |
-| `journalctl -u shellscript.service -f` | Command to check live service logs. |
-| `arecord -l`               | Command to list available recording devices. |
+## **6. Important Commands**
+| Command | Purpose |
+|---------|---------|
+| `arecord -l` | List available recording devices |
+| `journalctl -u shellscript.service -f` | Live monitoring of recording service |
+| `sudo systemctl restart shellscript.service` | Restart recording service |
 
 ---
 
-## 3. AudioMoth Device
+## **7. AudioMoth Setup**
 
-AudioMoth is a low-cost, full-spectrum acoustic logger, based on the Gecko processor range from Silicon Labs. Just like its
-namesake the moth, AudioMoth can listen at audible frequencies, well into ultrasonic frequencies. It is capable of recording
-uncompressed audio to microSD card at rates from 8,000 to 384,000 samples per second. The AudioMoth is used for audio data collection in **two modes**:
-
-
-### 3.1. Mobile Type Usage
-- Portable configuration for temporary deployments.  
-- Ideal for short-term surveys.  
-- See attached manual for setting up the mobile type Audiomoth.
-
-[Download Audiomoth setup manual PDF](files/Audiomoth mobile type recording Manual.pdf)
-
-### 3.2. Station Type Usage
-- Fixed position setup for continuous monitoring.  
-- Powered by solar and external battery.  
-- See attached manual for setting up the IOT station type.
-
-[Download Whole IOT device setup PDF version](files/Setting Up IoT Station Devices.pdf)
+### **7.1. Overview**
+AudioMoth is a low-cost, full-spectrum acoustic logger, based on the Gecko processor range from Silicon Labs.  
+It can record **audible and ultrasonic frequencies** at rates from **8,000 to 384,000 samples/sec**.  
+It is used in two modes: **mobile** and **station**.
 
 ---
 
-## 4. Router Status
+### **7.2. Modes**
+#### **Mobile Type**
+- Portable configuration for temporary deployments  
+- Ideal for short-term surveys  
+📄 **[Download Mobile AudioMoth Manual (PDF)](files/Audiomoth%20mobile%20type%20recording%20Manual.pdf)**  
 
-- **Type:** 4G Router  
-- **Function:** Provides internet connectivity via SIM card.  
-
-**Troubleshooting:**
-- Check LED status indicators.  
-- Ensure SIM card is active.  
-- Restart router if connection drops.
-
-![Router](images/router.jpg)  
-
----
-
-## 5. Solar Panel Status
-
-- **Purpose:** Supplies power to IoT devices in remote areas.  
-
-**Indicators:**
-- Green light: Charging  
-- Red light: Low battery  
-- Off: No power supply
-
+#### **Station Type**
+- Fixed position setup for continuous monitoring  
+- Powered by solar & external battery  
+📄 **[Download IoT Station Setup Manual (PDF)](files/Setting%20Up%20IoT%20Station%20Devices.pdf)**  
 
 ---
 
-## 6. Battery Status
+## **8. Router Setup & Troubleshooting**
 
-- **Purpose:** Stores energy for nighttime or cloudy-day operation.  
+- **Type:** 4G Router with SIM  
+- **Purpose:** Internet connection for remote locations  
 
-**LED/Blink Indicators:**
-
-- 1 blink: Low power  
-- 2 blinks: Medium  
-- 3 blinks: Fully charged  
-
+**Troubleshooting Checklist:**
+1. Check LED status indicators  
+2. Ensure SIM card is active  
+3. Restart router if connection drops  
 
 ---
 
-## 7. Overall Working Flow
+## **9. Solar Panel & Battery**
 
-1. **Power Supply:** Solar panel → Battery → Raspberry Pi + Router.  
-2. **Data Capture:** AudioMoth / Pi records data.  
-3. **Data Transmission:** Router sends data over 4G network.  
-4. **Remote Access:** OpenVPN connection to retrieve/manage data.  
-5. **Monitoring:** Logs checked via `journalctl` or SSH commands.
+### **Solar Panel**
+- Powers IoT devices in remote areas  
+- **Indicators:**  
+  - Green → Charging  
+  - Red → Low battery  
+  - Off → No power  
 
-![System Overview](images/device-overview.png)  
+### **Battery**
+- Stores energy for night/cloudy use  
+- **Blink Indicators:**  
+  - 1 blink → Low  
+  - 2 blinks → Medium  
+  - 3 blinks → Full  
 
+---
+
+## **10. System Workflow**
+
+1. **Power Supply** → Solar Panel → Battery → Raspberry Pi & Router  
+2. **Data Capture** → AudioMoth or Raspberry Pi records audio  
+3. **Data Transmission** → Router sends via 4G  
+4. **Remote Access** → VPN connection for management  
+5. **Monitoring** → Logs checked via `journalctl` or SSH  
+
+![System Overview](images/device-overview.png)
