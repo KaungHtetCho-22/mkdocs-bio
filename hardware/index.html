@@ -1,281 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <meta name="author" content="AIT">
-        <link rel="canonical" href="https://kaunghtetcho-22.github.io/mkdocs-bio/hardware/">
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Hardware - Biodiversity Project Documentation</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../css/brands.min.css" rel="stylesheet">
-        <link href="../css/solid.min.css" rel="stylesheet">
-        <link href="../css/v4-font-face.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
-
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="..">Biodiversity Project Documentation</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href=".." class="nav-link">Home</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">AIT team</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../score/" class="dropdown-item">Score prediction</a>
-</li>
-                                    
-<li>
-    <a href="../data/" class="dropdown-item">Data Documentation</a>
-</li>
-                                    
-<li>
-    <a href="../training/" class="dropdown-item">Model Training</a>
-</li>
-                                    
-<li>
-    <a href="./" class="dropdown-item active" aria-current="page">Hardware</a>
-</li>
-                                    
-<li>
-    <a href="../inference/" class="dropdown-item">Inference</a>
-</li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ms-md-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../training/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../inference/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-bs-level="1"><a href="#hardware-components-setup-documentation" class="nav-link">Hardware Components &amp; Setup Documentation</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#1-device-list" class="nav-link">1. Device List</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#2-raspberry-pi-setup" class="nav-link">2. Raspberry Pi Setup</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#3-vpn-configuration" class="nav-link">3. VPN Configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#4-device-configuration-file" class="nav-link">4. Device Configuration File</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#5-automatic-recording-service" class="nav-link">5. Automatic Recording Service</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#6-important-commands" class="nav-link">6. Important Commands</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#7-audiomoth-setup" class="nav-link">7. AudioMoth Setup</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#8-router-setup-troubleshooting" class="nav-link">8. Router Setup &amp; Troubleshooting</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#9-solar-panel-battery" class="nav-link">9. Solar Panel &amp; Battery</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#10-system-workflow" class="nav-link">10. System Workflow</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
-
-<h1 id="hardware-components-setup-documentation"><strong>Hardware Components &amp; Setup Documentation</strong><a class="headerlink" href="#hardware-components-setup-documentation" title="Permanent link">&para;</a></h1>
-<hr />
-<h2 id="1-device-list"><strong>1. Device List</strong><a class="headerlink" href="#1-device-list" title="Permanent link">&para;</a></h2>
-<p>This system consists of the following IoT hardware components:</p>
-<ol>
-<li><strong>Raspberry Pi 3 B+</strong> (64 GB microSD storage)  </li>
-<li><strong>AudioMoth</strong> (Acoustic logger)  </li>
-<li><strong>4G Router</strong> (with SIM card)  </li>
-<li><strong>Internet SIM Card</strong>  </li>
-<li><strong>Solar Panel</strong> (with battery storage)  </li>
-</ol>
-<hr />
-<h2 id="2-raspberry-pi-setup"><strong>2. Raspberry Pi Setup</strong><a class="headerlink" href="#2-raspberry-pi-setup" title="Permanent link">&para;</a></h2>
-<h3 id="21-hardware"><strong>2.1. Hardware</strong><a class="headerlink" href="#21-hardware" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Model:</strong> Raspberry Pi 3 B+  </li>
-<li><strong>Storage:</strong> 64 GB microSD card  </li>
-</ul>
-<hr />
-<h3 id="22-os-installation"><strong>2.2. OS Installation</strong><a class="headerlink" href="#22-os-installation" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Insert the SD card into your computer.  </li>
-<li>Use <strong>Balena Etcher</strong> (or similar) to flash the provided <code>.img</code> backup OS image.  </li>
-<li>Insert the flashed SD card into the Raspberry Pi.  </li>
-<li>Power on the device.  </li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>Raspberry Pi</th>
-<th>SD Card</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img alt="Raspberry Pi" src="../images/pi.png" /></td>
-<td><img alt="SD Card" src="../images/sd-card.png" /></td>
-</tr>
-</tbody>
-</table>
-<p>📥 <strong><a href="https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr">Download Raspberry Pi OS Image</a></strong></p>
-<hr />
-<h3 id="23-login-credentials"><strong>2.3. Login Credentials</strong><a class="headerlink" href="#23-login-credentials" title="Permanent link">&para;</a></h3>
-<p>Default credentials (can be customized):<br />
-- <strong>Username:</strong> <code>pi</code><br />
-- <strong>Password:</strong> <code>raspberry</code>  </p>
-<hr />
-<h2 id="3-vpn-configuration"><strong>3. VPN Configuration</strong><a class="headerlink" href="#3-vpn-configuration" title="Permanent link">&para;</a></h2>
-<p>Each Raspberry Pi has its own OpenVPN account.</p>
-<h3 id="31-file-structure"><strong>3.1. File Structure</strong><a class="headerlink" href="#31-file-structure" title="Permanent link">&para;</a></h3>
-<p>Navigate to the OpenVPN directory:</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/etc/openvpn/
+<html data-bs-theme="light" lang="en"> <head><meta charset="utf-8"/><meta content="IE=edge" http-equiv="X-UA-Compatible"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="AIT" name="author"/><link href="https://kaunghtetcho-22.github.io/mkdocs-bio/hardware/" rel="canonical"/><link href="../img/favicon.ico" rel="shortcut icon"/><title>Hardware Components &amp; Setup Documentation - Biodiversity Project Documentation</title><link href="../css/bootstrap.min.css" rel="stylesheet"/><link href="../css/fontawesome.min.css" rel="stylesheet"/><link href="../css/brands.min.css" rel="stylesheet"/><link href="../css/solid.min.css" rel="stylesheet"/><link href="../css/v4-font-face.min.css" rel="stylesheet"/><link href="../css/base.css" rel="stylesheet"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/><link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script><script>hljs.highlightAll();</script> <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }</style> <script src="../assets/javascripts/glightbox.min.js"></script></link><link href="../pdf/biodiversity-docs.pdf" rel="alternate" title="PDF" type="application/pdf"/></head> <body> <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary"> <div class="container"> <a class="navbar-brand" href="..">Biodiversity Project Documentation</a> <!-- Expanded navigation --> <div class="navbar-collapse collapse" id="navbar-collapse"> <ul class="nav navbar-nav ms-md-auto"> <li class="nav-item"> <a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#"> <i class="fa fa-search"></i> Search </a> </li> </ul> </div> </div> </div> <div class="container"> <div class="row"> <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary"> <div class="navbar-header"> <button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button"> <span class="fa fa-angle-down"></span> </button> </div> <div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse"> <ul class="nav flex-column"> <li class="nav-item" data-bs-level="1"><a class="nav-link" href="#hardware-components-setup-documentation">Hardware Components &amp; Setup Documentation</a> <ul class="nav flex-column"> <li class="nav-item" data-bs-level="2"><a class="nav-link" href="#1-device-list">1. Device List</a> <ul class="nav flex-column"> </ul> </li> <li class="nav-item" data-bs-level="2"><a class="nav-link" href="#2-raspberry-pi-setup">2. Raspberry Pi Setup</a> <ul class="nav flex-column"> </ul> </li> <li class="nav-item" data-bs-level="2"><a class="nav-link" href="#3-vpn-configuration">3. VPN Configuration</a> <ul class="nav flex-column"> </ul> </li> <li class="nav-item" data-bs-level="2"><a class="nav-link" href="#4-device-configuration-file">4. Device Configuration File</a> <ul class="nav flex-column"> </ul> </li> <li class="nav-item" data-bs-level="2"><a class="nav-link" href="#5-automatic-recording-service">5. Automatic Recording Service</a> <ul class="nav flex-column"> </ul> </li> <li class="nav-item" data-bs-level="2"><a class="nav-link" href="#6-important-commands">6. Important Commands</a> <ul class="nav flex-column"> </ul> </li> <li class="nav-item" data-bs-level="2"><a class="nav-link" href="#7-audiomoth-setup">7. AudioMoth Setup</a> <ul class="nav flex-column"> </ul> </li> <li class="nav-item" data-bs-level="2"><a class="nav-link" href="#8-router-setup-troubleshooting">8. Router Setup &amp; Troubleshooting</a> <ul class="nav flex-column"> </ul> </li> <li class="nav-item" data-bs-level="2"><a class="nav-link" href="#9-solar-panel-battery">9. Solar Panel &amp; Battery</a> <ul class="nav flex-column"> </ul> </li> <li class="nav-item" data-bs-level="2"><a class="nav-link" href="#10-system-workflow">10. System Workflow</a> <ul class="nav flex-column"> </ul> </li> </ul> </li> </ul> </div> </div></div> <div class="col-md-9" role="main"> <h1 id="hardware-components-setup-documentation"><strong>Hardware Components &amp; Setup Documentation</strong><a class="headerlink" href="#hardware-components-setup-documentation" title="Permanent link">¶</a></h1> <hr/> <h2 id="1-device-list"><strong>1. Device List</strong><a class="headerlink" href="#1-device-list" title="Permanent link">¶</a></h2> <p>This system consists of the following IoT hardware components:</p> <ol> <li><strong>Raspberry Pi 3 B+</strong> (64 GB microSD storage) </li> <li><strong>AudioMoth</strong> (Acoustic logger) </li> <li><strong>4G Router</strong> (with SIM card) </li> <li><strong>Internet SIM Card</strong> </li> <li><strong>Solar Panel</strong> (with battery storage) </li> </ol> <hr/> <h2 id="2-raspberry-pi-setup"><strong>2. Raspberry Pi Setup</strong><a class="headerlink" href="#2-raspberry-pi-setup" title="Permanent link">¶</a></h2> <h3 id="21-hardware"><strong>2.1. Hardware</strong><a class="headerlink" href="#21-hardware" title="Permanent link">¶</a></h3> <ul> <li><strong>Model:</strong> Raspberry Pi 3 B+ </li> <li><strong>Storage:</strong> 64 GB microSD card </li> </ul> <hr/> <h3 id="22-os-installation"><strong>2.2. OS Installation</strong><a class="headerlink" href="#22-os-installation" title="Permanent link">¶</a></h3> <ol> <li>Insert the SD card into your computer. </li> <li>Use <strong>Balena Etcher</strong> (or similar) to flash the provided <code>.img</code> backup OS image. </li> <li>Insert the flashed SD card into the Raspberry Pi. </li> <li>Power on the device. </li> </ol> <table> <thead> <tr> <th>Raspberry Pi</th> <th>SD Card</th> </tr> </thead> <tbody> <tr> <td><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../images/pi.png"><img alt="Raspberry Pi" src="../images/pi.png"/></a></td> <td><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../images/sd-card.png"><img alt="SD Card" src="../images/sd-card.png"/></a></td> </tr> </tbody> </table> <p>📥 <strong><a href="https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr">Download Raspberry Pi OS Image</a></strong></p> <hr/> <h3 id="23-login-credentials"><strong>2.3. Login Credentials</strong><a class="headerlink" href="#23-login-credentials" title="Permanent link">¶</a></h3> <p>Default credentials (can be customized):<br/> - <strong>Username:</strong> <code>pi</code><br/> - <strong>Password:</strong> <code>raspberry</code> </p> <hr/> <h2 id="3-vpn-configuration"><strong>3. VPN Configuration</strong><a class="headerlink" href="#3-vpn-configuration" title="Permanent link">¶</a></h2> <p>Each Raspberry Pi has its own OpenVPN account.</p> <h3 id="31-file-structure"><strong>3.1. File Structure</strong><a class="headerlink" href="#31-file-structure" title="Permanent link">¶</a></h3> <p>Navigate to the OpenVPN directory:</p> <div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/etc/openvpn/
 ls
-</code></pre></div>
-
-<p>Expected files:</p>
-<div class="codehilite"><pre><span></span><code>client/
+</code></pre></div> <p>Expected files:</p> <div class="codehilite"><pre><span></span><code>client/
 credentials.txt
 openvpn_MONSOON_TEA05.conf
 server/
 update-resolv-conf
-</code></pre></div>
-
-<ul>
-<li><strong><code>openvpn_MONSOON_TEA05.conf</code></strong> → Converted <code>.ovpn</code> client config file  </li>
-<li><strong><code>credentials.txt</code></strong> → VPN username &amp; password (two lines only)</li>
-</ul>
-<hr />
-<h3 id="32-credentials-setup"><strong>3.2. Credentials Setup</strong><a class="headerlink" href="#32-credentials-setup" title="Permanent link">&para;</a></h3>
-<p>Check credentials:</p>
-<div class="codehilite"><pre><span></span><code>cat<span class="w"> </span>/etc/openvpn/credentials.txt
-</code></pre></div>
-
-<p>Format:</p>
-<div class="codehilite"><pre><span></span><code>vpn_username
+</code></pre></div> <ul> <li><strong><code>openvpn_MONSOON_TEA05.conf</code></strong> → Converted <code>.ovpn</code> client config file </li> <li><strong><code>credentials.txt</code></strong> → VPN username &amp; password (two lines only)</li> </ul> <hr/> <h3 id="32-credentials-setup"><strong>3.2. Credentials Setup</strong><a class="headerlink" href="#32-credentials-setup" title="Permanent link">¶</a></h3> <p>Check credentials:</p> <div class="codehilite"><pre><span></span><code>cat<span class="w"> </span>/etc/openvpn/credentials.txt
+</code></pre></div> <p>Format:</p> <div class="codehilite"><pre><span></span><code>vpn_username
 vpn_password
-</code></pre></div>
-
-<p>Secure file permissions:</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/etc/openvpn/credentials.txt
-</code></pre></div>
-
-<hr />
-<h3 id="33-vpn-service-setup"><strong>3.3. VPN Service Setup</strong><a class="headerlink" href="#33-vpn-service-setup" title="Permanent link">&para;</a></h3>
-<p>Enable &amp; start service:</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>openvpn@openvpn_MONSOON_TEA05
+</code></pre></div> <p>Secure file permissions:</p> <div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/etc/openvpn/credentials.txt
+</code></pre></div> <hr/> <h3 id="33-vpn-service-setup"><strong>3.3. VPN Service Setup</strong><a class="headerlink" href="#33-vpn-service-setup" title="Permanent link">¶</a></h3> <p>Enable &amp; start service:</p> <div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>openvpn@openvpn_MONSOON_TEA05
 sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>openvpn@openvpn_MONSOON_TEA05
-</code></pre></div>
-
-<p>Manual connect:</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>openvpn<span class="w"> </span>--config<span class="w"> </span>openvpn_MONSOON_TEA05.ovpn
-</code></pre></div>
-
-<p>Verify connection:</p>
-<div class="codehilite"><pre><span></span><code>ifconfig
-</code></pre></div>
-
-<p>VPN tunnel should point to <code>10.81.234.5</code>.</p>
-<hr />
-<h2 id="4-device-configuration-file"><strong>4. Device Configuration File</strong><a class="headerlink" href="#4-device-configuration-file" title="Permanent link">&para;</a></h2>
-<p>Example <strong><code>config.json</code></strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;ftp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;uname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;monsoon&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;pword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;p8z3%1P#04&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.70.5/production-workflow-ec2&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;use_ftps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+</code></pre></div> <p>Manual connect:</p> <div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>openvpn<span class="w"> </span>--config<span class="w"> </span>openvpn_MONSOON_TEA05.ovpn
+</code></pre></div> <p>Verify connection:</p> <div class="codehilite"><pre><span></span><code>ifconfig
+</code></pre></div> <p>VPN tunnel should point to <code>10.81.234.5</code>.</p> <hr/> <h2 id="4-device-configuration-file"><strong>4. Device Configuration File</strong><a class="headerlink" href="#4-device-configuration-file" title="Permanent link">¶</a></h2> <p>Example <strong><code>config.json</code></strong>:</p> <div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"ftp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"uname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"monsoon"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"pword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p8z3%1P#04"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.70.5/production-workflow-ec2"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"use_ftps"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;offline_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;sensor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;sensor_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;sensor_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;USBSoundcardMic&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;record_length&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;compress_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;capture_delay&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="nt">"offline_mode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"sensor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"sensor_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"sensor_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USBSoundcardMic"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"record_length"</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"compress_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"capture_delay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;sys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;working_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/pi/tmp_dir&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;upload_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/pi/continuous_monitoring_data&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;reboot_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;02:00&quot;</span>
+<span class="w">    </span><span class="nt">"sys"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"working_dir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/pi/tmp_dir"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"upload_dir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/pi/continuous_monitoring_data"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"reboot_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02:00"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;device_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;00000000f1c084c2&quot;</span>
+<span class="w">    </span><span class="nt">"device_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000f1c084c2"</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<hr />
-<h2 id="5-automatic-recording-service"><strong>5. Automatic Recording Service</strong><a class="headerlink" href="#5-automatic-recording-service" title="Permanent link">&para;</a></h2>
-<p>Example <strong>systemd service</strong> (<code>/etc/systemd/system/shellscript.service</code>):</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
+</code></pre></div> <hr/> <h2 id="5-automatic-recording-service"><strong>5. Automatic Recording Service</strong><a class="headerlink" href="#5-automatic-recording-service" title="Permanent link">¶</a></h2> <p>Example <strong>systemd service</strong> (<code>/etc/systemd/system/shellscript.service</code>):</p> <div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
 <span class="na">Description</span><span class="o">=</span><span class="s">My Shell Script</span>
 
 <span class="k">[Service]</span>
@@ -283,169 +48,9 @@ sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w
 
 <span class="k">[Install]</span>
 <span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
-</code></pre></div>
-
-<p>Check live service logs:</p>
-<div class="codehilite"><pre><span></span><code>journalctl<span class="w"> </span>-u<span class="w"> </span>shellscript.service<span class="w"> </span>-f
-</code></pre></div>
-
-<hr />
-<h2 id="6-important-commands"><strong>6. Important Commands</strong><a class="headerlink" href="#6-important-commands" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>arecord -l</code></td>
-<td>List available recording devices</td>
-</tr>
-<tr>
-<td><code>journalctl -u shellscript.service -f</code></td>
-<td>Live monitoring of recording service</td>
-</tr>
-<tr>
-<td><code>sudo systemctl restart shellscript.service</code></td>
-<td>Restart recording service</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="7-audiomoth-setup"><strong>7. AudioMoth Setup</strong><a class="headerlink" href="#7-audiomoth-setup" title="Permanent link">&para;</a></h2>
-<h3 id="71-overview"><strong>7.1. Overview</strong><a class="headerlink" href="#71-overview" title="Permanent link">&para;</a></h3>
-<p>AudioMoth is a low-cost, full-spectrum acoustic logger, based on the Gecko processor range from Silicon Labs.<br />
-It can record <strong>audible and ultrasonic frequencies</strong> at rates from <strong>8,000 to 384,000 samples/sec</strong>.<br />
-It is used in two modes: <strong>mobile</strong> and <strong>station</strong>.</p>
-<hr />
-<h3 id="72-modes"><strong>7.2. Modes</strong><a class="headerlink" href="#72-modes" title="Permanent link">&para;</a></h3>
-<h4 id="mobile-type"><strong>Mobile Type</strong><a class="headerlink" href="#mobile-type" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Portable configuration for temporary deployments  </li>
-<li>Ideal for short-term surveys<br />
-📄 <strong><a href="../files/Audiomoth%20mobile%20type%20recording%20Manual.pdf">Download Mobile AudioMoth Manual (PDF)</a></strong>  </li>
-</ul>
-<h4 id="station-type"><strong>Station Type</strong><a class="headerlink" href="#station-type" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Fixed position setup for continuous monitoring  </li>
-<li>Powered by solar &amp; external battery<br />
-📄 <strong><a href="../files/Setting%20Up%20IoT%20Station%20Devices.pdf">Download IoT Station Setup Manual (PDF)</a></strong>  </li>
-</ul>
-<hr />
-<h2 id="8-router-setup-troubleshooting"><strong>8. Router Setup &amp; Troubleshooting</strong><a class="headerlink" href="#8-router-setup-troubleshooting" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Type:</strong> 4G Router with SIM  </li>
-<li><strong>Purpose:</strong> Internet connection for remote locations  </li>
-</ul>
-<p><strong>Troubleshooting Checklist:</strong>
-1. Check LED status indicators<br />
-2. Ensure SIM card is active<br />
-3. Restart router if connection drops  </p>
-<hr />
-<h2 id="9-solar-panel-battery"><strong>9. Solar Panel &amp; Battery</strong><a class="headerlink" href="#9-solar-panel-battery" title="Permanent link">&para;</a></h2>
-<h3 id="solar-panel"><strong>Solar Panel</strong><a class="headerlink" href="#solar-panel" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Powers IoT devices in remote areas  </li>
-<li><strong>Indicators:</strong>  </li>
-<li>Green → Charging  </li>
-<li>Red → Low battery  </li>
-<li>Off → No power  </li>
-</ul>
-<h3 id="battery"><strong>Battery</strong><a class="headerlink" href="#battery" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Stores energy for night/cloudy use  </li>
-<li><strong>Blink Indicators:</strong>  </li>
-<li>1 blink → Low  </li>
-<li>2 blinks → Medium  </li>
-<li>3 blinks → Full  </li>
-</ul>
-<hr />
-<h2 id="10-system-workflow"><strong>10. System Workflow</strong><a class="headerlink" href="#10-system-workflow" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Power Supply</strong> → Solar Panel → Battery → Raspberry Pi &amp; Router  </li>
-<li><strong>Data Capture</strong> → AudioMoth or Raspberry Pi records audio  </li>
-<li><strong>Data Transmission</strong> → Router sends via 4G  </li>
-<li><strong>Remote Access</strong> → VPN connection for management  </li>
-<li><strong>Monitoring</strong> → Logs checked via <code>journalctl</code> or SSH  </li>
-</ol>
-<p><img alt="System Overview" src="../images/device-overview.png" /></p></div>
-            </div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="../js/bootstrap.bundle.min.js"></script>
-        <script>
+</code></pre></div> <p>Check live service logs:</p> <div class="codehilite"><pre><span></span><code>journalctl<span class="w"> </span>-u<span class="w"> </span>shellscript.service<span class="w"> </span>-f
+</code></pre></div> <hr/> <h2 id="6-important-commands"><strong>6. Important Commands</strong><a class="headerlink" href="#6-important-commands" title="Permanent link">¶</a></h2> <table> <thead> <tr> <th>Command</th> <th>Purpose</th> </tr> </thead> <tbody> <tr> <td><code>arecord -l</code></td> <td>List available recording devices</td> </tr> <tr> <td><code>journalctl -u shellscript.service -f</code></td> <td>Live monitoring of recording service</td> </tr> <tr> <td><code>sudo systemctl restart shellscript.service</code></td> <td>Restart recording service</td> </tr> </tbody> </table> <hr/> <h2 id="7-audiomoth-setup"><strong>7. AudioMoth Setup</strong><a class="headerlink" href="#7-audiomoth-setup" title="Permanent link">¶</a></h2> <h3 id="71-overview"><strong>7.1. Overview</strong><a class="headerlink" href="#71-overview" title="Permanent link">¶</a></h3> <p>AudioMoth is a low-cost, full-spectrum acoustic logger, based on the Gecko processor range from Silicon Labs.<br/> It can record <strong>audible and ultrasonic frequencies</strong> at rates from <strong>8,000 to 384,000 samples/sec</strong>.<br/> It is used in two modes: <strong>mobile</strong> and <strong>station</strong>.</p> <hr/> <h3 id="72-modes"><strong>7.2. Modes</strong><a class="headerlink" href="#72-modes" title="Permanent link">¶</a></h3> <h4 id="mobile-type"><strong>Mobile Type</strong><a class="headerlink" href="#mobile-type" title="Permanent link">¶</a></h4> <ul> <li>Portable configuration for temporary deployments </li> <li>Ideal for short-term surveys<br/> 📄 <strong><a href="../files/Audiomoth%20mobile%20type%20recording%20Manual.pdf">Download Mobile AudioMoth Manual (PDF)</a></strong> </li> </ul> <h4 id="station-type"><strong>Station Type</strong><a class="headerlink" href="#station-type" title="Permanent link">¶</a></h4> <ul> <li>Fixed position setup for continuous monitoring </li> <li>Powered by solar &amp; external battery<br/> 📄 <strong><a href="../files/Setting%20Up%20IoT%20Station%20Devices.pdf">Download IoT Station Setup Manual (PDF)</a></strong> </li> </ul> <hr/> <h2 id="8-router-setup-troubleshooting"><strong>8. Router Setup &amp; Troubleshooting</strong><a class="headerlink" href="#8-router-setup-troubleshooting" title="Permanent link">¶</a></h2> <ul> <li><strong>Type:</strong> 4G Router with SIM </li> <li><strong>Purpose:</strong> Internet connection for remote locations </li> </ul> <p><strong>Troubleshooting Checklist:</strong> 1. Check LED status indicators<br/> 2. Ensure SIM card is active<br/> 3. Restart router if connection drops </p> <hr/> <h2 id="9-solar-panel-battery"><strong>9. Solar Panel &amp; Battery</strong><a class="headerlink" href="#9-solar-panel-battery" title="Permanent link">¶</a></h2> <h3 id="solar-panel"><strong>Solar Panel</strong><a class="headerlink" href="#solar-panel" title="Permanent link">¶</a></h3> <ul> <li>Powers IoT devices in remote areas </li> <li><strong>Indicators:</strong> </li> <li>Green → Charging </li> <li>Red → Low battery </li> <li>Off → No power </li> </ul> <h3 id="battery"><strong>Battery</strong><a class="headerlink" href="#battery" title="Permanent link">¶</a></h3> <ul> <li>Stores energy for night/cloudy use </li> <li><strong>Blink Indicators:</strong> </li> <li>1 blink → Low </li> <li>2 blinks → Medium </li> <li>3 blinks → Full </li> </ul> <hr/> <h2 id="10-system-workflow"><strong>10. System Workflow</strong><a class="headerlink" href="#10-system-workflow" title="Permanent link">¶</a></h2> <ol> <li><strong>Power Supply</strong> → Solar Panel → Battery → Raspberry Pi &amp; Router </li> <li><strong>Data Capture</strong> → AudioMoth or Raspberry Pi records audio </li> <li><strong>Data Transmission</strong> → Router sends via 4G </li> <li><strong>Remote Access</strong> → VPN connection for management </li> <li><strong>Monitoring</strong> → Logs checked via <code>journalctl</code> or SSH </li> </ol> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../images/device-overview.png"><img alt="System Overview" src="../images/device-overview.png"/></a></p></div> </div> </div> <footer class="col-md-12"> <hr/> <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p> </footer> <script src="../js/bootstrap.bundle.min.js"></script> <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../js/base.js"></script>
-        <script src="../search/main.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
-
-    </body>
-</html>
+        </script> <script src="../js/base.js"></script> <script src="../search/main.js"></script> <div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <h4 class="modal-title" id="searchModalLabel">Search</h4> <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button> </div> <div class="modal-body"> <p>From here you can search these documents. Enter your search terms below.</p> <form> <div class="form-group"> <input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/> </div> </form> <div data-no-results-text="No results found" id="mkdocs-search-results"></div> </div> <div class="modal-footer"> </div> </div> </div> </div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4> <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button> </div> <div class="modal-body"> <table class="table"> <thead> <tr> <th style="width: 20%;">Keys</th> <th>Action</th> </tr> </thead> <tbody> <tr> <td class="help shortcut"><kbd>?</kbd></td> <td>Open this help</td> </tr> <tr> <td class="next shortcut"><kbd>n</kbd></td> <td>Next page</td> </tr> <tr> <td class="prev shortcut"><kbd>p</kbd></td> <td>Previous page</td> </tr> <tr> <td class="search shortcut"><kbd>s</kbd></td> <td>Search</td> </tr> </tbody> </table> </div> <div class="modal-footer"> </div> </div> </div> </div> <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+</script></body> </html> 
