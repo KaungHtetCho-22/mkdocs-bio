@@ -25,9 +25,44 @@
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="..">Biodiversity Project Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">AIT team</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../score/" class="dropdown-item">Score prediction</a>
+</li>
+                                    
+<li>
+    <a href="../data/" class="dropdown-item">Data Documentation</a>
+</li>
+                                    
+<li>
+    <a href="../training/" class="dropdown-item">Model Training</a>
+</li>
+                                    
+<li>
+    <a href="../hardware/" class="dropdown-item">Hardware</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Inference</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
 
                     <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
@@ -35,6 +70,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../hardware/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -53,8 +98,44 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#this-is-how-inference-pipeline-setup-on-inet" class="nav-link">This is how inference pipeline setup on iNET</a>
+            <li class="nav-item" data-bs-level="1"><a href="#biodiversity-audio-inference-pipeline" class="nav-link">Biodiversity Audio Inference Pipeline</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#overview" class="nav-link">Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#architecture" class="nav-link">Architecture</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#project-structure" class="nav-link">Project Structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#quick-start" class="nav-link">Quick Start</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#configuration" class="nav-link">Configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#usage" class="nav-link">Usage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#database-schema" class="nav-link">Database Schema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#output-formats" class="nav-link">Output Formats</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -62,10 +143,202 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="this-is-how-inference-pipeline-setup-on-inet">This is how inference pipeline setup on iNET<a class="headerlink" href="#this-is-how-inference-pipeline-setup-on-inet" title="Permanent link">&para;</a></h2>
+<h1 id="biodiversity-audio-inference-pipeline">Biodiversity Audio Inference Pipeline<a class="headerlink" href="#biodiversity-audio-inference-pipeline" title="Permanent link">&para;</a></h1>
+<p>A real-time audio monitoring and species detection system for biodiversity research using deep learning models and Raspberry Pi devices.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>This pipeline processes audio recordings from field-deployed Raspberry Pi devices to automatically detect and classify bird species and other wildlife sounds. It uses a pre-trained deep learning model to analyze audio spectrograms and identify species with confidence scores.</p>
 <p><img alt="Overview-diagram" src="../images/overview-diagram.png" /></p>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<h3 id="core-components">Core Components<a class="headerlink" href="#core-components" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Audio Processing</strong>: Real-time audio file monitoring and processing using librosa</li>
+<li><strong>Deep Learning Model</strong>: Attention-based neural network for species classification</li>
+<li><strong>Database</strong>: SQLite database for storing detections, audio metadata, and device information</li>
+<li><strong>File Monitoring</strong>: Watchdog-based file system monitoring for automatic processing</li>
+<li><strong>Docker Support</strong>: Containerized deployment for development and production</li>
+</ul>
+<h3 id="model-architecture">Model Architecture<a class="headerlink" href="#model-architecture" title="Permanent link">&para;</a></h3>
+<p>The system uses an <code>AttModel</code> class that combines:
+- <strong>Backbone</strong>: Pre-trained vision models (configurable via timm)
+- <strong>Mel-spectrogram extraction</strong>: Audio preprocessing with configurable parameters
+- <strong>Attention mechanisms</strong>: For temporal and frequency domain feature learning
+- <strong>Classification head</strong>: Multi-class species prediction with confidence scoring</p>
+<h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="n">inference</span><span class="o">-</span><span class="n">pipeline</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">app</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="w">                    </span><span class="c1"># Database files</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">audio</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="w">                  </span><span class="c1"># Input audio recordings</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">docker</span><span class="o">/</span><span class="w">                      </span><span class="c1"># Docker configuration files</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">json</span><span class="o">-</span><span class="n">output</span><span class="o">/</span><span class="w">                 </span><span class="c1"># Prediction results and reports</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">logs</span><span class="o">/</span><span class="w">                        </span><span class="c1"># Application logs</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">monsoon_biodiversity_common</span><span class="o">/</span><span class="w"> </span><span class="c1"># Core library modules</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">config</span><span class="o">.</span><span class="n">py</span><span class="w">               </span><span class="c1"># Model and system configuration</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">dataset</span><span class="o">.</span><span class="n">py</span><span class="w">              </span><span class="c1"># Data loading and preprocessing</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">db_model</span><span class="o">.</span><span class="n">py</span><span class="w">             </span><span class="c1"># Database models and schema</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">model</span><span class="o">.</span><span class="n">py</span><span class="w">                </span><span class="c1"># Neural network architecture</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span><span class="w">        </span><span class="c1"># Core dependencies</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">scripts</span><span class="o">/</span><span class="w">                     </span><span class="c1"># Utility and deployment scripts</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">src</span><span class="o">/</span><span class="w">                         </span><span class="c1"># Main application source code</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">debug_audio_monitoring</span><span class="o">.</span><span class="n">py</span><span class="w">    </span><span class="c1"># Real-time audio monitoring</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">debug_process_detections</span><span class="o">.</span><span class="n">py</span><span class="w">  </span><span class="c1"># Detection processing and reporting</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">inference_station</span><span class="o">.</span><span class="n">py</span><span class="w">         </span><span class="c1"># Station-specific inference</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">query</span><span class="o">.</span><span class="n">py</span><span class="w">                     </span><span class="c1"># Database query utilities</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">species_mapping</span><span class="o">.</span><span class="n">py</span><span class="w">           </span><span class="c1"># Species classification mapping</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">weights</span><span class="o">/</span><span class="w">                     </span><span class="c1"># Pre-trained model weights</span>
+<span class="err">└──</span><span class="w"> </span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span><span class="w">             </span><span class="c1"># Main project dependencies</span>
+</code></pre></div>
+
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Python 3.8+</li>
+<li>Docker (optional, for containerized deployment)</li>
+<li>Audio processing libraries (librosa, torchaudio)</li>
+<li>Deep learning framework (PyTorch)</li>
+</ul>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Clone the repository</strong>
+This one is already clone at iNET (server4 machine)</li>
+</ol>
+<p><code>bash
+   git clone &lt;repository-url&gt;
+   cd inference-pipeline
+   git submodule update --init --recursive</code></p>
+<ol>
+<li>
+<p><strong>Download model weights</strong>
+The weights are already uploaded to the iNET and attached to the drive as well</p>
+</li>
+<li>
+<p>Place <code>soundscape-model.pt</code> file in the <code>weights/</code> directory</p>
+</li>
+<li>sound-scape.pt = sound classification model </li>
+<li>xgboost-model.pkl = score prediction model </li>
+<li>
+<p>Ensure the model architecture matches the configuration in <code>monsoon_biodiversity_common/config.py</code></p>
+</li>
+<li>
+<p><strong>Setup database</strong>
+   <code>bash
+   # The database will be automatically initialized on first run
+   python src/debug_audio_monitoring.py</code></p>
+</li>
+</ol>
+<h3 id="docker-deployment">Docker Deployment<a class="headerlink" href="#docker-deployment" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Build production image</strong>
+   <code>bash
+   ./scripts/build_prod_image.sh</code></p>
+</li>
+<li>
+<p><strong>Run with docker-compose</strong>
+   <code>bash
+   cd docker
+   docker-compose -f docker-compose-devel.yaml up -d</code></p>
+</li>
+<li>
+<p><strong>Access container</strong>
+   <code>bash
+   docker exec -it dev-bio-diversity bash</code></p>
+</li>
+<li>
+<p><strong>Run script</strong>
+   <code>bash
+   sh run.sh</code>
+   it will run the audio-monitoring.py and process_detection.py and the intention of those python script will be explained below session</p>
+</li>
+</ol>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<h3 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h3>
 <p>This is how the conceptual diagram works inside the inference data accepting</p>
-<p><img alt="Database conceptual design" src="../images/db_design.png" /></p></div>
+<p><img alt="Database conceptual design" src="../images/db_design.png" /></p>
+<h3 id="model-configuration">Model Configuration<a class="headerlink" href="#model-configuration" title="Permanent link">&para;</a></h3>
+<p>Edit <code>monsoon_biodiversity_common/config.py</code> to customize:</p>
+<ul>
+<li><strong>Audio parameters</strong>: Sample rate, mel bands, FFT settings</li>
+<li><strong>Model architecture</strong>: Backbone model, number of classes</li>
+<li><strong>Training settings</strong>: Learning rate, batch size, epochs</li>
+</ul>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<h3 id="real-time-audio-monitoring">Real-time Audio Monitoring<a class="headerlink" href="#real-time-audio-monitoring" title="Permanent link">&para;</a></h3>
+<p>Start the audio monitoring service:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>src/audio_monitoring.py
+</code></pre></div>
+
+<p>This service:
+- Monitors audio directories for new files
+- Processes audio files through the species detection model
+- Stores results in the database
+- Generates real-time logs</p>
+<h3 id="batch-processing">Batch Processing<a class="headerlink" href="#batch-processing" title="Permanent link">&para;</a></h3>
+<p>Process existing audio files:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>src/inference_station.py
+</code></pre></div>
+
+<h3 id="query-results">Query Results<a class="headerlink" href="#query-results" title="Permanent link">&para;</a></h3>
+<p>Query detection results from the database:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>src/query.py
+</code></pre></div>
+
+<h3 id="daily-reports">Daily Reports<a class="headerlink" href="#daily-reports" title="Permanent link">&para;</a></h3>
+<p>Generate daily detection summaries:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>src/debug_process_detections.py<span class="w"> </span>--schedule
+</code></pre></div>
+
+<h2 id="database-schema">Database Schema<a class="headerlink" href="#database-schema" title="Permanent link">&para;</a></h2>
+<h3 id="core-tables">Core Tables<a class="headerlink" href="#core-tables" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>RpiDevices</strong>: Device information and metadata</li>
+<li><strong>AudioFiles</strong>: Audio file records and metadata</li>
+<li><strong>SpeciesDetections</strong>: Detection results with confidence scores</li>
+</ul>
+<h3 id="query-examples">Query Examples<a class="headerlink" href="#query-examples" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">src.query</span><span class="w"> </span><span class="kn">import</span> <span class="n">query_species_by_device_and_dates</span>
+
+<span class="c1"># Query detections for specific device and dates</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">query_species_by_device_and_dates</span><span class="p">(</span>
+    <span class="n">engine</span><span class="p">,</span> 
+    <span class="s2">&quot;RPiID-0000000081519079&quot;</span><span class="p">,</span> 
+    <span class="p">[</span><span class="s2">&quot;2025-04-23&quot;</span><span class="p">,</span> <span class="s2">&quot;2025-04-22&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<h2 id="output-formats">Output Formats<a class="headerlink" href="#output-formats" title="Permanent link">&para;</a></h2>
+<h3 id="detection-results">Detection Results<a class="headerlink" href="#detection-results" title="Permanent link">&para;</a></h3>
+<p>Species detections are stored with:
+- Audio file reference
+- Species classification
+- Confidence score
+- Temporal segment information
+- Device and timestamp metadata</p>
+<h3 id="log-files">Log Files<a class="headerlink" href="#log-files" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>audio_inference.log</code>: Real-time processing logs</li>
+<li><code>batch_audio_inference.log</code>: Batch processing logs</li>
+<li><code>daily_report.log</code>: Daily summary reports</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Model weights not found</strong></li>
+<li>Ensure <code>soundscape-model.pt</code> is in the <code>weights/</code> directory</li>
+<li>
+<p>Check file permissions and paths</p>
+</li>
+<li>
+<p><strong>Audio directory not accessible</strong></p>
+</li>
+<li>Verify audio data directory exists and is readable</li>
+<li>
+<p>Check Docker volume mounts if using containers</p>
+</li>
+<li>
+<p><strong>Database connection errors</strong></p>
+</li>
+<li>Ensure SQLite database directory is writable</li>
+<li>Check database file permissions</li>
+</ol></div>
             </div>
         </div>
 

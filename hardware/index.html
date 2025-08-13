@@ -8,7 +8,7 @@
         <meta name="author" content="AIT">
         <link rel="canonical" href="https://kaunghtetcho-22.github.io/mkdocs-bio/hardware/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Hardware Components Documentation - Biodiversity Project Documentation</title>
+        <title>Hardware - Biodiversity Project Documentation</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -25,9 +25,44 @@
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="..">Biodiversity Project Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">AIT team</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../score/" class="dropdown-item">Score prediction</a>
+</li>
+                                    
+<li>
+    <a href="../data/" class="dropdown-item">Data Documentation</a>
+</li>
+                                    
+<li>
+    <a href="../training/" class="dropdown-item">Model Training</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Hardware</a>
+</li>
+                                    
+<li>
+    <a href="../inference/" class="dropdown-item">Inference</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
 
                     <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
@@ -35,6 +70,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../training/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../inference/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -53,33 +98,45 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#hardware-components-documentation" class="nav-link">Hardware Components Documentation</a>
+            <li class="nav-item" data-bs-level="1"><a href="#hardware-components-setup-documentation" class="nav-link">Hardware Components &amp; Setup Documentation</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#1-iot-device-list" class="nav-link">1. IoT Device List</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#2-raspberry-pi-os-installation" class="nav-link">2. Raspberry Pi — OS &amp; Installation</a>
+            <li class="nav-item" data-bs-level="2"><a href="#1-device-list" class="nav-link">1. Device List</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#3-audiomoth-device" class="nav-link">3. AudioMoth Device</a>
+            <li class="nav-item" data-bs-level="2"><a href="#2-raspberry-pi-setup" class="nav-link">2. Raspberry Pi Setup</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#4-router-status" class="nav-link">4. Router Status</a>
+            <li class="nav-item" data-bs-level="2"><a href="#3-vpn-configuration" class="nav-link">3. VPN Configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#5-solar-panel-status" class="nav-link">5. Solar Panel Status</a>
+            <li class="nav-item" data-bs-level="2"><a href="#4-device-configuration-file" class="nav-link">4. Device Configuration File</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#6-battery-status" class="nav-link">6. Battery Status</a>
+            <li class="nav-item" data-bs-level="2"><a href="#5-automatic-recording-service" class="nav-link">5. Automatic Recording Service</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#7-overall-working-flow" class="nav-link">7. Overall Working Flow</a>
+            <li class="nav-item" data-bs-level="2"><a href="#6-important-commands" class="nav-link">6. Important Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-audiomoth-setup" class="nav-link">7. AudioMoth Setup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-router-setup-troubleshooting" class="nav-link">8. Router Setup &amp; Troubleshooting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-solar-panel-battery" class="nav-link">9. Solar Panel &amp; Battery</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#10-system-workflow" class="nav-link">10. System Workflow</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -90,134 +147,230 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="hardware-components-documentation">Hardware Components Documentation<a class="headerlink" href="#hardware-components-documentation" title="Permanent link">&para;</a></h1>
-<h2 id="1-iot-device-list">1. IoT Device List<a class="headerlink" href="#1-iot-device-list" title="Permanent link">&para;</a></h2>
-<p>The following devices are used in the system:</p>
-<ol>
-<li><strong>Raspberry Pi</strong>  </li>
-<li><strong>AudioMoth</strong>  </li>
-<li><strong>4G Router</strong>  </li>
-<li><strong>Internet SIM Card</strong>  </li>
-<li><strong>Solar Panel</strong></li>
-</ol>
-<!-- 
-![Raspberry Pi](pi.jpg)  
-![AudioMoth](audiomoth.jpg)  
-![Internet SIM Card](sim-card.jpg)  
-![Solar Panel](solar-panel.jpg) -->
-
+<h1 id="hardware-components-setup-documentation"><strong>Hardware Components &amp; Setup Documentation</strong><a class="headerlink" href="#hardware-components-setup-documentation" title="Permanent link">&para;</a></h1>
 <hr />
-<h2 id="2-raspberry-pi-os-installation">2. Raspberry Pi — OS &amp; Installation<a class="headerlink" href="#2-raspberry-pi-os-installation" title="Permanent link">&para;</a></h2>
+<h2 id="1-device-list"><strong>1. Device List</strong><a class="headerlink" href="#1-device-list" title="Permanent link">&para;</a></h2>
+<p>This system consists of the following IoT hardware components:</p>
+<ol>
+<li><strong>Raspberry Pi 3 B+</strong> (64 GB microSD storage)  </li>
+<li><strong>AudioMoth</strong> (Acoustic logger)  </li>
+<li><strong>4G Router</strong> (with SIM card)  </li>
+<li><strong>Internet SIM Card</strong>  </li>
+<li><strong>Solar Panel</strong> (with battery storage)  </li>
+</ol>
+<hr />
+<h2 id="2-raspberry-pi-setup"><strong>2. Raspberry Pi Setup</strong><a class="headerlink" href="#2-raspberry-pi-setup" title="Permanent link">&para;</a></h2>
+<h3 id="21-hardware"><strong>2.1. Hardware</strong><a class="headerlink" href="#21-hardware" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Model:</strong> Raspberry Pi 3 B+  </li>
 <li><strong>Storage:</strong> 64 GB microSD card  </li>
-<li><strong>Setup:</strong> Flash the backup OS image to the new SD card.  </li>
 </ul>
-<p><strong>Installation Process:</strong>
-1. Insert the SD card into your computer.<br />
-2. Use an imaging tool (e.g., Balena Etcher) to flash the backup <code>.img</code> file.<br />
-3. Insert the flashed SD card into the Raspberry Pi.<br />
-4. Power on the device.</p>
-<!-- ![Raspberry Pi](images/pi.png)  
-![SD Card](images/sd-card.png)   -->
-
-<p align="center">
-  <img src="images/pi.png" alt="Raspberry Pi" width="45%"/>
-  <img src="images/sd-card.png" alt="SD Card" width="45%"/>
-</p>
-
-<p><a href="https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr"><img alt="Download pi-image here" src="https://img.shields.io/badge/Google%20Drive-Open%20Folder-blue?logo=google-drive" /></a></p>
 <hr />
-<h3 id="21-important-scripts-files">2.1. Important Scripts &amp; Files<a class="headerlink" href="#21-important-scripts-files" title="Permanent link">&para;</a></h3>
-<p>The Raspberry Pi OS contains key scripts and configurations:</p>
+<h3 id="22-os-installation"><strong>2.2. OS Installation</strong><a class="headerlink" href="#22-os-installation" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Insert the SD card into your computer.  </li>
+<li>Use <strong>Balena Etcher</strong> (or similar) to flash the provided <code>.img</code> backup OS image.  </li>
+<li>Insert the flashed SD card into the Raspberry Pi.  </li>
+<li>Power on the device.  </li>
+</ol>
 <table>
 <thead>
 <tr>
-<th>File / Service</th>
-<th>Description</th>
+<th>Raspberry Pi</th>
+<th>SD Card</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>recorder-script.sh</code></td>
-<td>Main script to handle audio recording.</td>
+<td><img alt="Raspberry Pi" src="../images/pi.png" /></td>
+<td><img alt="SD Card" src="../images/sd-card.png" /></td>
 </tr>
+</tbody>
+</table>
+<p>📥 <strong><a href="https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr">Download Raspberry Pi OS Image</a></strong></p>
+<hr />
+<h3 id="23-login-credentials"><strong>2.3. Login Credentials</strong><a class="headerlink" href="#23-login-credentials" title="Permanent link">&para;</a></h3>
+<p>Default credentials (can be customized):<br />
+- <strong>Username:</strong> <code>pi</code><br />
+- <strong>Password:</strong> <code>raspberry</code>  </p>
+<hr />
+<h2 id="3-vpn-configuration"><strong>3. VPN Configuration</strong><a class="headerlink" href="#3-vpn-configuration" title="Permanent link">&para;</a></h2>
+<p>Each Raspberry Pi has its own OpenVPN account.</p>
+<h3 id="31-file-structure"><strong>3.1. File Structure</strong><a class="headerlink" href="#31-file-structure" title="Permanent link">&para;</a></h3>
+<p>Navigate to the OpenVPN directory:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/etc/openvpn/
+ls
+</code></pre></div>
+
+<p>Expected files:</p>
+<div class="codehilite"><pre><span></span><code>client/
+credentials.txt
+openvpn_MONSOON_TEA05.conf
+server/
+update-resolv-conf
+</code></pre></div>
+
+<ul>
+<li><strong><code>openvpn_MONSOON_TEA05.conf</code></strong> → Converted <code>.ovpn</code> client config file  </li>
+<li><strong><code>credentials.txt</code></strong> → VPN username &amp; password (two lines only)</li>
+</ul>
+<hr />
+<h3 id="32-credentials-setup"><strong>3.2. Credentials Setup</strong><a class="headerlink" href="#32-credentials-setup" title="Permanent link">&para;</a></h3>
+<p>Check credentials:</p>
+<div class="codehilite"><pre><span></span><code>cat<span class="w"> </span>/etc/openvpn/credentials.txt
+</code></pre></div>
+
+<p>Format:</p>
+<div class="codehilite"><pre><span></span><code>vpn_username
+vpn_password
+</code></pre></div>
+
+<p>Secure file permissions:</p>
+<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/etc/openvpn/credentials.txt
+</code></pre></div>
+
+<hr />
+<h3 id="33-vpn-service-setup"><strong>3.3. VPN Service Setup</strong><a class="headerlink" href="#33-vpn-service-setup" title="Permanent link">&para;</a></h3>
+<p>Enable &amp; start service:</p>
+<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>openvpn@openvpn_MONSOON_TEA05
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>openvpn@openvpn_MONSOON_TEA05
+</code></pre></div>
+
+<p>Manual connect:</p>
+<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>openvpn<span class="w"> </span>--config<span class="w"> </span>openvpn_MONSOON_TEA05.ovpn
+</code></pre></div>
+
+<p>Verify connection:</p>
+<div class="codehilite"><pre><span></span><code>ifconfig
+</code></pre></div>
+
+<p>VPN tunnel should point to <code>10.81.234.5</code>.</p>
+<hr />
+<h2 id="4-device-configuration-file"><strong>4. Device Configuration File</strong><a class="headerlink" href="#4-device-configuration-file" title="Permanent link">&para;</a></h2>
+<p>Example <strong><code>config.json</code></strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ftp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;uname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;monsoon&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;p8z3%1P#04&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.70.5/production-workflow-ec2&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;use_ftps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;offline_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;sensor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;sensor_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;sensor_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;USBSoundcardMic&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;record_length&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;compress_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;capture_delay&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;sys&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;working_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/pi/tmp_dir&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;upload_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/pi/continuous_monitoring_data&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;reboot_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;02:00&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;device_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;00000000f1c084c2&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="5-automatic-recording-service"><strong>5. Automatic Recording Service</strong><a class="headerlink" href="#5-automatic-recording-service" title="Permanent link">&para;</a></h2>
+<p>Example <strong>systemd service</strong> (<code>/etc/systemd/system/shellscript.service</code>):</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">My Shell Script</span>
+
+<span class="k">[Service]</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/pi/custom-pi-setup/recorder_startup_script.sh</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</code></pre></div>
+
+<p>Check live service logs:</p>
+<div class="codehilite"><pre><span></span><code>journalctl<span class="w"> </span>-u<span class="w"> </span>shellscript.service<span class="w"> </span>-f
+</code></pre></div>
+
+<hr />
+<h2 id="6-important-commands"><strong>6. Important Commands</strong><a class="headerlink" href="#6-important-commands" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
 <tr>
-<td><code>config.json</code></td>
-<td>Configuration file for device parameters.</td>
+<th>Command</th>
+<th>Purpose</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td>OpenVPN installation (UI)</td>
-<td>Provides secure remote access.</td>
+<td><code>arecord -l</code></td>
+<td>List available recording devices</td>
 </tr>
 <tr>
 <td><code>journalctl -u shellscript.service -f</code></td>
-<td>Command to check live service logs.</td>
+<td>Live monitoring of recording service</td>
 </tr>
 <tr>
-<td><code>arecord -l</code></td>
-<td>Command to list available recording devices.</td>
+<td><code>sudo systemctl restart shellscript.service</code></td>
+<td>Restart recording service</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="3-audiomoth-device">3. AudioMoth Device<a class="headerlink" href="#3-audiomoth-device" title="Permanent link">&para;</a></h2>
-<p>AudioMoth is a low-cost, full-spectrum acoustic logger, based on the Gecko processor range from Silicon Labs. Just like its
-namesake the moth, AudioMoth can listen at audible frequencies, well into ultrasonic frequencies. It is capable of recording
-uncompressed audio to microSD card at rates from 8,000 to 384,000 samples per second. The AudioMoth is used for audio data collection in <strong>two modes</strong>:</p>
-<h3 id="31-mobile-type-usage">3.1. Mobile Type Usage<a class="headerlink" href="#31-mobile-type-usage" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Portable configuration for temporary deployments.  </li>
-<li>Ideal for short-term surveys.  </li>
-<li>See attached manual for setting up the mobile type Audiomoth.</li>
-</ul>
-<p><a href="../files/Audiomoth%20mobile%20type%20recording%20Manual.pdf">Download Audiomoth setup manual PDF</a></p>
-<h3 id="32-station-type-usage">3.2. Station Type Usage<a class="headerlink" href="#32-station-type-usage" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Fixed position setup for continuous monitoring.  </li>
-<li>Powered by solar and external battery.  </li>
-<li>See attached manual for setting up the IOT station type.</li>
-</ul>
-<p><a href="../files/Setting%20Up%20IoT%20Station%20Devices.pdf">Download Whole IOT device setup PDF version</a></p>
+<h2 id="7-audiomoth-setup"><strong>7. AudioMoth Setup</strong><a class="headerlink" href="#7-audiomoth-setup" title="Permanent link">&para;</a></h2>
+<h3 id="71-overview"><strong>7.1. Overview</strong><a class="headerlink" href="#71-overview" title="Permanent link">&para;</a></h3>
+<p>AudioMoth is a low-cost, full-spectrum acoustic logger, based on the Gecko processor range from Silicon Labs.<br />
+It can record <strong>audible and ultrasonic frequencies</strong> at rates from <strong>8,000 to 384,000 samples/sec</strong>.<br />
+It is used in two modes: <strong>mobile</strong> and <strong>station</strong>.</p>
 <hr />
-<h2 id="4-router-status">4. Router Status<a class="headerlink" href="#4-router-status" title="Permanent link">&para;</a></h2>
+<h3 id="72-modes"><strong>7.2. Modes</strong><a class="headerlink" href="#72-modes" title="Permanent link">&para;</a></h3>
+<h4 id="mobile-type"><strong>Mobile Type</strong><a class="headerlink" href="#mobile-type" title="Permanent link">&para;</a></h4>
 <ul>
-<li><strong>Type:</strong> 4G Router  </li>
-<li><strong>Function:</strong> Provides internet connectivity via SIM card.  </li>
+<li>Portable configuration for temporary deployments  </li>
+<li>Ideal for short-term surveys<br />
+📄 <strong><a href="../files/Audiomoth%20mobile%20type%20recording%20Manual.pdf">Download Mobile AudioMoth Manual (PDF)</a></strong>  </li>
 </ul>
-<p><strong>Troubleshooting:</strong>
-- Check LED status indicators.<br />
-- Ensure SIM card is active.<br />
-- Restart router if connection drops.</p>
-<p><img alt="Router" src="images/img.jpg" />  </p>
-<hr />
-<h2 id="5-solar-panel-status">5. Solar Panel Status<a class="headerlink" href="#5-solar-panel-status" title="Permanent link">&para;</a></h2>
+<h4 id="station-type"><strong>Station Type</strong><a class="headerlink" href="#station-type" title="Permanent link">&para;</a></h4>
 <ul>
-<li><strong>Purpose:</strong> Supplies power to IoT devices in remote areas.  </li>
+<li>Fixed position setup for continuous monitoring  </li>
+<li>Powered by solar &amp; external battery<br />
+📄 <strong><a href="../files/Setting%20Up%20IoT%20Station%20Devices.pdf">Download IoT Station Setup Manual (PDF)</a></strong>  </li>
 </ul>
-<p><strong>Indicators:</strong>
-- Green light: Charging<br />
-- Red light: Low battery<br />
-- Off: No power supply</p>
 <hr />
-<h2 id="6-battery-status">6. Battery Status<a class="headerlink" href="#6-battery-status" title="Permanent link">&para;</a></h2>
+<h2 id="8-router-setup-troubleshooting"><strong>8. Router Setup &amp; Troubleshooting</strong><a class="headerlink" href="#8-router-setup-troubleshooting" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Purpose:</strong> Stores energy for nighttime or cloudy-day operation.  </li>
+<li><strong>Type:</strong> 4G Router with SIM  </li>
+<li><strong>Purpose:</strong> Internet connection for remote locations  </li>
 </ul>
-<p><strong>LED/Blink Indicators:</strong>
-- 1 blink: Low power<br />
-- 2 blinks: Medium<br />
-- 3 blinks: Fully charged  </p>
+<p><strong>Troubleshooting Checklist:</strong>
+1. Check LED status indicators<br />
+2. Ensure SIM card is active<br />
+3. Restart router if connection drops  </p>
 <hr />
-<h2 id="7-overall-working-flow">7. Overall Working Flow<a class="headerlink" href="#7-overall-working-flow" title="Permanent link">&para;</a></h2>
+<h2 id="9-solar-panel-battery"><strong>9. Solar Panel &amp; Battery</strong><a class="headerlink" href="#9-solar-panel-battery" title="Permanent link">&para;</a></h2>
+<h3 id="solar-panel"><strong>Solar Panel</strong><a class="headerlink" href="#solar-panel" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Powers IoT devices in remote areas  </li>
+<li><strong>Indicators:</strong>  </li>
+<li>Green → Charging  </li>
+<li>Red → Low battery  </li>
+<li>Off → No power  </li>
+</ul>
+<h3 id="battery"><strong>Battery</strong><a class="headerlink" href="#battery" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Stores energy for night/cloudy use  </li>
+<li><strong>Blink Indicators:</strong>  </li>
+<li>1 blink → Low  </li>
+<li>2 blinks → Medium  </li>
+<li>3 blinks → Full  </li>
+</ul>
+<hr />
+<h2 id="10-system-workflow"><strong>10. System Workflow</strong><a class="headerlink" href="#10-system-workflow" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Power Supply:</strong> Solar panel → Battery → Raspberry Pi + Router.  </li>
-<li><strong>Data Capture:</strong> AudioMoth / Pi records data.  </li>
-<li><strong>Data Transmission:</strong> Router sends data over 4G network.  </li>
-<li><strong>Remote Access:</strong> OpenVPN connection to retrieve/manage data.  </li>
-<li><strong>Monitoring:</strong> Logs checked via <code>journalctl</code> or SSH commands.</li>
+<li><strong>Power Supply</strong> → Solar Panel → Battery → Raspberry Pi &amp; Router  </li>
+<li><strong>Data Capture</strong> → AudioMoth or Raspberry Pi records audio  </li>
+<li><strong>Data Transmission</strong> → Router sends via 4G  </li>
+<li><strong>Remote Access</strong> → VPN connection for management  </li>
+<li><strong>Monitoring</strong> → Logs checked via <code>journalctl</code> or SSH  </li>
 </ol>
-<p><img alt="System Overview" src="../images/device-overview.png" />  </p></div>
+<p><img alt="System Overview" src="../images/device-overview.png" /></p></div>
             </div>
         </div>
 
