@@ -5,12 +5,12 @@ site_author: AIT
 
 nav:
   - Home: index.md
-  # - AIT team:
-  #     - Score prediction: score.md
-  #     - Data Documentation: data.md
-  #     - Model Training: training.md
-  #     - Hardware: hardware.md
-  #     - Inference: inference.md
+  - AIT team:
+      - Score prediction: score.md
+      - Data Documentation: data.md
+      - Model Training: training.md
+      - Hardware: hardware.md
+      - Inference: inference.md
 
 markdown_extensions:
   - admonition
