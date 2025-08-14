@@ -1,39 +1,62 @@
-# AI Models
+# **Biodiversity score prediction**
 
-The AI module in the Biodiversity Project is composed of two main parts:
+## Overview
+This project predicts regional biodiversity scores through a two-stage workflow <a href="#bioscoreoverview">Figure 1</a>: **1. bird and insect sound classification** and the **2. biodiversity score level prediction**.  
 
-1. **Sound Classification System**  
-   - Identifies bird and insect species, as well as noise categories, from recorded audio.
-2. **Score Prediction Model**  
-   - Generates a biodiversity score based on the outputs of the sound classification system.
+1. **Bird and Insect Sound Classification**  
+Audio recordings are collected by deployed AudioMoth devices. As illustrated in <a href="#bioscoreoverview">Figure 1</a>, the recordings are preprocessed and fed into a deep learning classifier based on a modified implementation of the [BirdCLEF 2023 4th Place Solution](https://www.kaggle.com/competitions/birdclef-2023/writeups/atfujita-4th-place-solution-knowledge-distillation). The model identifies bird and insect species and also detects non-biological sounds such as human speech, other human-generated noises, and vehicle sounds. It was pre-trained on species recordings from [Xeno-canto](https://xeno-canto.org/) and noise recordings from our own data collection.
+2. **Biodiversity Score Level Prediction**  
+For each region, the frequency of occurrence of every detected species and noise class is aggregated from the classified recordings. These frequencies serve as input features to a traditional machine learning model (XGBoost), which predicts the region’s biodiversity score level: high, medium, or low.  
+
+![Biodiversity score level prediction overview](images/biodiversity_overview.png){ style="width: 400px; display: block; margin: 0 auto;" }
+
+<p align="center"><em>Figure 1: Biodiversity score level prediction overview.</em></p>
+
+<!-- 
+<div style="text-align: center;">
+<img src="images/biodiversity_overview.png" alt="Biodiversity Overview" width="400">
+</div> -->
+---
+
+
+## Data
+This section provides an overview of the data used in this project. We summarize the sources, label quality, use in training, geographic filtering, and the final class list.
+
+### Sources
+Public: Expert-labeled wildlife audio from [Xeno-canto](https://xeno-canto.org/), covering birds and insects.
+Self-collected: Field recordings captured with AudioMoth devices in tea plantations around Chiang Mai, Thailand.
+### Label quality
+Xeno-canto recordings include expert-provided species labels.
+The self-collected recordings lack ground-truth annotations.
+### Use in training
+The sound-classification model is trained primarily on the labeled Xeno-canto data.
+Additional noise examples from our self-collected recordings (e.g., human speech, human activity, vehicles, and other environmental noises) are included to improve robustness.
+### Geographic filtering
+To reduce label noise and improve relevance, we removed species not known to occur in Thailand, with a particular focus on the Chiang Mai region.
+### Class list
+The final set of bird and insect species used in training and inference is documented in species.txt.
 
 ---
 
-## Sound Model Training
-
-This section describes the process and details for training the sound classification model.
-
----
-
-### 1. Training Dataset
+### Training dataset
 
 The dataset consists of **bird species**, **insect species**, and **noise classes**.
 
-#### 1.1 Bird Species
+#### Bird species
 
 | Common Name | Biological Name | Number of Samples |
 |-------------|-----------------|-------------------|
-|  Asian Koel | *Eudynamys scolopaceus* | 1200 |
+|  Asian Koel | *Abroscopus-superciliaris* | 118 |
 | *(Add more rows here)* | | |
 
-#### 1.2 Insect Species
+#### Insect species
 
 | Common Name | Biological Name | Number of Samples |
 |-------------|-----------------|-------------------|
 |  Cicada | *Cicadidae* | 800 |
 | *(Add more rows here)* | | |
 
-#### 1.3 Noise Classes
+#### Noise classes
 
 | Class Name | Description | Number of Samples |
 |------------|-------------|-------------------|
@@ -42,6 +65,7 @@ The dataset consists of **bird species**, **insect species**, and **noise classe
 
 ---
 
+<!-- 
 ### 2. Model Accuracy
 
 | Metric   | Value |
@@ -54,8 +78,8 @@ The dataset consists of **bird species**, **insect species**, and **noise classe
 *(Replace XX% with actual results after training.)*
 
 ---
-
-### 3. Model Architecture
+ -->
+## Model architecture
 
 The sound classification system is based on:
 
@@ -70,5 +94,3 @@ The sound classification system is based on:
   - Batch Size: *(e.g., 32)*
 
 ---
-
-**Next:** [Score Prediction Model](score.md)

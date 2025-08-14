@@ -1,49 +1,50 @@
-# Biodiversity
+# Biodiversity Project Documentation
 
-Welcome to the **Biodiversity Project Documentation**.  
-This guide provides detailed instructions, references, and technical explanations for setting up the hardware, training AI models, and running inference pipelines. 
-It is organized for everystep to follow consistently from setup to deployment.
+Welcome to the documentation hub for the Biodiversity Project.
 
-All the source code are pushed to the github.
+This site covers end-to-end guidance for deploying IoT devices, training AI models for eco-acoustic analysis, and running the production inference pipeline for biodiversity monitoring and scoring. It includes a minimal setup path to get you started quickly.
 
----
+![System Overview Diagram](images/overview-diagram.png){ style="width: 80%; display: block; margin: 0 auto;" }
 
-## 1. Hardware Components
-
-This section explains how to **set up the hardware** used in the project and configure the necessary scripts to start operations.
-
-- Step-by-step installation and configuration  
-- Overview of IoT devices and their roles  
-- Key scripts and commands for operation
-
-[Read more →](hardware.md)
+<p align="center"><em>High-level architecture of data collection, AI inference, and reporting.</em></p>
 
 ---
 
-## 2. AI Models
+### What you'll find here
 
-This section describes the AI models developed for biodiversity monitoring, including **sound classification** and **score prediction**.
-
-- General workflow for model training and evaluation.
-- Data preparation and preprocessing  
-- Model architecture and training parameters  
-- Evaluation metrics
-- Feature engineering  
-- Model training and validation  
-- Performance monitoring
-
-[Read more →](ai.md)
+- Hardware setup and field deployment procedures
+- AI model overview, datasets, and training approach
+- Inference pipeline, database schema, and operations
 
 ---
 
-## 3. Inference pipeline
+<!-- ### Quick navigation
 
-This section explains how the system performs inference and serves results.
+<div class="grid cards" markdown>
 
-- High-level inference workflow
-- Schema design and data storage strategy
-- Step-by-step data flow for predictions
+-   :material-raspberry-pi: **Hardware Setup**  
+    Prepare Raspberry Pi, AudioMoth, connectivity, power, and services.
 
-[Read more →](inference.md)
+    [Open guide →](hardware.md)
+
+-   :material-brain: **AI Models**  
+    Learn about eco-acoustic classification and biodiversity score prediction.
+
+    [Open guide →](ai.md)
+
+-   :material-pipeline: **Inference Pipeline**  
+    Understand the data flow, database, and deployment steps.
+
+    [Open guide →](inference.md)
+
+</div>
 
 ---
+
+### Getting started
+
+1. Review the hardware requirements and field setup in `Hardware Setup`.
+2. Familiarize with the AI models in `AI Models`.
+3. Deploy and operate services following `Inference Pipeline`.
+
+For downloadable manuals, see the Downloads section in the navigation. -->

@@ -2,19 +2,59 @@ site_name: Biodiversity Project Documentation
 site_description: Technical documentation for biodiversity 
 site_url: https://kaunghtetcho-22.github.io/mkdocs-bio/
 site_author: AIT
+theme:
+  name: material
+  language: en
+  icon:
+    logo: material/earth
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.instant
+    - toc.integrate
+    - content.code.copy
+    - content.tabs.link
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: teal
+      accent: light blue
+  font:
+    text: Inter
+    code: JetBrains Mono
 
 nav:
   - Home: index.md
-  # - AIT team:
-  #     - Score prediction: score.md
-  #     - Data Documentation: data.md
-  #     - Model Training: training.md
-  #     - Hardware: hardware.md
-  #     - Inference: inference.md
+  - Hardware Setup: hardware.md
+  - AI Models: ai.md
+  - Inference Pipeline: inference.md
+
+plugins:
+  - search
+  - glightbox
+  - minify:
+      minify_html: true
+  - with-pdf:
+      output_path: pdf/biodiversity-project-documentation.pdf
+      cover_title: Biodiversity Project Documentation
+      cover_subtitle: Technical documentation for biodiversity monitoring
+      author: AIT
 
 markdown_extensions:
   - admonition
-  - codehilite
   - toc:
       permalink: true
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - pymdownx.highlight
+
+use_directory_urls: true
+
+extra:
+  generator: false
       

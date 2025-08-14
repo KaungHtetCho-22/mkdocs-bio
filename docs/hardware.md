@@ -2,7 +2,7 @@
 
 ---
 
-## **1. Device List**
+## Device list
 
 This system consists of the following IoT hardware components:
 
@@ -14,15 +14,15 @@ This system consists of the following IoT hardware components:
 
 ---
 
-## **2. Raspberry Pi Setup**
+## Raspberry Pi setup
 
-### **2.1. Hardware**
+### Hardware
 - **Model:** Raspberry Pi 3 B+  
 - **Storage:** 64 GB microSD card  
 
 ---
 
-### **2.2. OS Installation**
+### OS installation
 1. Insert the SD card into your computer.  
 2. Use **Balena Etcher** (or similar) to flash the provided `.img` backup OS image.  
 3. Insert the flashed SD card into the Raspberry Pi.  
@@ -30,24 +30,24 @@ This system consists of the following IoT hardware components:
 
 | Raspberry Pi | SD Card |
 |--------------|---------|
-| ![Raspberry Pi](images/pi.png) | ![SD Card](images/sd-card.png) |
+| ![Raspberry Pi](images/pi.png){ style="max-width: 320px;" } | ![SD Card](images/sd-card.png){ style="max-width: 320px;" } |
 
-📥 **[Download Raspberry Pi OS Image](https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr)**
+**[Download Raspberry Pi OS Image](https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr)**
 
 ---
 
-### **2.3. Login Credentials**
+### Login credentials
 Default credentials (can be customized):  
 - **Username:** `pi`  
 - **Password:** `raspberry`  
 
 ---
 
-## **3. VPN Configuration**
+## VPN configuration
 
 Each Raspberry Pi has its own OpenVPN account.
 
-### **3.1. File Structure**
+### File structure
 Navigate to the OpenVPN directory:
 
 ```bash
@@ -69,7 +69,7 @@ update-resolv-conf
 
 ---
 
-### **3.2. Credentials Setup**
+### Credentials setup
 Check credentials:
 ```bash
 cat /etc/openvpn/credentials.txt
@@ -86,7 +86,7 @@ sudo chmod 600 /etc/openvpn/credentials.txt
 
 ---
 
-### **3.3. VPN Service Setup**
+### VPN service setup
 Enable & start service:
 ```bash
 sudo systemctl enable openvpn@openvpn_MONSOON_TEA05
@@ -106,7 +106,7 @@ VPN tunnel should point to `10.81.234.5`.
 
 ---
 
-## **4. Device Configuration File**
+## Device configuration file
 
 Example **`config.json`**:
 ```json
@@ -136,7 +136,7 @@ Example **`config.json`**:
 
 ---
 
-## **5. Automatic Recording Service**
+## Automatic recording service
 
 Example **systemd service** (`/etc/systemd/system/shellscript.service`):
 ```ini
@@ -157,7 +157,7 @@ journalctl -u shellscript.service -f
 
 ---
 
-## **6. Important Commands**
+## Important commands
 | Command | Purpose |
 |---------|---------|
 | `arecord -l` | List available recording devices |
@@ -166,29 +166,29 @@ journalctl -u shellscript.service -f
 
 ---
 
-## **7. AudioMoth Setup**
+## AudioMoth setup
 
-### **7.1. Overview**
+### Overview
 AudioMoth is a low-cost, full-spectrum acoustic logger, based on the Gecko processor range from Silicon Labs.  
 It can record **audible and ultrasonic frequencies** at rates from **8,000 to 384,000 samples/sec**.  
 It is used in two modes: **mobile** and **station**.
 
 ---
 
-### **7.2. Modes**
+### Modes
 #### **Mobile Type**
 - Portable configuration for temporary deployments  
 - Ideal for short-term surveys  
-📄 **[Download Mobile AudioMoth Manual (PDF)](files/Audiomoth%20mobile%20type%20recording%20Manual.pdf)**  
+**[Download Mobile AudioMoth Manual (PDF)](files/audiomoth-mobile-recording-manual.pdf)**  
 
 #### **Station Type**
 - Fixed position setup for continuous monitoring  
 - Powered by solar & external battery  
-📄 **[Download IoT Station Setup Manual (PDF)](files/Setting%20Up%20IoT%20Station%20Devices.pdf)**  
+**[Download IoT Station Setup Manual (PDF)](files/iot-station-setup-devices.pdf)**  
 
 ---
 
-## **8. Router Setup & Troubleshooting**
+## Router setup & troubleshooting
 
 - **Type:** 4G Router with SIM  
 - **Purpose:** Internet connection for remote locations  
@@ -200,16 +200,16 @@ It is used in two modes: **mobile** and **station**.
 
 ---
 
-## **9. Solar Panel & Battery**
+## Solar panel & battery
 
-### **Solar Panel**
+### Solar panel
 - Powers IoT devices in remote areas  
 - **Indicators:**  
   - Green → Charging  
   - Red → Low battery  
   - Off → No power  
 
-### **Battery**
+### Battery
 - Stores energy for night/cloudy use  
 - **Blink Indicators:**  
   - 1 blink → Low  
@@ -218,7 +218,7 @@ It is used in two modes: **mobile** and **station**.
 
 ---
 
-## **10. System Workflow**
+## System workflow
 
 1. **Power Supply** → Solar Panel → Battery → Raspberry Pi & Router  
 2. **Data Capture** → AudioMoth or Raspberry Pi records audio  

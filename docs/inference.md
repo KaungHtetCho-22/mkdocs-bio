@@ -1,40 +1,44 @@
-# Bird Sound Monitoring & Scoring Pipeline
+# **Bird Sound Monitoring & Scoring Pipeline**
 
 
 ---
 
-#### **1. Overview**
+## Overview
 
 This system automates the end-to-end process of **monitoring bird sounds** using IoT devices, classifying them with a soundscape model, predicting biodiversity scores, and delivering the results as JSON payloads to an API.
 
-<p align="center">
-  <img src="images/overview-diagram.png" alt="System Overview Diagram" width="80%">
+<!-- <p align="center">
+  <img src="images/overview-diagram.png" alt="System Overview Diagram" width="80%" />
 </p>
+
+<p align="center"><em>Figure 1: Bird Sound Monitoring &amp; Scoring Pipeline Overview</em></p> -->
+
+![System Overview Diagram](images/overview-diagram.png){ style="width: 400px; display: block; margin: 0 auto;" }
 
 <p align="center"><em>Figure 1: Bird Sound Monitoring &amp; Scoring Pipeline Overview</em></p>
 
 ---
 
-#### **Data Source – Raspberry Pi**
+### Data source – Raspberry Pi
 - **Device:** Raspberry Pi with Audiomoth sensors for continuous field audio collection.  
 - **Protocol:** FTPS (Secure FTP) for encrypted data transfer.  
 - **Destination:** Audio files are securely uploaded to the **iNet private cloud**.
 
 ---
 
-#### **Audio Collection**
+### Audio collection
 - Captures **10-minute audio clips** in `.WAV` format.
 
 ---
 
-#### **Bird Classification Model**
+### Bird classification model
 - Processes audio clips using a **deep learning soundscape model**.  
 - Identifies bird species with **confidence scores**.  
 - Stores classification results in a **MySQL database** for further analysis.
 
 ---
 
-#### **Score Prediction Model**
+### Score prediction model
 - Retrieves classification results from MySQL.  
 - Generates a **biodiversity score** for the monitored area based on detected species:  
    - **Score A** – High biodiversity  
@@ -87,7 +91,7 @@ This system automates the end-to-end process of **monitoring bird sounds** using
 
 ---
 
-## Pipeline file Structure
+## Pipeline file structure
 
 ```
 inference-pipeline/
@@ -112,11 +116,11 @@ inference-pipeline/
 
 ---
 
-## **2. Components**
+## Components
 
 ---
 
-#### Main functions
+### Main functions
 
 - **File Monitoring**: Watchdog-based file system monitoring for automatic processing
 - **Audio Processing**: Real-time audio file monitoring and processing
@@ -129,15 +133,15 @@ This documentation guides for making the deployment anywhere else.
 
 ---
 
-##### 1. **File Monitoring** 
+#### File monitoring 
 
-##### 2. **Audio Processing**   
+#### Audio processing   
 
-##### 3. **Deep Learning Models**
+#### Deep learning models
 
 This AI models can be read from [AI Models](ai.md).
 
-##### 4. **Database Schema**
+#### Database schema
 
 This is how the conceptual diagram works inside the inference data accepting
 
@@ -169,16 +173,16 @@ This is how the conceptual diagram works inside the inference data accepting
 
 ![Database conceptual design](images/db_design.png)
 
-#### 5. Docker support
+#### Docker support
 
 
 
-## Quick Start
+## Quick start
 
 
 
 
-### Model Configuration
+### Model configuration
 
 Edit `monsoon_biodiversity_common/config.py` to customize:
 
@@ -188,7 +192,7 @@ Edit `monsoon_biodiversity_common/config.py` to customize:
 
 ---
 
-## **3. Example usage**
+## Example usage
 
 ### Prerequisites
 
