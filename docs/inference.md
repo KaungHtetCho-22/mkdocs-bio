@@ -1,32 +1,93 @@
-# Biodiversity Audio Inference Pipeline
+# Bird Sound Monitoring & Scoring Pipeline
 
-A real-time audio monitoring and species detection system for biodiversity research using deep learning models and Raspberry Pi devices.
 
-## Overview
+---
 
-This pipeline processes audio recordings from field-deployed Raspberry Pi devices to automatically detect and classify bird species and other wildlife sounds. It uses a pre-trained deep learning model to analyze audio spectrograms and identify species with confidence scores.
+#### **1. Overview**
 
-![Overview-diagram](images/overview-diagram.png)
+This system automates the end-to-end process of **monitoring bird sounds** using IoT devices, classifying them with a soundscape model, predicting biodiversity scores, and delivering the results as JSON payloads to an API.
 
-## Architecture
+<p align="center">
+  <img src="images/overview-diagram.png" alt="System Overview Diagram" width="80%">
+</p>
 
-### Core Components
+<p align="center"><em>Figure 1: Bird Sound Monitoring &amp; Scoring Pipeline Overview</em></p>
 
-- **Audio Processing**: Real-time audio file monitoring and processing using librosa
-- **Deep Learning Model**: Attention-based neural network for species classification
-- **Database**: SQLite database for storing detections, audio metadata, and device information
-- **File Monitoring**: Watchdog-based file system monitoring for automatic processing
-- **Docker Support**: Containerized deployment for development and production
+---
 
-### Model Architecture
+#### **Data Source – Raspberry Pi**
+- **Device:** Raspberry Pi with Audiomoth sensors for continuous field audio collection.  
+- **Protocol:** FTPS (Secure FTP) for encrypted data transfer.  
+- **Destination:** Audio files are securely uploaded to the **iNet private cloud**.
 
-The system uses an `AttModel` class that combines:
-- **Backbone**: Pre-trained vision models (configurable via timm)
-- **Mel-spectrogram extraction**: Audio preprocessing with configurable parameters
-- **Attention mechanisms**: For temporal and frequency domain feature learning
-- **Classification head**: Multi-class species prediction with confidence scoring
+---
 
-## Project Structure
+#### **Audio Collection**
+- Captures **10-minute audio clips** in `.WAV` format.
+
+---
+
+#### **Bird Classification Model**
+- Processes audio clips using a **deep learning soundscape model**.  
+- Identifies bird species with **confidence scores**.  
+- Stores classification results in a **MySQL database** for further analysis.
+
+---
+
+#### **Score Prediction Model**
+- Retrieves classification results from MySQL.  
+- Generates a **biodiversity score** for the monitored area based on detected species:  
+   - **Score A** – High biodiversity  
+   - **Score B** – Medium biodiversity  
+   - **Score C** – Low biodiversity  
+- Outputs results to an API in structured JSON format.
+
+
+---
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; text-align: left; width: 100%;">
+  <thead style="background-color: #f2f2f2;">
+    <tr>
+      <th style="border: 1px solid #ccc;">Component</th>
+      <th style="border: 1px solid #ccc;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ccc;">Raspberry Pi + Audiomoth + 4G Router</td>
+      <td style="border: 1px solid #ccc;">Collects audio data from the field.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc;">FTPS</td>
+      <td style="border: 1px solid #ccc;">Secure file transfer protocol for uploading audio files.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc;">iNet Server</td>
+      <td style="border: 1px solid #ccc;">Runs inference processes for species detection.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc;">Bird Classification Model</td>
+      <td style="border: 1px solid #ccc;">Analyzes audio clips and identifies bird species with confidence scores.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc;">MySQL</td>
+      <td style="border: 1px solid #ccc;">Stores classification results and associated metadata.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc;">Score Prediction Model</td>
+      <td style="border: 1px solid #ccc;">Generates biodiversity scores based on classification results.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc;">API</td>
+      <td style="border: 1px solid #ccc;">Receives JSON payloads containing final scoring results.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+---
+
+## Pipeline file Structure
 
 ```
 inference-pipeline/
@@ -36,28 +97,102 @@ inference-pipeline/
 ├── json-output/                 # Prediction results and reports
 ├── logs/                        # Application logs
 ├── monsoon_biodiversity_common/ # Core library modules
-│   ├── config.py               # Model and system configuration
-│   ├── dataset.py              # Data loading and preprocessing
-│   ├── db_model.py             # Database models and schema
-│   ├── model.py                # Neural network architecture
-│   └── requirements.txt        # Core dependencies
+│   ├── config.py                # Model and system configuration
+│   ├── dataset.py               # Data loading and preprocessing
+│   ├── db_model.py              # Database models and schema
+│   ├── model.py                 # Neural network architecture
 ├── scripts/                     # Utility and deployment scripts
 ├── src/                         # Main application source code
-│   ├── debug_audio_monitoring.py    # Real-time audio monitoring
-│   ├── debug_process_detections.py  # Detection processing and reporting
-│   ├── inference_station.py         # Station-specific inference
-│   ├── query.py                     # Database query utilities
-│   └── species_mapping.py           # Species classification mapping
+│   ├── audio_monitoring.py      # Real-time audio monitoring
+│   ├── process_detections.py    # Detection processing and reporting
+│   └── species_mapping.py       # Species classification mapping (Thai - Eng)
 ├── weights/                     # Pre-trained model weights
-└── requirements.txt             # Main project dependencies
+└── requirements.txt             # Main project libraries
 ```
 
+---
+
+## **2. Components**
+
+---
+
+#### Main functions
+
+- **File Monitoring**: Watchdog-based file system monitoring for automatic processing
+- **Audio Processing**: Real-time audio file monitoring and processing
+- **Deep Learning Models**: Attention-based neural network for species classification and xgboost model for prediction the score of the area.
+- **Database**: SQLite database for storing detections results
+- **Docker Support**: Containerized deployment for development and production
+
+NOTES: **This deployment is already setup on the iNET and now it is working in actions.**
+This documentation guides for making the deployment anywhere else.
+
+---
+
+##### 1. **File Monitoring** 
+
+##### 2. **Audio Processing**   
+
+##### 3. **Deep Learning Models**
+
+This AI models can be read from [AI Models](ai.md).
+
+##### 4. **Database Schema**
+
+This is how the conceptual diagram works inside the inference data accepting
+
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; text-align: left; width: 100%;">
+  <thead style="background-color: #f2f2f2;">
+    <tr>
+      <th style="border: 1px solid #ccc;">Table Name</th>
+      <th style="border: 1px solid #ccc;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ccc;"><strong>RpiDevices</strong></td>
+      <td style="border: 1px solid #ccc;">Stores device information and associated metadata.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc;"><strong>AudioFiles</strong></td>
+      <td style="border: 1px solid #ccc;">Contains audio file records along with relevant metadata.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc;"><strong>SpeciesDetections</strong></td>
+      <td style="border: 1px solid #ccc;">Holds species detection results with confidence scores and related attributes.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+![Database conceptual design](images/db_design.png)
+
+#### 5. Docker support
+
+
+
 ## Quick Start
+
+
+
+
+### Model Configuration
+
+Edit `monsoon_biodiversity_common/config.py` to customize:
+
+- **Audio parameters**: Sample rate, mel bands, FFT settings
+- **Model architecture**: Backbone model, number of classes
+- **Training settings**: Learning rate, batch size, epochs
+
+---
+
+## **3. Example usage**
 
 ### Prerequisites
 
 - Python 3.8+
-- Docker (optional, for containerized deployment)
 - Audio processing libraries (librosa, torchaudio)
 - Deep learning framework (PyTorch)
 
@@ -86,50 +221,27 @@ The weights are already uploaded to the iNET and attached to the drive as well
    python src/debug_audio_monitoring.py
    ```
 
-### Docker Deployment
-
 1. **Build production image**
-   ```bash
-   ./scripts/build_prod_image.sh
+   ```
+   sh scripts/build_prod_image.sh
    ```
 
 2. **Run with docker-compose**
-   ```bash
-   cd docker
-   docker-compose -f docker-compose-devel.yaml up -d
+   ```
+   docker compose -f docker/docker-compose-prod.yaml up -d
    ```
 
 3. **Access container**
-   ```bash
-   docker exec -it dev-bio-diversity bash
+   ```
+   docker exec -it prod-bio-service bash
    ```
 
-4. **Run script**
-   ```bash
-   sh run.sh
+4. **Check logs**
    ```
-   it will run the audio-monitoring.py and process_detection.py and the intention of those python script will be explained below session
+   docker logs -f prod-bio-service 
+   ```
+---
 
-## Configuration
-
-
-### Database
-
-This is how the conceptual diagram works inside the inference data accepting
-
-![Database conceptual design](images/db_design.png)
-
-
-### Model Configuration
-
-Edit `monsoon_biodiversity_common/config.py` to customize:
-
-- **Audio parameters**: Sample rate, mel bands, FFT settings
-- **Model architecture**: Backbone model, number of classes
-- **Training settings**: Learning rate, batch size, epochs
-
-
-## Usage
 
 ### Real-time Audio Monitoring
 
@@ -145,7 +257,7 @@ This service:
 - Stores results in the database
 - Generates real-time logs
 
-### Batch Processing
+<!-- ### Batch Processing
 
 Process existing audio files:
 
@@ -167,28 +279,9 @@ Generate daily detection summaries:
 
 ```bash
 python src/debug_process_detections.py --schedule
-```
+``` -->
 
-## Database Schema
-
-### Core Tables
-
-- **RpiDevices**: Device information and metadata
-- **AudioFiles**: Audio file records and metadata
-- **SpeciesDetections**: Detection results with confidence scores
-
-### Query Examples
-
-```python
-from src.query import query_species_by_device_and_dates
-
-# Query detections for specific device and dates
-results = query_species_by_device_and_dates(
-    engine, 
-    "RPiID-0000000081519079", 
-    ["2025-04-23", "2025-04-22"]
-)
-```
+<!-- 
 
 ## Output Formats
 
@@ -221,4 +314,6 @@ Species detections are stored with:
 
 3. **Database connection errors**
    - Ensure SQLite database directory is writable
-   - Check database file permissions
+   - Check database file permissions -->
+
+
