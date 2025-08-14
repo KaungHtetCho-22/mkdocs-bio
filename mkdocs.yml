@@ -18,18 +18,3 @@ markdown_extensions:
   - toc:
       permalink: true
       
-plugins:
-  - search
-  - minify:
-      minify_html: true
-  - git-revision-date-localized:
-      fallback_to_build_date: true
-  - glightbox
-  - with-pdf:
-      output_path: pdf/biodiversity-docs.pdf
-      cover_title: Biodiversity Project Documentation
-      cover_subtitle: Technical documentation for biodiversity
-      author: AIT
-      toc_title: Table of Contents
-      render_js: true
-      enabled_if_env: ENABLE_PDF_EXPORT
