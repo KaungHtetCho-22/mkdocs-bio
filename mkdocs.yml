@@ -39,8 +39,10 @@ plugins:
   - with-pdf:
       output_path: pdf/biodiversity-project-documentation.pdf
       cover_title: Biodiversity Project Documentation
-      cover_subtitle: Technical documentation for biodiversity monitoring
+      cover_subtitle: Techinal documentation version 1
       author: AIT
+      date: "August 2025"
+      copyright: ""
 
 markdown_extensions:
   - admonition

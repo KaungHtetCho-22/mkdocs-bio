@@ -28,9 +28,9 @@ This system consists of the following IoT hardware components:
 3. Insert the flashed SD card into the Raspberry Pi.  
 4. Power on the device.  
 
-| Raspberry Pi | SD Card |
+<!-- | Raspberry Pi | SD Card |
 |--------------|---------|
-| ![Raspberry Pi](images/pi.png){ style="max-width: 320px;" } | ![SD Card](images/sd-card.png){ style="max-width: 320px;" } |
+| ![Raspberry Pi](images/pi.png){ style="max-width: 320px;" } | ![SD Card](images/sd-card.png){ style="max-width: 320px;" } | -->
 
 **[Download Raspberry Pi OS Image](https://drive.google.com/drive/folders/19RC69tCjV7lfupJODWT0BL_QIx_DtFqr)**
 

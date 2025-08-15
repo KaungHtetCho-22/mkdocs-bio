@@ -1,8 +1,8 @@
-# Biodiversity Project Documentation
+# **Biodiversity Project Documentation**
 
 Welcome to the documentation hub for the Biodiversity Project.
 
-This site covers end-to-end guidance for deploying IoT devices, training AI models for eco-acoustic analysis, and running the production inference pipeline for biodiversity monitoring and scoring. It includes a minimal setup path to get you started quickly.
+This covers end-to-end guidance for deploying IoT devices, training AI models for eco-acoustic analysis, and running the production inference pipeline for biodiversity monitoring and scoring. It includes a minimal setup path to get started quickly.
 
 ![System Overview Diagram](images/overview-diagram.png){ style="width: 80%; display: block; margin: 0 auto;" }
 
