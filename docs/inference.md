@@ -94,7 +94,7 @@ inference-pipeline/
 
 ## Components
 
----
+
 
 ### Main functions
 
@@ -110,80 +110,46 @@ Note: This deployment is already set up on iNet and running in production. Use t
 
 #### File Monitoring
 
-**Location:**  
-`src/audio_monitoring.py`
+The monitoring service is implemented in **`src/audio_monitoring.py`**.  
+Its function is to detect new audio files, check stability, and run inference.  
 
-**Purpose:**  
-Continuously watches incoming audio, validates file stability, performs 5‑second window classification, and writes per‑segment detections to the database with resilient logging.
+- **Watched path:** `/app/audio-data/` (including subfolders with `RPiID-*`)  
+- **Supported formats:** `.wav`, `.ogg`, `.mp3`  
+- **Queueing:** Uses `watchdog` with a thread-safe `queue` for sequential processing  
 
-**Watched paths and filters:**
-- **Root directory:** `/app/audio-data/`
-- **Subfolders monitored:** Only folders whose names contain `RPiID` (e.g., `RPiID-001`), monitored recursively
-- **File types:** `.wav`, `.ogg`, `.mp3`
+-**File stability check**  
+The system performs a file stability check before processing any new audio file. It waits until the file size is both non-zero and remains unchanged for at least three seconds. If the file does not stabilize within a maximum wait time of 60 seconds, it is considered unstable or empty and is skipped.
 
-**Monitoring and queueing:**
-- Uses `watchdog` (`Observer` + `FileSystemEventHandler`) to enqueue new files into a thread-safe `queue.Queue`
-- A dedicated background thread consumes the queue and processes files sequentially
+**Inference process**  
+The inference process uses the model stored at `/app/weights/soundscape-model.pt`. Each audio file is resampled to **48 kHz** and then divided into **5-second segments**. For every segment, the system predicts the class with the highest probability and records its confidence score. Each prediction is assigned a unique segment ID in the format `<file_stem>_<second>`.
 
-**File stability gate:**
-- Before inference, the service waits for the file size to remain unchanged and non‑zero for 3 consecutive seconds
-- Maximum wait window: 60 seconds; unstable or empty files are skipped with an error log
+**Logging and retention**  
+All activity is logged in `/app/logs/audio_inference.log`. After processing, the audio files are retained by default, although a safe delete option exists but is disabled.
 
-**Inference details:**
-- Loads `AttModel` with weights at `/app/weights/soundscape-model.pt`
-- Audio loaded with `librosa` at 32 kHz; split into 5‑second segments: seconds = 5, 10, 15, ... up to clip length
-- For each segment, computes sigmoid probabilities for `CFG.target_columns` and selects:
-  - `Class`: argmax label
-  - `Score`: max probability
-- Segment identifier `row_id` format: `<file_stem>_<second>`
-
-<!-- **Database write (SQLite):**
-- DB URL: `sqlite:////app/app-data/soundscape-model.db`
-- Entities used: `RpiDevices`, `AudioFiles`, `SpeciesDetections`
-- Path parsing: expects folder layout `.../RPiID-XXX/YYYY-MM-DD/<audio_file>`
-- Unique `AudioFiles.file_key`: `<pi_id>_<recording_date>_<audio_filename>`
-- For each segment, inserts a `SpeciesDetections` row with:
-  - `time_segment_id` = `row_id`
-  - `species_class` = predicted `Class`
-  - `confidence_score` = `Score`
-  - `created_at` = current UTC timestamp -->
-
-**Logging:**
-- File: `/app/logs/audio_inference.log`
-
-**File retention:**
-- Files are currently kept after processing; a safe delete helper exists but is disabled by default
-
+---
 
 #### Audio processing & detection model  
 
+This stage takes the daily detections from the database, turns them into structured features, predicts biodiversity scores, and delivers results to the API.
 
-**Daily aggregation and scoring:**
-- Loads an XGBoost model from `/app/weights/xgboost-model.pkl`
-- Reads detections from SQLite (`sqlite:///app-data/soundscape-model.db`) for a target date (default: yesterday)
-- Builds a feature table per device and hour by counting detections per species
-- Ensures a fixed feature set (`SELECTED_FEATURES`), filling missing species with zeros
-- Predicts per‑row scores and assigns the device score by majority vote across its hourly rows
+- For aggregation and scoring, detections are read from the SQLite database each day and grouped by device and hour. An XGBoost model (`/app/weights/xgboost-model.pkl`) processes these counts, fills in any missing species with zeros, and predicts a score. The device’s daily score is then determined by the majority of its hourly predictions. 
 
-**Hourly bucketing logic:**
-- `AudioFiles.file_key` encodes a start time: `..._<YYYY-MM-DD>_<HH>-<MM>-<SS>`
-- For each `SpeciesDetections.time_segment_id` (`..._<relative_second>`), computes `absolute_second = start_time_in_seconds + relative_second`
-- Buckets into `hour = clamp(floor(absolute_second / 3600), 0..23)`; fallback `hour=0` if parsing fails
+- For species information, each detected species is categorized as either a **bird** or an **insect**, with both English and Thai names provided from `species_mapping.py`.
 
-**Species categorization and localization:**
-- Species are tagged as `bird` or `insect` via sets in `process_detections.py`
-- English/Thai display names are pulled from `SPECIES_INFO` in `species_mapping.py`
+- The final results are saved as JSON files in `json-output/predictions_<YYYY-MM-DD>.json`. Each file contains the **device ID, date, location, daily score, and detailed per-species data**.
 
-**JSON output (saved and sent):**
-- Saves to `json-output/predictions_<YYYY-MM-DD>.json`
-- Payload per device:
+- These results are also sent to the API using **OAuth authentication**. If delivery fails, the system retries up to **10 times** with exponential backoff. All activities related to result delivery are logged in `/app/logs/daily_report.log`.
+
+
+
+- Example Payload per Device
 ```json
 {
   "<DEVICE_ID>": [
     {
       "date": "YYYYMMDD",
       "coordinate": [18.8018, 98.9948],
-      "score": 5,
+      "score": "A",
       "species": [
         {
           "name_en": "Blue-throated Barbet",
@@ -196,17 +162,8 @@ Continuously watches incoming audio, validates file stability, performs 5‑seco
   ]
 }
 ```
+---
 
-**API delivery and retries:**
-- Obtains OAuth token using env vars: `TOKEN_URL`, `CLIENT_ID`, `CLIENT_SECRET`, `API_USERNAME`, `API_PASSWORD`
-- Sends JSON to `API_URL` with `Authorization: Bearer <token>`
-- Up to 10 attempts with exponential backoff; skips sending if token cannot be obtained
-- Logs to `/app/logs/daily_report.log`
-
-**CLI usage:**
-- `python process_detections.py --date YYYY-MM-DD` — run for a specific date
-- `python process_detections.py --now` — run immediately for today
-- `python process_detections.py --schedule` — run daily at 23:59
 
 #### Deep learning models
 

@@ -43,7 +43,7 @@ Default credentials (can be customized):
 
 ---
 
-## VPN configuration
+## Example VPN configuration
 
 Each Raspberry Pi has its own OpenVPN account.
 
@@ -57,11 +57,8 @@ ls
 
 Expected files:
 ```
-client/
 credentials.txt
 openvpn_MONSOON_TEA05.conf
-server/
-update-resolv-conf
 ```
 
 - **`openvpn_MONSOON_TEA05.conf`** → Converted `.ovpn` client config file  
@@ -86,7 +83,7 @@ sudo chmod 600 /etc/openvpn/credentials.txt
 
 ---
 
-### VPN service setup
+### Example VPN service setup
 Enable & start service:
 ```bash
 sudo systemctl enable openvpn@openvpn_MONSOON_TEA05
@@ -106,7 +103,10 @@ VPN tunnel should point to `10.81.234.5`.
 
 ---
 
-## Device configuration file
+## Configuration File Explanation (`config.json`)
+
+This file defines the settings for the **bird sound monitoring device**. It covers FTP transfer, sensor recording behavior, system paths, and device identity.  
+
 
 Example **`config.json`**:
 ```json
@@ -134,11 +134,68 @@ Example **`config.json`**:
 }
 ```
 
+
+
+---
+
+### FTP Settings (`ftp`)
+Controls how audio files are transferred from the device to the server.
+
+| Key       | Value Example                         | Description                                                                 |
+|-----------|---------------------------------------|-----------------------------------------------------------------------------|
+| `uname`   | `"monsoon"`                           | FTP username for authentication.                                            |
+| `pword`   | `"p8z3%1P#04"`                        | FTP password for authentication.                                            |
+| `host`    | `"192.168.70.5/production-workflow-ec2"` | FTP server address and target directory for uploads.                        |
+| `use_ftps`| `1`                                   | Enables **FTPS** (1 = secure FTPS, 0 = plain FTP).                          |
+
+---
+
+### Offline Mode (`offline_mode`)
+Determines whether the device operates **without uploading data**.
+
+- `0` → Online mode (default) – data is uploaded to server.  
+- `1` → Offline mode – data is only stored locally.  
+
+---
+
+### Sensor Settings (`sensor`)
+Defines how the sensor captures audio.
+
+| Key             | Value Example   | Description                                                                 |
+|-----------------|-----------------|-----------------------------------------------------------------------------|
+| `sensor_index`  | `2`             | Index/ID of the sensor used (useful if multiple microphones are connected). |
+| `sensor_type`   | `"USBSoundcardMic"` | Type of sensor (here: USB sound card microphone).                           |
+| `record_length` | `600`           | Recording length in seconds (600 = 10 minutes).                             |
+| `compress_data` | `false`         | Whether to compress recordings before saving/uploading.                     |
+| `capture_delay` | `0`             | Delay before starting capture (in seconds).                                 |
+
+---
+
+### System Settings (`sys`)
+Defines working directories and reboot schedule for the device.
+
+| Key           | Value Example                         | Description                                                                 |
+|---------------|---------------------------------------|-----------------------------------------------------------------------------|
+| `working_dir` | `"/home/pi/tmp_dir"`                  | Temporary folder for intermediate files.                                    |
+| `upload_dir`  | `"/home/pi/continuous_monitoring_data"` | Directory where recordings are stored before upload.                        |
+| `reboot_time` | `"02:00"`                             | Daily scheduled reboot time (HH:MM, 24-hour format).                        |
+
+---
+
+### Device ID (`device_id`)
+- Example: `"00000000f1c084c2"`  
+- Unique identifier for the Raspberry Pi device.  
+- Used to distinguish recordings when multiple devices upload data to the same server.  
+
+
 ---
 
 ## Automatic recording service
 
-Example **systemd service** (`/etc/systemd/system/shellscript.service`):
+
+This shellscript is setup to run the recording script at startup and reboot. So, the device will start recording as soon as it is powered on. And it will also reboot at the scheduled time. The shellscript is located at `/home/pi/custom-pi-setup/recorder_startup_script.sh`.
+
+**systemd service** (`/etc/systemd/system/shellscript.service`):
 ```ini
 [Unit]
 Description=My Shell Script
@@ -220,4 +277,4 @@ It is used in two modes: **mobile** and **station**.
 4. **Remote Access** → VPN connection for management  
 5. **Monitoring** → Logs checked via `journalctl` or SSH  
 
-![System Overview](images/device-overview.png)
+![System Overview](images/device-overview.png){ style="width: 200px; display: block; margin: 0 auto;" }

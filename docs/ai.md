@@ -1,17 +1,17 @@
 # Biodiversity Score Prediction
 ## Outlines
-- [Overview](#ov)
+<!-- - [Overview](#ov)
 - [Data](#data)
 - [Models](#models)
-- [Trainings](#trainings)
+- [Trainings](#trainings) -->
 
 <a id="ov"></a>
-## **Overview of Biodiversity Score Level Prediction**
+## Overview of Biodiversity Score Level Prediction
 This project predicts regional biodiversity scores through a two-stage workflow <a href="#bioscoreoverview">Figure 1</a>: **1. bird and insect sound classification** and the **2. biodiversity score level prediction**.  
 
-1. **Bird and Insect Sound Classification**  
+1. Bird and Insect Sound Classification
 Audio recordings are collected by deployed AudioMoth devices. As illustrated in <a href="#bioscoreoverview">Figure 1</a>, the recordings are preprocessed and fed into a deep learning classifier based on a modified implementation of the [BirdCLEF 2023 4th Place Solution](https://www.kaggle.com/competitions/birdclef-2023/writeups/atfujita-4th-place-solution-knowledge-distillation). The model identifies bird and insect species and also detects non-biological sounds such as human speech, other human-generated noises, and vehicle sounds. It was pre-trained on species recordings from [Xeno-canto](https://xeno-canto.org/) and noise/no-call recordings from our own data collection.
-2. **Biodiversity Score Level Prediction**  
+2. Biodiversity Score Level Prediction
 For each region, the frequency of occurrence of every detected species and noise class is aggregated from the classified recordings. These frequencies serve as input features to a traditional machine learning model (XGBoost), which predicts the region’s biodiversity score level: high, medium, or low.  
 
 <!-- <figure id="bioscoreoverview" style="text-align: center;">
@@ -35,7 +35,7 @@ For each region, the frequency of occurrence of every detected species and noise
 
 
 <a id="data"></a>
-## **Data**
+## Data
 This section provides an overview of the data used in this project. We summarize the sources, label quality, use in training, geographic filtering, and the class list.
 
 ### Sources
@@ -92,7 +92,7 @@ The number of classes included in the analysis is summarized in [Table 1](#table
 ---
  -->
 <a id="models"></a>
-## **Models**
+## Models
 
 ### Sound Classification Model
 
