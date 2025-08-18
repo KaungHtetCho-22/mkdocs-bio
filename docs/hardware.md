@@ -202,12 +202,6 @@ It is used in two modes: **mobile** and **station**.
 
 ## Solar panel & battery
 
-### Solar panel
-- Powers IoT devices in remote areas  
-- **Indicators:**  
-  - Green → Charging  
-  - Red → Low battery  
-  - Off → No power  
 
 ### Battery
 - Stores energy for night/cloudy use  
