@@ -1,13 +1,662 @@
-<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Technical documentation for biodiversity"><meta name=author content=AIT><link href=https://kaunghtetcho-22.github.io/mkdocs-bio/inference/ rel=canonical><link href=../ai/ rel=prev><link rel=icon href=../assets/images/favicon.png><meta name=generator content="mkdocs-1.6.0, mkdocs-material-9.5.20"><title>Inference Pipeline - Biodiversity Project Documentation</title><link rel=stylesheet href=../assets/stylesheets/main.66ac8b77.min.css><link rel=stylesheet href=../assets/stylesheets/palette.06af60db.min.css><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback"><style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style><script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script><link href=../assets/stylesheets/glightbox.min.css rel=stylesheet><style>
-    html.glightbox-open { overflow: initial; height: 100%; }
-    .gslide-title { margin-top: 0px; user-select: text; }
-    .gslide-desc { color: #666; user-select: text; }
-    .gslide-image img { background: white; }
-    .gscrollbar-fixer { padding-right: 15px; }
-    .gdesc-inner { font-size: 0.75rem; }
-    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style><script src=../assets/javascripts/glightbox.min.js></script></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=teal data-md-color-accent=light-blue> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#bird-sound-monitoring-scoring-pipeline class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=.. title="Biodiversity Project Documentation" class="md-header__button md-logo" aria-label="Biodiversity Project Documentation" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M17.9 17.39c-.26-.8-1.01-1.39-1.9-1.39h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41a7.984 7.984 0 0 1 2.9 12.8M11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1a2 2 0 0 0 2 2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Biodiversity Project Documentation </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Inference Pipeline </span> </div> </div> </div> <form class=md-header__option data-md-component=palette> <input class=md-option data-md-color-media data-md-color-scheme=default data-md-color-primary=teal data-md-color-accent=light-blue aria-hidden=true type=radio name=__palette id=__palette_0> </form> <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg> </label> <nav class=md-search__options aria-label=Search> <button type=reset class="md-search__icon md-icon" title=Clear aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg> </button> </nav> <div class=md-search__suggest data-md-component=search-suggest></div> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list role=presentation></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <nav class=md-tabs aria-label=Tabs data-md-component=tabs> <div class=md-grid> <ul class=md-tabs__list> <li class=md-tabs__item> <a href=.. class=md-tabs__link> Home </a> </li> <li class=md-tabs__item> <a href=../hardware/ class=md-tabs__link> Hardware Setup </a> </li> <li class=md-tabs__item> <a href=../ai/ class=md-tabs__link> AI Models </a> </li> <li class="md-tabs__item md-tabs__item--active"> <a href=./ class=md-tabs__link> Inference Pipeline </a> </li> </ul> </div> </nav> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=.. title="Biodiversity Project Documentation" class="md-nav__button md-logo" aria-label="Biodiversity Project Documentation" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M17.9 17.39c-.26-.8-1.01-1.39-1.9-1.39h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41a7.984 7.984 0 0 1 2.9 12.8M11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1a2 2 0 0 0 2 2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg> </a> Biodiversity Project Documentation </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=.. class=md-nav__link> <span class=md-ellipsis> Home </span> </a> </li> <li class=md-nav__item> <a href=../hardware/ class=md-nav__link> <span class=md-ellipsis> Hardware Setup </span> </a> </li> <li class=md-nav__item> <a href=../ai/ class=md-nav__link> <span class=md-ellipsis> AI Models </span> </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> <span class=md-ellipsis> Inference Pipeline </span> <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> <span class=md-ellipsis> Inference Pipeline </span> </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#overview class=md-nav__link> <span class=md-ellipsis> Overview </span> </a> <nav class=md-nav aria-label=Overview> <ul class=md-nav__list> <li class=md-nav__item> <a href=#data-source-raspberry-pi class=md-nav__link> <span class=md-ellipsis> Data source – Raspberry Pi </span> </a> </li> <li class=md-nav__item> <a href=#audio-collection class=md-nav__link> <span class=md-ellipsis> Audio collection </span> </a> </li> <li class=md-nav__item> <a href=#bird-classification-model class=md-nav__link> <span class=md-ellipsis> Bird classification model </span> </a> </li> <li class=md-nav__item> <a href=#score-prediction-model class=md-nav__link> <span class=md-ellipsis> Score prediction model </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#pipeline-file-structure class=md-nav__link> <span class=md-ellipsis> Pipeline file structure </span> </a> </li> <li class=md-nav__item> <a href=#components class=md-nav__link> <span class=md-ellipsis> Components </span> </a> <nav class=md-nav aria-label=Components> <ul class=md-nav__list> <li class=md-nav__item> <a href=#main-functions class=md-nav__link> <span class=md-ellipsis> Main functions </span> </a> <nav class=md-nav aria-label="Main functions"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#file-monitoring class=md-nav__link> <span class=md-ellipsis> File Monitoring </span> </a> </li> <li class=md-nav__item> <a href=#audio-processing-detection-model class=md-nav__link> <span class=md-ellipsis> Audio processing &amp; detection model </span> </a> </li> <li class=md-nav__item> <a href=#deep-learning-models class=md-nav__link> <span class=md-ellipsis> Deep learning models </span> </a> </li> <li class=md-nav__item> <a href=#database-schema class=md-nav__link> <span class=md-ellipsis> Database schema </span> </a> </li> <li class=md-nav__item> <a href=#docker-support class=md-nav__link> <span class=md-ellipsis> Docker support </span> </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#example-usage class=md-nav__link> <span class=md-ellipsis> Example usage </span> </a> <nav class=md-nav aria-label="Example usage"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#installation class=md-nav__link> <span class=md-ellipsis> Installation </span> </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1 id=bird-sound-monitoring-scoring-pipeline><strong>Bird Sound Monitoring &amp; Scoring Pipeline</strong><a class=headerlink href=#bird-sound-monitoring-scoring-pipeline title="Permanent link">&para;</a></h1> <h2 id=overview>Overview<a class=headerlink href=#overview title="Permanent link">&para;</a></h2> <p>This system automates the end-to-end process of <strong>monitoring bird sounds</strong> using IoT devices, classifying them with a soundscape model, predicting biodiversity scores, and delivering the results as JSON payloads to an API.</p> <p>Repository: <strong><a href=https://github.com/KaungHtetCho-22/inference-workflow-iNet>inference-workflow‑iNet</a></strong></p> <p><a class=glightbox href=../images/overview-diagram.png data-type=image data-width=auto data-height=auto data-desc-position=bottom><img alt="System Overview Diagram" src=../images/overview-diagram.png style="width: 400px; display: block; margin: 0 auto;"></a></p> <p align=center><em>Figure 1: Bird Sound Monitoring &amp; Scoring Pipeline Overview</em></p> <hr> <h3 id=data-source-raspberry-pi>Data source – Raspberry Pi<a class=headerlink href=#data-source-raspberry-pi title="Permanent link">&para;</a></h3> <ul> <li><strong>Device:</strong> Raspberry Pi with Audiomoth sensors for continuous field audio collection. </li> <li> <p><strong>Protocol:</strong> FTPS (Secure FTP) for encrypted data transfer. </p> </li> <li> <p><strong>iNet Server 4 Machine Information:</strong></p> </li> </ul> <table> <thead> <tr> <th>Parameter</th> <th>Value</th> </tr> </thead> <tbody> <tr> <td>Username</td> <td>monsoon</td> </tr> <tr> <td>IP Address</td> <td>192.168.70.5</td> </tr> <tr> <td>Password</td> <td>p8z3%1P#04</td> </tr> </tbody> </table> <ul> <li><strong>Destination:</strong> Audio files are securely uploaded to the <strong>iNet private cloud</strong>.</li> </ul> <hr> <h3 id=audio-collection>Audio collection<a class=headerlink href=#audio-collection title="Permanent link">&para;</a></h3> <ul> <li>Captures <strong>10-minute audio clips</strong> in <code>.WAV</code> format.</li> <li>Sample audio files can be downloaded from <strong><a href="https://drive.google.com/drive/folders/1y59QnqjmbVWW-pZhIONdZJuEHzz-iiYz?usp=sharing">this Google Drive link</a></strong></li> <li>See attached how to fetch audio from filezilla setup manual <strong><a href=../files/iNET_audio_files_feteching_manual.pdf>Filezilla setup manual</a></strong></li> </ul> <hr> <h3 id=bird-classification-model>Bird classification model<a class=headerlink href=#bird-classification-model title="Permanent link">&para;</a></h3> <ul> <li>Processes audio clips using a <strong>deep learning soundscape model</strong>. </li> <li>Identifies bird species with <strong>confidence scores</strong>. </li> <li>Stores classification results in a <strong>SQLite database</strong> for further analysis.</li> </ul> <hr> <h3 id=score-prediction-model>Score prediction model<a class=headerlink href=#score-prediction-model title="Permanent link">&para;</a></h3> <ul> <li>Retrieves classification results from SQLite. </li> <li>Generates a <strong>biodiversity score</strong> for the monitored area based on detected species: </li> <li><strong>Score A</strong> – High biodiversity </li> <li><strong>Score B</strong> – Medium biodiversity </li> <li><strong>Score C</strong> – Low biodiversity </li> <li>Outputs results to an API in structured JSON format.</li> </ul> <hr> <table> <thead> <tr> <th>Component</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td>Raspberry Pi + Audiomoth + 4G Router</td> <td>Collects audio data from the field</td> </tr> <tr> <td>FTPS</td> <td>Secure file transfer protocol for uploading audio files</td> </tr> <tr> <td>iNet Server</td> <td>Runs inference processes for species detection</td> </tr> <tr> <td>Bird Classification Model</td> <td>Analyzes audio clips and identifies bird species + confidence</td> </tr> <tr> <td>SQLite</td> <td>Stores classification results and associated metadata</td> </tr> <tr> <td>Score Prediction Model</td> <td>Generates biodiversity scores from classification results</td> </tr> <tr> <td>API</td> <td>Receives JSON payloads containing final scoring results</td> </tr> </tbody> </table> <hr> <h2 id=pipeline-file-structure>Pipeline file structure<a class=headerlink href=#pipeline-file-structure title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code>inference-pipeline/
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation for biodiversity">
+      
+      
+        <meta name="author" content="AIT">
+      
+      
+        <link rel="canonical" href="https://kaunghtetcho-22.github.io/mkdocs-bio/inference/">
+      
+      
+        <link rel="prev" href="../ai/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.20">
+    
+    
+      
+        <title>Inference Pipeline - Biodiversity Project Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+3:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Source Sans 3";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bird-sound-monitoring-scoring-pipeline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Biodiversity Project Documentation" class="md-header__button md-logo" aria-label="Biodiversity Project Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.9 17.39c-.26-.8-1.01-1.39-1.9-1.39h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41a7.984 7.984 0 0 1 2.9 12.8M11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1a2 2 0 0 0 2 2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Biodiversity Project Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Inference Pipeline
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hardware/" class="md-tabs__link">
+        
+  
+    
+  
+  Hardware Setup
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai/" class="md-tabs__link">
+        
+  
+    
+  
+  AI Models
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Inference Pipeline
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Biodiversity Project Documentation" class="md-nav__button md-logo" aria-label="Biodiversity Project Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.9 17.39c-.26-.8-1.01-1.39-1.9-1.39h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41a7.984 7.984 0 0 1 2.9 12.8M11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1a2 2 0 0 0 2 2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg>
+
+    </a>
+    Biodiversity Project Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hardware Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Inference Pipeline
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Inference Pipeline
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-source-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data source – Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audio collection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bird-classification-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bird classification model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#score-prediction-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Score prediction model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-file-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline file structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Main functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Main functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audio-processing-detection-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audio processing &amp; detection model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deep-learning-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deep learning models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database schema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker support
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="bird-sound-monitoring-scoring-pipeline"><strong>Bird Sound Monitoring &amp; Scoring Pipeline</strong><a class="headerlink" href="#bird-sound-monitoring-scoring-pipeline" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>This system automates the end-to-end process of <strong>monitoring bird sounds</strong> using IoT devices, classifying them with a soundscape model, predicting biodiversity scores, and delivering the results as JSON payloads to an API.</p>
+<p>Repository: <strong><a href="https://github.com/KaungHtetCho-22/inference-workflow-iNet">inference-workflow‑iNet</a></strong></p>
+<p><img alt="System Overview Diagram" src="../images/overview-diagram.png" style="width: 400px; display: block; margin: 0 auto;" /></p>
+<p align="center"><em>Figure 1: Bird Sound Monitoring &amp; Scoring Pipeline Overview</em></p>
+
+<hr />
+<h3 id="data-source-raspberry-pi">Data source – Raspberry Pi<a class="headerlink" href="#data-source-raspberry-pi" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Device:</strong> Raspberry Pi with Audiomoth sensors for continuous field audio collection.  </li>
+<li>
+<p><strong>Protocol:</strong> FTPS (Secure FTP) for encrypted data transfer.  </p>
+</li>
+<li>
+<p><strong>iNet Server 4 Machine Information:</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Username</td>
+<td>monsoon</td>
+</tr>
+<tr>
+<td>IP Address</td>
+<td>192.168.70.5</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>p8z3%1P#04</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Destination:</strong> Audio files are securely uploaded to the <strong>iNet private cloud</strong>.</li>
+</ul>
+<hr />
+<h3 id="audio-collection">Audio collection<a class="headerlink" href="#audio-collection" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Captures <strong>10-minute audio clips</strong> in <code>.WAV</code> format.</li>
+<li>Sample audio files can be downloaded from <strong><a href="https://drive.google.com/drive/folders/1y59QnqjmbVWW-pZhIONdZJuEHzz-iiYz?usp=sharing">this Google Drive link</a></strong></li>
+<li>See attached how to fetch audio from filezilla setup manual <strong><a href="files/iNET_audio_files_feteching_manual.pdf">Filezilla setup manual</a></strong></li>
+</ul>
+<hr />
+<h3 id="bird-classification-model">Bird classification model<a class="headerlink" href="#bird-classification-model" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Processes audio clips using a <strong>deep learning soundscape model</strong>.  </li>
+<li>Identifies bird species with <strong>confidence scores</strong>.  </li>
+<li>Stores classification results in a <strong>SQLite database</strong> for further analysis.</li>
+</ul>
+<hr />
+<h3 id="score-prediction-model">Score prediction model<a class="headerlink" href="#score-prediction-model" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Retrieves classification results from SQLite.  </li>
+<li>Generates a <strong>biodiversity score</strong> for the monitored area based on detected species:  </li>
+<li><strong>Score A</strong> – High biodiversity  </li>
+<li><strong>Score B</strong> – Medium biodiversity  </li>
+<li><strong>Score C</strong> – Low biodiversity  </li>
+<li>Outputs results to an API in structured JSON format.</li>
+</ul>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi + Audiomoth + 4G Router</td>
+<td>Collects audio data from the field</td>
+</tr>
+<tr>
+<td>FTPS</td>
+<td>Secure file transfer protocol for uploading audio files</td>
+</tr>
+<tr>
+<td>iNet Server</td>
+<td>Runs inference processes for species detection</td>
+</tr>
+<tr>
+<td>Bird Classification Model</td>
+<td>Analyzes audio clips and identifies bird species + confidence</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td>Stores classification results and associated metadata</td>
+</tr>
+<tr>
+<td>Score Prediction Model</td>
+<td>Generates biodiversity scores from classification results</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Receives JSON payloads containing final scoring results</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pipeline-file-structure">Pipeline file structure<a class="headerlink" href="#pipeline-file-structure" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>inference-pipeline/
 ├── app-data/                    # Database files
 ├── audio-data/                  # Input audio recordings
 ├── docker/                      # Docker configuration files
@@ -25,39 +674,225 @@
 │   └── species_mapping.py       # Species classification mapping (Thai - Eng)
 ├── weights/                     # Pre-trained model weights
 └── requirements.txt             # Main project libraries
-</code></pre></div> <hr> <h2 id=components>Components<a class=headerlink href=#components title="Permanent link">&para;</a></h2> <hr> <h3 id=main-functions>Main functions<a class=headerlink href=#main-functions title="Permanent link">&para;</a></h3> <ul> <li><strong>File Monitoring</strong>: Watchdog-based file system monitoring for automatic processing</li> <li><strong>Audio Processing</strong>: Real-time audio file monitoring and processing</li> <li><strong>Deep Learning Models</strong>: Attention-based neural network for species classification and xgboost model for prediction the score of the area.</li> <li><strong>Database</strong>: SQLite database for storing detections results</li> <li><strong>Docker Support</strong>: Containerized deployment for development and production</li> </ul> <p>Note: This deployment is already set up on iNet and running in production. Use this guide to deploy elsewhere.</p> <hr> <h4 id=file-monitoring>File Monitoring<a class=headerlink href=#file-monitoring title="Permanent link">&para;</a></h4> <p><strong>Location:</strong><br> <code>src/audio_monitoring.py</code></p> <p><strong>Purpose:</strong><br> Continuously watches incoming audio, validates file stability, performs 5‑second window classification, and writes per‑segment detections to the database with resilient logging.</p> <p><strong>Watched paths and filters:</strong> - <strong>Root directory:</strong> <code>/app/audio-data/</code> - <strong>Subfolders monitored:</strong> Only folders whose names contain <code>RPiID</code> (e.g., <code>RPiID-001</code>), monitored recursively - <strong>File types:</strong> <code>.wav</code>, <code>.ogg</code>, <code>.mp3</code></p> <p><strong>Monitoring and queueing:</strong> - Uses <code>watchdog</code> (<code>Observer</code> + <code>FileSystemEventHandler</code>) to enqueue new files into a thread-safe <code>queue.Queue</code> - A dedicated background thread consumes the queue and processes files sequentially</p> <p><strong>File stability gate:</strong> - Before inference, the service waits for the file size to remain unchanged and non‑zero for 3 consecutive seconds - Maximum wait window: 60 seconds; unstable or empty files are skipped with an error log</p> <p><strong>Inference details:</strong> - Loads <code>AttModel</code> with weights at <code>/app/weights/soundscape-model.pt</code> - Audio loaded with <code>librosa</code> at 32 kHz; split into 5‑second segments: seconds = 5, 10, 15, ... up to clip length - For each segment, computes sigmoid probabilities for <code>CFG.target_columns</code> and selects: - <code>Class</code>: argmax label - <code>Score</code>: max probability - Segment identifier <code>row_id</code> format: <code>&lt;file_stem&gt;_&lt;second&gt;</code></p> <p><strong>Database write (SQLite):</strong> - DB URL: <code>sqlite:////app/app-data/soundscape-model.db</code> - Entities used: <code>RpiDevices</code>, <code>AudioFiles</code>, <code>SpeciesDetections</code> - Path parsing: expects folder layout <code>.../RPiID-XXX/YYYY-MM-DD/&lt;audio_file&gt;</code> - Unique <code>AudioFiles.file_key</code>: <code>&lt;pi_id&gt;_&lt;recording_date&gt;_&lt;audio_filename&gt;</code> - For each segment, inserts a <code>SpeciesDetections</code> row with: - <code>time_segment_id</code> = <code>row_id</code> - <code>species_class</code> = predicted <code>Class</code> - <code>confidence_score</code> = <code>Score</code> - <code>created_at</code> = current UTC timestamp</p> <p><strong>Logging:</strong> - Console: Colored via <code>colorlog</code> - File: <code>/app/logs/audio_inference.log</code></p> <p><strong>File retention:</strong> - Files are currently kept after processing; a safe delete helper exists but is disabled by default</p> <p><strong>Summary:</strong><br> Real‑time, resilient ingestion that only processes fully‑written files, performs 5‑second window classification, and persists detections per segment.</p> <h4 id=audio-processing-detection-model>Audio processing &amp; detection model<a class=headerlink href=#audio-processing-detection-model title="Permanent link">&para;</a></h4> <p><strong>Locations:</strong><br> <code>src/process_detections.py</code>, <code>src/species_mapping.py</code></p> <p><strong>Daily aggregation and scoring:</strong> - Loads an XGBoost model from <code>/app/weights/xgboost-model.pkl</code> - Reads detections from SQLite (<code>sqlite:///app-data/soundscape-model.db</code>) for a target date (default: yesterday) - Builds a feature table per device and hour by counting detections per species - Ensures a fixed feature set (<code>SELECTED_FEATURES</code>), filling missing species with zeros - Predicts per‑row scores and assigns the device score by majority vote across its hourly rows</p> <p><strong>Hourly bucketing logic:</strong> - <code>AudioFiles.file_key</code> encodes a start time: <code>..._&lt;YYYY-MM-DD&gt;_&lt;HH&gt;-&lt;MM&gt;-&lt;SS&gt;</code> - For each <code>SpeciesDetections.time_segment_id</code> (<code>..._&lt;relative_second&gt;</code>), computes <code>absolute_second = start_time_in_seconds + relative_second</code> - Buckets into <code>hour = clamp(floor(absolute_second / 3600), 0..23)</code>; fallback <code>hour=0</code> if parsing fails</p> <p><strong>Species categorization and localization:</strong> - Species are tagged as <code>bird</code> or <code>insect</code> via sets in <code>process_detections.py</code> - English/Thai display names are pulled from <code>SPECIES_INFO</code> in <code>species_mapping.py</code></p> <p><strong>JSON output (saved and sent):</strong> - Saves to <code>json-output/predictions_&lt;YYYY-MM-DD&gt;.json</code> - Payload per device: <div class=highlight><pre><span></span><code><span class=p>{</span>
-<span class=w>  </span><span class=nt>&quot;&lt;DEVICE_ID&gt;&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
-<span class=w>    </span><span class=p>{</span>
-<span class=w>      </span><span class=nt>&quot;date&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;YYYYMMDD&quot;</span><span class=p>,</span>
-<span class=w>      </span><span class=nt>&quot;coordinate&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=mf>18.8018</span><span class=p>,</span><span class=w> </span><span class=mf>98.9948</span><span class=p>],</span>
-<span class=w>      </span><span class=nt>&quot;score&quot;</span><span class=p>:</span><span class=w> </span><span class=mi>5</span><span class=p>,</span>
-<span class=w>      </span><span class=nt>&quot;species&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span>
-<span class=w>        </span><span class=p>{</span>
-<span class=w>          </span><span class=nt>&quot;name_en&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;Blue-throated Barbet&quot;</span><span class=p>,</span>
-<span class=w>          </span><span class=nt>&quot;name_th&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;นกโพระดกคางฟ้า&quot;</span><span class=p>,</span>
-<span class=w>          </span><span class=nt>&quot;type&quot;</span><span class=p>:</span><span class=w> </span><span class=s2>&quot;bird&quot;</span><span class=p>,</span>
-<span class=w>          </span><span class=nt>&quot;data&quot;</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;1&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>,</span><span class=w> </span><span class=s2>&quot;0&quot;</span><span class=p>]</span>
-<span class=w>        </span><span class=p>}</span>
-<span class=w>      </span><span class=p>]</span>
-<span class=w>    </span><span class=p>}</span>
-<span class=w>  </span><span class=p>]</span>
-<span class=p>}</span>
-</code></pre></div></p> <p><strong>API delivery and retries:</strong> - Obtains OAuth token using env vars: <code>TOKEN_URL</code>, <code>CLIENT_ID</code>, <code>CLIENT_SECRET</code>, <code>API_USERNAME</code>, <code>API_PASSWORD</code> - Sends JSON to <code>API_URL</code> with <code>Authorization: Bearer &lt;token&gt;</code> - Up to 10 attempts with exponential backoff; skips sending if token cannot be obtained - Logs to <code>/app/logs/daily_report.log</code></p> <p><strong>CLI usage:</strong> - <code>python process_detections.py --date YYYY-MM-DD</code> — run for a specific date - <code>python process_detections.py --now</code> — run immediately for today - <code>python process_detections.py --schedule</code> — run daily at 23:59</p> <h4 id=deep-learning-models>Deep learning models<a class=headerlink href=#deep-learning-models title="Permanent link">&para;</a></h4> <p>This AI models can be read from <a href=../ai/ >AI Models</a>.</p> <h4 id=database-schema>Database schema<a class=headerlink href=#database-schema title="Permanent link">&para;</a></h4> <p>The database schema is defined using SQLAlchemy ORM. The schema consists of three main tables, each with relationships and constraints as described below:</p> <p><strong>1. RpiDevices</strong> - <strong>Purpose:</strong> Stores information about each Raspberry Pi device. - <strong>Key Columns:</strong> - <code>id</code> (Primary Key) - <code>pi_id</code> (Unique string identifier for the device) - <code>pi_type</code> (Integer: 0 = Mobile, 1 = Station; default is 1) - <strong>Relationships:</strong> One-to-many with <code>AudioFiles</code> (a device can have multiple audio files).</p> <p><strong>2. AudioFiles</strong> - <strong>Purpose:</strong> Records metadata for each audio file collected. - <strong>Key Columns:</strong> - <code>id</code> (Primary Key) - <code>device_id</code> (Foreign Key to <code>RpiDevices.id</code>) - <code>recording_date</code> (Date of recording) - <code>file_key</code> (Unique file identifier) - <strong>Constraints:</strong> Unique constraint on (<code>device_id</code>, <code>recording_date</code>, <code>file_key</code>) to prevent duplicate entries per device and date. - <strong>Relationships:</strong> One-to-many with <code>SpeciesDetections</code> (an audio file can have multiple detections).</p> <p><strong>3. SpeciesDetections</strong> - <strong>Purpose:</strong> Stores the results of species detection for each audio file segment. - <strong>Key Columns:</strong> - <code>id</code> (Primary Key) - <code>audio_file_id</code> (Foreign Key to <code>AudioFiles.id</code>) - <code>species_class</code> (Detected species name) - <code>confidence_score</code> (Detection confidence, float) - <code>created_at</code> (Timestamp of detection) - <code>time_segment_id</code> (String identifier for the segment within the audio file) - <strong>Relationships:</strong> Many-to-one with <code>AudioFiles</code>.</p> <p><strong>Entity Relationship Overview:</strong> - Each <code>RpiDevices</code> entry can have multiple <code>AudioFiles</code>. - Each <code>AudioFiles</code> entry can have multiple <code>SpeciesDetections</code>.</p> <p><a class=glightbox href=../images/db_design.png data-type=image data-width=auto data-height=auto data-desc-position=bottom><img alt="Database conceptual design" src=../images/db_design.png></a></p> <hr> <h4 id=docker-support>Docker support<a class=headerlink href=#docker-support title="Permanent link">&para;</a></h4> <ol> <li> <p><strong>Build production image</strong> <div class=highlight><pre><span></span><code>sh scripts/build_prod_image.sh
-</code></pre></div></p> </li> <li> <p><strong>Run with docker-compose</strong> <div class=highlight><pre><span></span><code>docker compose -f docker/docker-compose-prod.yaml up -d
-</code></pre></div></p> </li> <li> <p><strong>Access container</strong> <div class=highlight><pre><span></span><code>docker exec -it prod-bio-service bash
-</code></pre></div></p> </li> <li> <p><strong>Check logs</strong> <div class=highlight><pre><span></span><code>docker logs -f prod-bio-service 
-</code></pre></div></p> </li> </ol> <hr> <h2 id=example-usage>Example usage<a class=headerlink href=#example-usage title="Permanent link">&para;</a></h2> <h3 id=installation>Installation<a class=headerlink href=#installation title="Permanent link">&para;</a></h3> <ol> <li> <p><strong>Clone the repository (with submodules)</strong> <div class=highlight><pre><span></span><code>git<span class=w> </span>clone<span class=w> </span>&lt;repository-url&gt;
-<span class=nb>cd</span><span class=w> </span>inference-pipeline
-git<span class=w> </span>submodule<span class=w> </span>update<span class=w> </span>--init<span class=w> </span>--recursive
-</code></pre></div></p> </li> <li> <p><strong>Download model weights</strong> Download from Google Drive and place in the <code>weights/</code> directory:</p> </li> <li><code>weights/soundscape-model.pt</code> — sound classification model</li> <li><code>weights/xgboost-model.pkl</code> — score prediction model</li> <li>Google Drive: <a href="https://drive.google.com/drive/folders/1y59QnqjmbVWW-pZhIONdZJuEHzz-iiYz?usp=sharing">Weights link</a></li> <li> <p>Ensure the model architecture matches <code>monsoon_biodiversity_common/config.py</code></p> </li> <li> <p><strong>Build and run with Docker / Docker Compose</strong></p> </li> <li>Build via script: <div class=highlight><pre><span></span><code>sh<span class=w> </span>scripts/build_prod_image.sh
-</code></pre></div></li> <li>Or build with Docker directly: <div class=highlight><pre><span></span><code>docker<span class=w> </span>build<span class=w> </span>-t<span class=w> </span>prod-bio-service<span class=w> </span>-f<span class=w> </span>docker/Dockerfile<span class=w> </span>.
-</code></pre></div></li> <li>Start with Docker Compose: <div class=highlight><pre><span></span><code>docker<span class=w> </span>compose<span class=w> </span>-f<span class=w> </span>docker/docker-compose-prod.yaml<span class=w> </span>up<span class=w> </span>-d
-</code></pre></div></li> <li> <p>Check containers: <div class=highlight><pre><span></span><code>docker<span class=w> </span>ps
-docker<span class=w> </span>compose<span class=w> </span>-f<span class=w> </span>docker/docker-compose-prod.yaml<span class=w> </span>ps
-</code></pre></div></p> </li> <li> <p><strong>Verify logs (JSON sending and daily detections)</strong></p> </li> <li>Follow container logs: <div class=highlight><pre><span></span><code>docker<span class=w> </span>logs<span class=w> </span>-f<span class=w> </span>prod-bio-service
-</code></pre></div></li> <li>Inspect detailed log files inside the container: <div class=highlight><pre><span></span><code>docker<span class=w> </span><span class=nb>exec</span><span class=w> </span>-it<span class=w> </span>prod-bio-service<span class=w> </span>bash
-tail<span class=w> </span>-n<span class=w> </span><span class=m>200</span><span class=w> </span>-f<span class=w> </span>/app/logs/audio_inference.log<span class=w>   </span><span class=c1># file monitoring &amp; segment inference</span>
-tail<span class=w> </span>-n<span class=w> </span><span class=m>200</span><span class=w> </span>-f<span class=w> </span>/app/logs/daily_report.log<span class=w>      </span><span class=c1># daily aggregation &amp; API sending</span>
-</code></pre></div></li> <li>Expected entries:<ul> <li>Saved JSON: lines with "[SAVE] JSON saved to"</li> <li>Successful API send: lines with "[API] Prediction sent"</li> <li>Daily aggregation: lines with "[DATE] Generating report for:" and device/file counts</li> <li>Real-time processing: lines with "[NEW FILE]", "[INFER] Processing", and "[DB] Added <k> detections"</li> </ul> </li> </ol> <hr> </article> </div> <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script> <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script> </div> <button type=button class="md-top md-icon" data-md-component=top hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg> Back to top </button> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-copyright> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "toc.integrate", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script> <script src=../assets/javascripts/bundle.dd8806f2.min.js></script> <script id=init-glightbox>const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
-document$.subscribe(() => { lightbox.reload() });
-</script></body> </html>
+</code></pre></div>
+<hr />
+<h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
+<h3 id="main-functions">Main functions<a class="headerlink" href="#main-functions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File Monitoring</strong>: Watchdog-based file system monitoring for automatic processing</li>
+<li><strong>Audio Processing</strong>: Real-time audio file monitoring and processing</li>
+<li><strong>Deep Learning Models</strong>: Attention-based neural network for species classification and xgboost model for prediction the score of the area.</li>
+<li><strong>Database</strong>: SQLite database for storing detections results</li>
+<li><strong>Docker Support</strong>: Containerized deployment for development and production</li>
+</ul>
+<p>Note: This deployment is already set up on iNet and running in production. Use this guide to deploy elsewhere.</p>
+<hr />
+<h4 id="file-monitoring">File Monitoring<a class="headerlink" href="#file-monitoring" title="Permanent link">&para;</a></h4>
+<p>The monitoring service is implemented in <strong><code>src/audio_monitoring.py</code></strong>.<br />
+Its function is to detect new audio files, check stability, and run inference.  </p>
+<ul>
+<li><strong>Watched path:</strong> <code>/app/audio-data/</code> (including subfolders with <code>RPiID-*</code>)  </li>
+<li><strong>Supported formats:</strong> <code>.wav</code>, <code>.ogg</code>, <code>.mp3</code>  </li>
+<li><strong>Queueing:</strong> Uses <code>watchdog</code> with a thread-safe <code>queue</code> for sequential processing  </li>
+</ul>
+<p>-<strong>File stability check</strong><br />
+The system performs a file stability check before processing any new audio file. It waits until the file size is both non-zero and remains unchanged for at least three seconds. If the file does not stabilize within a maximum wait time of 60 seconds, it is considered unstable or empty and is skipped.</p>
+<p><strong>Inference process</strong><br />
+The inference process uses the model stored at <code>/app/weights/soundscape-model.pt</code>. Each audio file is resampled to <strong>48 kHz</strong> and then divided into <strong>5-second segments</strong>. For every segment, the system predicts the class with the highest probability and records its confidence score. Each prediction is assigned a unique segment ID in the format <code>&lt;file_stem&gt;_&lt;second&gt;</code>.</p>
+<p><strong>Logging and retention</strong><br />
+All activity is logged in <code>/app/logs/audio_inference.log</code>. After processing, the audio files are retained by default, although a safe delete option exists but is disabled.</p>
+<hr />
+<h4 id="audio-processing-detection-model">Audio processing &amp; detection model<a class="headerlink" href="#audio-processing-detection-model" title="Permanent link">&para;</a></h4>
+<p>This stage takes the daily detections from the database, turns them into structured features, predicts biodiversity scores, and delivers results to the API.</p>
+<ul>
+<li>
+<p>For aggregation and scoring, detections are read from the SQLite database each day and grouped by device and hour. An XGBoost model (<code>/app/weights/xgboost-model.pkl</code>) processes these counts, fills in any missing species with zeros, and predicts a score. The device’s daily score is then determined by the majority of its hourly predictions. </p>
+</li>
+<li>
+<p>For species information, each detected species is categorized as either a <strong>bird</strong> or an <strong>insect</strong>, with both English and Thai names provided from <code>species_mapping.py</code>.</p>
+</li>
+<li>
+<p>The final results are saved as JSON files in <code>json-output/predictions_&lt;YYYY-MM-DD&gt;.json</code>. Each file contains the <strong>device ID, date, location, daily score, and detailed per-species data</strong>.</p>
+</li>
+<li>
+<p>These results are also sent to the API using <strong>OAuth authentication</strong>. If delivery fails, the system retries up to <strong>10 times</strong> with exponential backoff. All activities related to result delivery are logged in <code>/app/logs/daily_report.log</code>.</p>
+</li>
+<li>
+<p>Example Payload per Device
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;&lt;DEVICE_ID&gt;&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;YYYYMMDD&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;coordinate&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">18.8018</span><span class="p">,</span><span class="w"> </span><span class="mf">98.9948</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name_en&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Blue-throated Barbet&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;name_th&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;นกโพระดกคางฟ้า&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bird&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;45&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;23&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;56&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;12&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;9&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;19&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;22&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;34&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;61&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;23&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;12&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;87&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;112&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;22&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;46&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;23&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+</ul>
+<hr />
+<h4 id="deep-learning-models">Deep learning models<a class="headerlink" href="#deep-learning-models" title="Permanent link">&para;</a></h4>
+<p>This AI models can be read from <a href="../ai/">AI Models</a>.</p>
+<h4 id="database-schema">Database schema<a class="headerlink" href="#database-schema" title="Permanent link">&para;</a></h4>
+<p>The database schema is defined using SQLAlchemy ORM. The schema consists of three main tables, each with relationships and constraints as described below:</p>
+<p><strong>1. RpiDevices</strong>
+- <strong>Purpose:</strong> Stores information about each Raspberry Pi device.
+- <strong>Key Columns:</strong>
+  - <code>id</code> (Primary Key)
+  - <code>pi_id</code> (Unique string identifier for the device)
+  - <code>pi_type</code> (Integer: 0 = Mobile, 1 = Station; default is 1)
+- <strong>Relationships:</strong> One-to-many with <code>AudioFiles</code> (a device can have multiple audio files).</p>
+<p><strong>2. AudioFiles</strong>
+- <strong>Purpose:</strong> Records metadata for each audio file collected.
+- <strong>Key Columns:</strong>
+  - <code>id</code> (Primary Key)
+  - <code>device_id</code> (Foreign Key to <code>RpiDevices.id</code>)
+  - <code>recording_date</code> (Date of recording)
+  - <code>file_key</code> (Unique file identifier)
+- <strong>Constraints:</strong> Unique constraint on (<code>device_id</code>, <code>recording_date</code>, <code>file_key</code>) to prevent duplicate entries per device and date.
+- <strong>Relationships:</strong> One-to-many with <code>SpeciesDetections</code> (an audio file can have multiple detections).</p>
+<p><strong>3. SpeciesDetections</strong>
+- <strong>Purpose:</strong> Stores the results of species detection for each audio file segment.
+- <strong>Key Columns:</strong>
+  - <code>id</code> (Primary Key)
+  - <code>audio_file_id</code> (Foreign Key to <code>AudioFiles.id</code>)
+  - <code>species_class</code> (Detected species name)
+  - <code>confidence_score</code> (Detection confidence, float)
+  - <code>created_at</code> (Timestamp of detection)
+  - <code>time_segment_id</code> (String identifier for the segment within the audio file)
+- <strong>Relationships:</strong> Many-to-one with <code>AudioFiles</code>.</p>
+<p><strong>Entity Relationship Overview:</strong>
+- Each <code>RpiDevices</code> entry can have multiple <code>AudioFiles</code>.
+- Each <code>AudioFiles</code> entry can have multiple <code>SpeciesDetections</code>.</p>
+<p><img alt="Database conceptual design" src="../images/db_design.png" /></p>
+<hr />
+<h4 id="docker-support">Docker support<a class="headerlink" href="#docker-support" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p><strong>Build production image</strong>
+   <div class="highlight"><pre><span></span><code>sh scripts/build_prod_image.sh
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Run with docker-compose</strong>
+   <div class="highlight"><pre><span></span><code>docker compose -f docker/docker-compose-prod.yaml up -d
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Access container</strong>
+   <div class="highlight"><pre><span></span><code>docker exec -it prod-bio-service bash
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Check logs</strong>
+   <div class="highlight"><pre><span></span><code>docker logs -f prod-bio-service 
+</code></pre></div></p>
+</li>
+</ol>
+<hr />
+<h2 id="example-usage">Example usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Clone the repository (with submodules)</strong>
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>&lt;repository-url&gt;
+<span class="nb">cd</span><span class="w"> </span>inference-pipeline
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Download model weights</strong>
+   Download from Google Drive and place in the <code>weights/</code> directory:</p>
+</li>
+<li><code>weights/soundscape-model.pt</code> — sound classification model</li>
+<li><code>weights/xgboost-model.pkl</code> — score prediction model</li>
+<li>Google Drive: <a href="https://drive.google.com/drive/folders/1y59QnqjmbVWW-pZhIONdZJuEHzz-iiYz?usp=sharing">Weights link</a></li>
+<li>
+<p>Ensure the model architecture matches <code>monsoon_biodiversity_common/config.py</code></p>
+</li>
+<li>
+<p><strong>Verify logs (JSON sending and daily detections)</strong></p>
+</li>
+<li>Follow container logs:
+     <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>prod-bio-service
+</code></pre></div></li>
+<li>Inspect detailed log files inside the container:
+     <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>prod-bio-service<span class="w"> </span>bash
+tail<span class="w"> </span>-n<span class="w"> </span><span class="m">200</span><span class="w"> </span>-f<span class="w"> </span>/app/logs/audio_inference.log<span class="w">   </span><span class="c1"># file monitoring &amp; segment inference</span>
+tail<span class="w"> </span>-n<span class="w"> </span><span class="m">200</span><span class="w"> </span>-f<span class="w"> </span>/app/logs/daily_report.log<span class="w">      </span><span class="c1"># daily aggregation &amp; API sending</span>
+</code></pre></div></li>
+<li>Expected entries:<ul>
+<li>Saved JSON: lines with "[SAVE] JSON saved to"</li>
+<li>Successful API send: lines with "[API] Prediction sent"</li>
+<li>Daily aggregation: lines with "[DATE] Generating report for:" and device/file counts</li>
+<li>Real-time processing: lines with "[NEW FILE]", "[INFER] Processing", and "[DB] Added <k> detections"</li>
+</ul>
+</li>
+</ol>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "toc.integrate", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>
