@@ -137,7 +137,7 @@ Continuously watches incoming audio, validates file stability, performs 5‑seco
   - `Score`: max probability
 - Segment identifier `row_id` format: `<file_stem>_<second>`
 
-**Database write (SQLite):**
+<!-- **Database write (SQLite):**
 - DB URL: `sqlite:////app/app-data/soundscape-model.db`
 - Entities used: `RpiDevices`, `AudioFiles`, `SpeciesDetections`
 - Path parsing: expects folder layout `.../RPiID-XXX/YYYY-MM-DD/<audio_file>`
@@ -146,23 +146,17 @@ Continuously watches incoming audio, validates file stability, performs 5‑seco
   - `time_segment_id` = `row_id`
   - `species_class` = predicted `Class`
   - `confidence_score` = `Score`
-  - `created_at` = current UTC timestamp
+  - `created_at` = current UTC timestamp -->
 
 **Logging:**
-- Console: Colored via `colorlog`
 - File: `/app/logs/audio_inference.log`
 
 **File retention:**
 - Files are currently kept after processing; a safe delete helper exists but is disabled by default
 
-**Summary:**  
-Real‑time, resilient ingestion that only processes fully‑written files, performs 5‑second window classification, and persists detections per segment.
-
 
 #### Audio processing & detection model  
 
-**Locations:**  
-`src/process_detections.py`, `src/species_mapping.py`
 
 **Daily aggregation and scoring:**
 - Loads an XGBoost model from `/app/weights/xgboost-model.pkl`
@@ -195,7 +189,7 @@ Real‑time, resilient ingestion that only processes fully‑written files, perf
           "name_en": "Blue-throated Barbet",
           "name_th": "นกโพระดกคางฟ้า",
           "type": "bird",
-          "data": ["0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+          "data": ["0", "1", "45", "23", "56", "12", "2", "0", "5", "9", "19", "21", "22", "34", "61", "23", "12", "6", "87", "112", "22", "46", "23", "11"]
         }
       ]
     }
@@ -302,26 +296,8 @@ The database schema is defined using SQLAlchemy ORM. The schema consists of thre
    - Google Drive: [Weights link](https://drive.google.com/drive/folders/1y59QnqjmbVWW-pZhIONdZJuEHzz-iiYz?usp=sharing)
    - Ensure the model architecture matches `monsoon_biodiversity_common/config.py`
 
-3. **Build and run with Docker / Docker Compose**
-   - Build via script:
-     ```bash
-     sh scripts/build_prod_image.sh
-     ```
-   - Or build with Docker directly:
-     ```bash
-     docker build -t prod-bio-service -f docker/Dockerfile .
-     ```
-   - Start with Docker Compose:
-     ```bash
-     docker compose -f docker/docker-compose-prod.yaml up -d
-     ```
-   - Check containers:
-     ```bash
-     docker ps
-     docker compose -f docker/docker-compose-prod.yaml ps
-     ```
 
-4. **Verify logs (JSON sending and daily detections)**
+3. **Verify logs (JSON sending and daily detections)**
    - Follow container logs:
      ```bash
      docker logs -f prod-bio-service
