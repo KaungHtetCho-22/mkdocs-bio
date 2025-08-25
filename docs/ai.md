@@ -13,19 +13,11 @@ Audio recordings are collected by deployed AudioMoth devices. As illustrated in 
 2. **Biodiversity Score Level Prediction**  
 For each region, the frequency of occurrence of every detected species and noise class is aggregated from the classified recordings. These frequencies serve as input features to a traditional machine learning model (XGBoost), which predicts the region’s biodiversity score level: high, medium, or low.  
 
-<figure id="bioscoreoverview" style="text-align: center;">
-  <img 
-    src="images/biodiversity_overview.png" 
-    alt="Overview of Biodiversity Score Level Prediction" 
-    width="400">
-  <figcaption>Figure 1: Biodiversity Score Level Prediction Overview.</figcaption>
-</figure>
 
-<!-- 
-<div style="text-align: center;">
-<img src="images/biodiversity_overview.png" alt="Biodiversity Overview" width="400">
-</div>
---- -->
+![Overview of Biodiversity Score Level Prediction](images/biodiversity_overview.png){ width="400" }
+
+*Figure 1: Biodiversity Score Level Prediction Overview.*
+
 
 
 <a id="data"></a>
@@ -47,30 +39,18 @@ To reduce label noise and improve relevance, we removed species not known to occ
 The final set of bird and insect species used in training and inference is documented in **species.txt** and **species_count.txt**. The number of classes included in the analysis is summarized in [Table 1](#table-1).
 
 <a id="table-1"></a>
-Table 1: Summary of the Number of Classes in Training Data
-| Type of Sound | Class Count |
-|-----------------|-------------------|
-| Bird Species | 66 |
-| Insect Species | 14 |
-| Noise/No-Call | 10 |
-| **Total** | **90** |
+Table 1: Summary of the Number of Classes in Training Data  
+
+| Type of Sound   | Class Count |
+|-----------------|-------------|
+| Bird Species    | 66          |
+| Insect Species  | 14          |
+| Noise/No-Call   | 10          |
+| **Total**       | **90**      |
+
 
 ---
 
-<!-- 
-### 2. Model Accuracy
-
-| Metric   | Value |
-|----------|-------|
-| Accuracy | XX%   |
-| Precision| XX%   |
-| Recall   | XX%   |
-| F1-Score | XX%   |
-
-*(Replace XX% with actual results after training.)*
-
----
- -->
 <a id="models"></a>
 ## **Models**
 
@@ -80,13 +60,12 @@ The audio classification model is adapted from [4th Place Solution: Knowledge Di
 - **Input:**
   - Each collected raw audio file contains 10 minutes length which is then splitted into 20 second-chunks. Mel-spectrograms (<a href="#melspectrogram">Figure 2</a>) are extracted from audio chunks and they serve as the input of the audio classification model training.
 
-<figure id="melspectrogram" style="text-align: center;">
-  <img 
-    src="images/mel_spectrogram.png" 
-    alt="Mel Spectrogram" 
-    width="600">
-  <figcaption>Figure 2: An Example of Mel Spectrogram.</figcaption>
-</figure>
+
+
+![Mel Spectrogram](images/mel_spectrogram.png){ width="600" }
+
+*Figure 2: An Example of Mel Spectrogram.*
+
 
 - **Model Backbone:**
   -  Convolutional Neural Networks (CNNs) for spatial feature learning. eg. ResNet, EfficientNet.
@@ -105,13 +84,17 @@ The biodiversity score level is categorized into low, medium and high according 
 - **Input:**
   - The outputs from the audio classification model, along with their respective timestamps, are converted into a pivot table, [Table 2](#table-2), based on frequency count, with each column representing a species name or noise classification. From this pivot table, we extract the frequency of occurrence for each species at specific timestamps. These occurrences are then aggregated into hourly counts for each species. The final input is a table displaying the hourly appearance of each species, which is mapped to its corresponding biodiversity score level, [Table 3](#table-3).
 
+
+
 <a id="table-2"></a>
-Table 2: Example of Pivot Table for Species Frequency Count
-| No | unique_date | collected_biodiversity_score | hour | species_1 | species_2 | ... | species_x |
-|-----------------|-------------------|-------------------|-------------------|-------------------|-------------------|-------------------|-------------------|
-| 0 | model5_2025-01-27 | 0 | 1 | 0 | 2 | ... | 1 |
-| 1 | model4_2025-01-28 | 1 | 0 | 0 | 0 | ... | 0 |
-| 2 | model1_2025-01-29 | 2 | 3 | 1 | 0 | ... | 2 |
+Table 2: Example of Pivot Table for Species Frequency Count  
+
+| No | unique_date        | collected_biodiversity_score | hour | species_1 | species_2 | ... | species_x |
+|----|--------------------|------------------------------|------|-----------|-----------|-----|-----------|
+| 0  | model5_2025-01-27  | 0                            | 1    | 0         | 2         | ... | 1         |
+| 1  | model4_2025-01-28  | 1                            | 0    | 0         | 0         | ... | 0         |
+| 2  | model1_2025-01-29  | 2                            | 3    | 1         | 0         | ... | 2         |
+
 
 - **Training Details:**
   - Model: XGBoost Classifier
@@ -119,16 +102,18 @@ Table 2: Example of Pivot Table for Species Frequency Count
   - Best Num Features: 60
 
 - **Training**
-  - The detail training settings and codebase can be found in `training.ipynb`(or training.pdf)
-  - For data insight and data analysis, please refer to `analysis.ipynb`(or analysis.pdf)
+  - The detailed training settings and codebase can be found in [`score_prediction_training.ipynb`](files/score_prediction_training.ipynb)
+  - Required resources are provided in [`training_resources.zip`](files/score-prediction-training-resources.zip)
 
 <a id="table-3"></a>
-Table 3: Mapping Between Biodiversity Score Level and Class ID
+Table 3: Mapping Between Biodiversity Score Level and Class ID  
+
 | Biodiversity Score Level | Class ID |
-|-----------------|-------------------|
-| Low | 0 |
-| Medium | 1 |
-| High | 2 |
+|--------------------------|----------|
+| Low                      | 0        |
+| Medium                   | 1        |
+| High                     | 2        |
+
 
 ---
 
