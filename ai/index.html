@@ -421,15 +421,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#table-1-summary-of-the-number-of-classes-in-training-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Table 1 — Summary of the Number of Classes in Training Data
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -513,39 +504,24 @@
 
 <h1 id="biodiversity-score-prediction">Biodiversity Score Prediction<a class="headerlink" href="#biodiversity-score-prediction" title="Permanent link">&para;</a></h1>
 <h2 id="outlines">Outlines<a class="headerlink" href="#outlines" title="Permanent link">&para;</a></h2>
-<!-- - [Overview](#ov)
-- [Data](#data)
-- [Models](#models)
-- [Trainings](#trainings) -->
-
+<ul>
+<li><a href="#ov">Overview</a></li>
+<li><a href="#data">Data</a></li>
+<li><a href="#models">Models</a></li>
+</ul>
 <p><a id="ov"></a></p>
-<h2 id="overview-of-biodiversity-score-level-prediction">Overview of Biodiversity Score Level Prediction<a class="headerlink" href="#overview-of-biodiversity-score-level-prediction" title="Permanent link">&para;</a></h2>
+<h2 id="overview-of-biodiversity-score-level-prediction"><strong>Overview of Biodiversity Score Level Prediction</strong><a class="headerlink" href="#overview-of-biodiversity-score-level-prediction" title="Permanent link">&para;</a></h2>
 <p>This project predicts regional biodiversity scores through a two-stage workflow <a href="#bioscoreoverview">Figure 1</a>: <strong>1. bird and insect sound classification</strong> and the <strong>2. biodiversity score level prediction</strong>.  </p>
 <ol>
-<li>Bird and Insect Sound Classification
+<li><strong>Bird and Insect Sound Classification</strong><br />
 Audio recordings are collected by deployed AudioMoth devices. As illustrated in <a href="#bioscoreoverview">Figure 1</a>, the recordings are preprocessed and fed into a deep learning classifier based on a modified implementation of the <a href="https://www.kaggle.com/competitions/birdclef-2023/writeups/atfujita-4th-place-solution-knowledge-distillation">BirdCLEF 2023 4th Place Solution</a>. The model identifies bird and insect species and also detects non-biological sounds such as human speech, other human-generated noises, and vehicle sounds. It was pre-trained on species recordings from <a href="https://xeno-canto.org/">Xeno-canto</a> and noise/no-call recordings from our own data collection.</li>
-<li>Biodiversity Score Level Prediction
+<li><strong>Biodiversity Score Level Prediction</strong><br />
 For each region, the frequency of occurrence of every detected species and noise class is aggregated from the classified recordings. These frequencies serve as input features to a traditional machine learning model (XGBoost), which predicts the region’s biodiversity score level: high, medium, or low.  </li>
 </ol>
-<!-- <figure id="bioscoreoverview" style="text-align: center;">
-  <img 
-    src="images/biodiversity_overview.png" 
-    alt="Overview of Biodiversity Score Level Prediction" 
-    width="400">
-  <figcaption>Figure 1: Biodiversity Score Level Prediction Overview.</figcaption>
-</figure> -->
-
-<p><img alt="Biodiversity score level prediction overview" src="../images/biodiversity_overview.png" style="width: 400px; display: block; margin: 0 auto;" /></p>
-<p align="center"><em>Figure 1: Biodiversity score level prediction overview.</em></p>
-
-<!-- 
-<div style="text-align: center;">
-<img src="images/biodiversity_overview.png" alt="Biodiversity Overview" width="400">
-</div>
---- -->
-
+<p><img alt="Overview of Biodiversity Score Level Prediction" src="../images/biodiversity_overview.png" width="400" /></p>
+<p><em>Figure 1: Biodiversity Score Level Prediction Overview.</em></p>
 <p><a id="data"></a></p>
-<h2 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h2>
+<h2 id="data"><strong>Data</strong><a class="headerlink" href="#data" title="Permanent link">&para;</a></h2>
 <p>This section provides an overview of the data used in this project. We summarize the sources, label quality, use in training, geographic filtering, and the class list.</p>
 <h3 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h3>
 <p>Public: Expert-labeled wildlife audio from <a href="https://xeno-canto.org/">Xeno-canto</a>, covering birds and insects.
@@ -559,76 +535,150 @@ Additional noise examples from our self-collected recordings (e.g., human speech
 <h3 id="geographic-filtering">Geographic filtering<a class="headerlink" href="#geographic-filtering" title="Permanent link">&para;</a></h3>
 <p>To reduce label noise and improve relevance, we removed species not known to occur in Thailand, with a particular focus on the Chiang Mai region.</p>
 <h3 id="class-list">Class list<a class="headerlink" href="#class-list" title="Permanent link">&para;</a></h3>
-<p>The final set of bird and insect species used in training and inference is documented in 
-<strong><a href="../files/species.txt">species.txt</a></strong> and <strong><a href="../files/species_count.txt">species_count.txt</a></strong>.<br />
-The number of classes included in the analysis is summarized in <a href="#table-1">Table 1</a>.</p>
-<p><a id="table-1"></a></p>
-<!-- Table 1: Summary of the Number of Classes in Training Data
-| Type of Sound | Class Count |
-|-----------------|-------------------|
-| Bird Species | 66 |
-| Insect Species | 14 |
-| Noise/No-Call | 10 |
-| **Total** | **90** | -->
-
-<p><a id="table-1"></a></p>
-<h3 id="table-1-summary-of-the-number-of-classes-in-training-data">Table 1 — Summary of the Number of Classes in Training Data<a class="headerlink" href="#table-1-summary-of-the-number-of-classes-in-training-data" title="Permanent link">&para;</a></h3>
+<p>The final set of bird and insect species used in training and inference is documented in <strong>species.txt</strong> and <strong>species_count.txt</strong>. The number of classes included in the analysis is summarized in <a href="#table-1">Table 1</a>.</p>
+<p><a id="table-1"></a>
+Table 1: Summary of the Number of Classes in Training Data  </p>
 <table>
 <thead>
 <tr>
-<th><strong>Type of Sound</strong></th>
-<th style="text-align: right;"><strong>Class Count</strong></th>
+<th>Type of Sound</th>
+<th>Class Count</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Bird Species</td>
-<td style="text-align: right;">66</td>
+<td>66</td>
 </tr>
 <tr>
 <td>Insect Species</td>
-<td style="text-align: right;">14</td>
+<td>14</td>
 </tr>
 <tr>
-<td>Noise / No-Call</td>
-<td style="text-align: right;">10</td>
+<td>Noise/No-Call</td>
+<td>10</td>
 </tr>
 <tr>
 <td><strong>Total</strong></td>
-<td style="text-align: right;"><strong>90</strong></td>
+<td><strong>90</strong></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<!-- 
-### 2. Model Accuracy
-
-| Metric   | Value |
-|----------|-------|
-| Accuracy | XX%   |
-| Precision| XX%   |
-| Recall   | XX%   |
-| F1-Score | XX%   |
-
-*(Replace XX% with actual results after training.)*
-
----
- -->
 <p><a id="models"></a></p>
-<h2 id="models">Models<a class="headerlink" href="#models" title="Permanent link">&para;</a></h2>
+<h2 id="models"><strong>Models</strong><a class="headerlink" href="#models" title="Permanent link">&para;</a></h2>
 <h3 id="sound-classification-model">Sound Classification Model<a class="headerlink" href="#sound-classification-model" title="Permanent link">&para;</a></h3>
-<h3 id="biodiversity-score-level-prediction-model">Biodiversity Score Level Prediction Model<a class="headerlink" href="#biodiversity-score-level-prediction-model" title="Permanent link">&para;</a></h3>
+<p>The audio classification model is adapted from <a href="https://www.kaggle.com/competitions/birdclef-2023/writeups/atfujita-4th-place-solution-knowledge-distillation">4th Place Solution: Knowledge Distillation Is All You Need</a>. The modified version of the model can be found at <a href="https://github.com/diwas-lamsal/biodiversity-audio?tab=readme-ov-file">Biodiversity Audio Classification</a>.</p>
 <ul>
-<li><strong>Input:</strong> Mel-spectrograms extracted from audio recordings.</li>
-<li><strong>Feature Extraction:</strong> Convolutional Neural Networks (CNNs) for spatial feature learning.</li>
-<li><strong>Classification Layer:</strong> Fully-connected layers with softmax output for multi-class classification.</li>
-<li><strong>Training Details:</strong></li>
-<li>Optimizer: Adam</li>
-<li>Loss: Categorical Cross-Entropy</li>
-<li>Learning Rate: <em>(e.g., 0.001)</em></li>
-<li>Epochs: <em>(e.g., 50)</em></li>
-<li>Batch Size: <em>(e.g., 32)</em></li>
+<li><strong>Input:</strong></li>
+<li>Each collected raw audio file contains 10 minutes length which is then splitted into 20 second-chunks. Mel-spectrograms (<a href="#melspectrogram">Figure 2</a>) are extracted from audio chunks and they serve as the input of the audio classification model training.</li>
 </ul>
+<p><img alt="Mel Spectrogram" src="../images/mel_spectrogram.png" width="600" /></p>
+<p><em>Figure 2: An Example of Mel Spectrogram.</em></p>
+<ul>
+<li><strong>Model Backbone:</strong></li>
+<li>Convolutional Neural Networks (CNNs) for spatial feature learning. eg. ResNet, EfficientNet.</li>
+<li><strong>Training Details:</strong></li>
+<li>Optimizer: <em>AdamW</em></li>
+<li>Loss: <em>BCEWithLogitsLoss</em></li>
+<li>Learning Rate: <em>2.5e-4 (with Cosine Learning Rate Scheduler)</em></li>
+<li>Epochs: <em>200</em></li>
+<li>Batch Size: <em>32</em></li>
+<li><strong>Output:</strong></li>
+<li>The model produces a prediction indicating the class ID of the species with the highest probability in the input audio chunk. The class IDs range from 0 to 89 (totaling 90 classes), and the final prediction maps the class ID to the corresponding species name.</li>
+</ul>
+<h3 id="biodiversity-score-level-prediction-model">Biodiversity Score Level Prediction Model<a class="headerlink" href="#biodiversity-score-level-prediction-model" title="Permanent link">&para;</a></h3>
+<p>The biodiversity score level is categorized into low, medium and high according to the location of the area from which we map them into class IDs of 0 to 2 respectively. We use XGBoost Classification Model to predict the final biodiversity score level. The training and validation datasets are split based on device ID to ensure that recordings from the same device do not appear in both sets, thereby preventing data leakage and maintaining the integrity of the validation process.</p>
+<ul>
+<li><strong>Input:</strong></li>
+<li>The outputs from the audio classification model, along with their respective timestamps, are converted into a pivot table, <a href="#table-2">Table 2</a>, based on frequency count, with each column representing a species name or noise classification. From this pivot table, we extract the frequency of occurrence for each species at specific timestamps. These occurrences are then aggregated into hourly counts for each species. The final input is a table displaying the hourly appearance of each species, which is mapped to its corresponding biodiversity score level, <a href="#table-3">Table 3</a>.</li>
+</ul>
+<p><a id="table-2"></a>
+Table 2: Example of Pivot Table for Species Frequency Count  </p>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>unique_date</th>
+<th>collected_biodiversity_score</th>
+<th>hour</th>
+<th>species_1</th>
+<th>species_2</th>
+<th>...</th>
+<th>species_x</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>model5_2025-01-27</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>...</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>model4_2025-01-28</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>model1_2025-01-29</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Training Details:</strong></li>
+<li>Model: XGBoost Classifier</li>
+<li>Hyperparameter Search: GridSearch</li>
+<li>
+<p>Best Num Features: 60</p>
+</li>
+<li>
+<p><strong>Training</strong></p>
+</li>
+<li>The detailed training settings and codebase can be found in <a href="../files/score_prediction_training.ipynb"><code>score_prediction_training.ipynb</code></a></li>
+<li>Required resources are provided in <a href="../files/score-prediction-training-resources.zip"><code>training_resources.zip</code></a></li>
+</ul>
+<p><a id="table-3"></a>
+Table 3: Mapping Between Biodiversity Score Level and Class ID  </p>
+<table>
+<thead>
+<tr>
+<th>Biodiversity Score Level</th>
+<th>Class ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>1</td>
+</tr>
+<tr>
+<td>High</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<hr />
 
 
 
