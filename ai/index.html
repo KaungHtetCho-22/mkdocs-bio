@@ -568,7 +568,7 @@ Table 1: Summary of the Number of Classes in Training Data  </p>
 <p><a id="models"></a></p>
 <h2 id="models"><strong>Models</strong><a class="headerlink" href="#models" title="Permanent link">&para;</a></h2>
 <h3 id="sound-classification-model">Sound Classification Model<a class="headerlink" href="#sound-classification-model" title="Permanent link">&para;</a></h3>
-<p>The audio classification model is adapted from <a href="https://www.kaggle.com/competitions/birdclef-2023/writeups/atfujita-4th-place-solution-knowledge-distillation">4th Place Solution: Knowledge Distillation Is All You Need</a>. The modified version of the model can be found at <a href="https://github.com/diwas-lamsal/biodiversity-audio?tab=readme-ov-file">Biodiversity Audio Classification</a>.</p>
+<p>The audio classification model is adapted from <a href="https://www.kaggle.com/competitions/birdclef-2023/writeups/atfujita-4th-place-solution-knowledge-distillation">4th Place Solution: Knowledge Distillation Is All You Need</a>. The modified version of the model can be found at <a href="https://github.com/KaungHtetCho-22/Biodiversity/tree/main/audio_classification_training">Biodiversity Audio Classification Training</a>.</p>
 <ul>
 <li><strong>Input:</strong></li>
 <li>Each collected raw audio file contains 10 minutes length which is then splitted into 20 second-chunks. Mel-spectrograms (<a href="#melspectrogram">Figure 2</a>) are extracted from audio chunks and they serve as the input of the audio classification model training.</li>
@@ -651,8 +651,7 @@ Table 2: Example of Pivot Table for Species Frequency Count  </p>
 <li>
 <p><strong>Training</strong></p>
 </li>
-<li>The detailed training settings and codebase can be found in <a href="../files/score_prediction_training.ipynb"><code>score_prediction_training.ipynb</code></a></li>
-<li>Required resources are provided in <a href="../files/score-prediction-training-resources.zip"><code>training_resources.zip</code></a></li>
+<li>Follow the instructions from <strong>Score Prediction Repo</strong>: <a href="https://github.com/KaungHtetCho-22/Biodiversity/tree/main/score_prediction_training">score_prediction_training</a></li>
 </ul>
 <p><a id="table-3"></a>
 Table 3: Mapping Between Biodiversity Score Level and Class ID  </p>
@@ -679,6 +678,11 @@ Table 3: Mapping Between Biodiversity Score Level and Class ID  </p>
 </tbody>
 </table>
 <hr />
+<p><strong>Scoring Threshold</strong></p>
+<p>The output of the biodiversity score prediction for each row is aggregated by the count of each class prediction and then converted into a percentage contribution. Due to data imbalance in the training distribution, Class C is the majority prediction in almost all cases. To address this issue, we set the following sequential criteria:</p>
+<p>If the majority vote contribution for Class B is &gt;13%, the area is assigned Class B.</p>
+<p>If the first criterion is not met and the majority vote contribution for Class A is &gt;6%, the area is assigned Class A.</p>
+<p>If the first two criteria are not met, the area is assigned Class C.</p>
 
 
 
