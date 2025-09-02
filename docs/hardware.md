@@ -1,7 +1,7 @@
 # **Hardware Components & Setup Documentation**
 
 ---
-
+**Hardware implementation repo**: [pi-setup](https://github.com/KaungHtetCho-22/Biodiversity/tree/main/pi-setup).
 ## Device list
 
 This system consists of the following IoT hardware components:

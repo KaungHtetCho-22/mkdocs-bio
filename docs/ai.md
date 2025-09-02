@@ -55,7 +55,7 @@ Table 1: Summary of the Number of Classes in Training Data
 ## **Models**
 
 ### Sound Classification Model
-The audio classification model is adapted from [4th Place Solution: Knowledge Distillation Is All You Need](https://www.kaggle.com/competitions/birdclef-2023/writeups/atfujita-4th-place-solution-knowledge-distillation). The modified version of the model can be found at [Biodiversity Audio Classification](https://github.com/diwas-lamsal/biodiversity-audio?tab=readme-ov-file).
+The audio classification model is adapted from [4th Place Solution: Knowledge Distillation Is All You Need](https://www.kaggle.com/competitions/birdclef-2023/writeups/atfujita-4th-place-solution-knowledge-distillation). The modified version of the model can be found at [Biodiversity Audio Classification Training](https://github.com/KaungHtetCho-22/Biodiversity/tree/main/audio_classification_training).
 
 - **Input:**
   - Each collected raw audio file contains 10 minutes length which is then splitted into 20 second-chunks. Mel-spectrograms (<a href="#melspectrogram">Figure 2</a>) are extracted from audio chunks and they serve as the input of the audio classification model training.
@@ -102,8 +102,8 @@ Table 2: Example of Pivot Table for Species Frequency Count
   - Best Num Features: 60
 
 - **Training**
-  - The detailed training settings and codebase can be found in [`score_prediction_training.ipynb`](files/score_prediction_training.ipynb)
-  - Required resources are provided in [`training_resources.zip`](files/score-prediction-training-resources.zip)
+  - Follow the instructions from **Score Prediction Repo**: [score_prediction_training](https://github.com/KaungHtetCho-22/Biodiversity/tree/main/score_prediction_training)
+
 
 <a id="table-3"></a>
 Table 3: Mapping Between Biodiversity Score Level and Class ID  
@@ -114,7 +114,15 @@ Table 3: Mapping Between Biodiversity Score Level and Class ID
 | Medium                   | 1        |
 | High                     | 2        |
 
-
 ---
 
+**Scoring Threshold**
+
+The output of the biodiversity score prediction for each row is aggregated by the count of each class prediction and then converted into a percentage contribution. Due to data imbalance in the training distribution, Class C is the majority prediction in almost all cases. To address this issue, we set the following sequential criteria:
+
+If the majority vote contribution for Class B is >13%, the area is assigned Class B.
+
+If the first criterion is not met and the majority vote contribution for Class A is >6%, the area is assigned Class A.
+
+If the first two criteria are not met, the area is assigned Class C.
 

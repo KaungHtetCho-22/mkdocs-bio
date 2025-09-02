@@ -17,6 +17,9 @@ This covers end-to-end guidance for deploying IoT devices, training AI models fo
 - AI model overview, datasets, and training approach
 - Inference pipeline, database schema, and operations
 
+All the source codes can be found at 
+**Biodiversity**: [Biodiversity](https://github.com/KaungHtetCho-22/Biodiversity/tree/main)
+
 ---
 
 <!-- ### Quick navigation

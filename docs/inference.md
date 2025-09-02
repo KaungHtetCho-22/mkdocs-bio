@@ -5,7 +5,7 @@
 
 This system automates the end-to-end process of **monitoring bird sounds** using IoT devices, classifying them with a soundscape model, predicting biodiversity scores, and delivering the results as JSON payloads to an API.
 
-Repository: **[inference-workflow‑iNet](https://github.com/KaungHtetCho-22/inference-workflow-iNet)**
+**Inference pipeline repo**: [inerence_pipeline](https://github.com/KaungHtetCho-22/Biodiversity/tree/main/inference_pipeline)
 
 ![System Overview Diagram](images/overview-diagram.png){ style="width: 400px; display: block; margin: 0 auto;" }
 
@@ -250,7 +250,7 @@ The database schema is defined using SQLAlchemy ORM. The schema consists of thre
    Download from Google Drive and place in the `weights/` directory:
    - `weights/soundscape-model.pt` — sound classification model
    - `weights/xgboost-model.pkl` — score prediction model
-   - Google Drive: [Weights link](https://drive.google.com/drive/folders/1y59QnqjmbVWW-pZhIONdZJuEHzz-iiYz?usp=sharing)
+   - Google Drive: [Weights link](https://drive.google.com/drive/folders/1P08IWJy00RYIv7QVL2bY8u0o3AswQFRG?usp=drive_link)
    - Ensure the model architecture matches `monsoon_biodiversity_common/config.py`
 
 
